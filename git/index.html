@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Formation Git</title>
+
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
+		<link rel="stylesheet" href="css/styles.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal.js/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+				<section>
+					<h1>Formation Git</h1>
+				</section>
+
+				<section>
+                    <h2>Thibault Jouannic</h2>
+                    <p><a href="mailto:thibault@jouannic.fr">thibault@jouannic.fr</a> —
+                    <a href="https://twitter.com/thibaultj">@thibaultj</a></p>
+				</section>
+
+                <section>
+                    <h2>Première journée</h2>
+                    <p>Plan</p>
+                </section>
+
+                <section>
+                    <h2>Deuxième journée</h2>
+                    <p>Plan</p>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>La gestion de version</h1>
+                    </section>
+
+                    <section>
+                        <h2>Pour travailler seul</h2>
+                        <ul>
+                            <li>Conserver un historique</li>
+                            <li>Revenir en arrière</li>
+                            <li>Ne pas perdre de données</li>
+                            <li>Savoir où l'on en est</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Pour travailler à plusieurs</h2>
+                        <li>Éviter les conflits</li>
+                        <li>Savoir qui fait quoi</li>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Git – Histoire et philosophie</h1>
+                    </section>
+
+                    <section>
+                        <h2>L'histoire de Git</h2>
+                        <p>BitKeeper, SCM non libre, était utilisé par Linus Torvalds pour développer le noyau Linux.</p>
+                        <p>Quand les développeurs décident d'en révoquer le droit d'utilisation, Linus décide
+                           de construire son propre outil.</p>
+                        <p>Git est donc développé pour des projets à trés grande ampleur.</p>
+                    </section>
+
+                    <section>
+                        <h2>Caractéristiques et prérequis</h2>
+                        <p>Git est donc développé par des développeurs hautement expérimentés,
+                           et avec de trés fortes exigeances.</p>
+                        <ul>
+                            <li>Haute performance</li>
+                            <li>Architecture distribuée</li>
+                            <li>Protection contre les corruptions et pertes de données</li>
+                            <li>Support d'un <i>workflow</i> non linéaire</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Mais pourquoi est-il si génial ?</h2>
+                        <ul>
+                            <li>Chaque version de fichier est sauvegardée (pas les deltas)</li>
+                            <li>Rapide comme l'éclair</li>
+                            <li>Fonctionne en local</li>
+                            <li>Quasiment impossible de perdre des données</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Essayons !</h2>
+                    <pre><code>
+                        $ mkdir test && cd test
+                        $ git init
+                        $ touch file
+                        $ git status
+                        $ git add file
+                        $ git status
+                        $ git commit -a -m "First commit"
+                        $ git status
+                        $ git log
+                    </code></pre>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Concepts et fonctionnement</h1>
+                    </section>
+                    <section>
+                        <h2>Deux stuctures de données</h2>
+                        <p>La base de données d'objets : toute modification s'apparente à un ajout à la base.
+                            Chaque objet est indexé par son hash SHA1.</p>
+                        <p>L'index mutable (<i>Stage</i> ou <i>Cache</i>) qui contient les infos sur
+                            le répertoire de travail et le prochain commit.</p>
+                    </section>
+                    <section>
+                        <h2>Vocabulaire</h2>
+                        <dl>
+                            <dt>Dépôt</dt>
+                            <dd>Ensemble des données et meta-données d'un projet géré sous git</dd>
+                            <dt>Working directory (WD)</dt>
+                            <dd>Ensemble local des fichiers et répertoires du projet</dd>
+                            <dt>Commit</dt>
+                            <dd>Enregistrement daté d'une modification du WD</dd>
+                            <dt>Index / Staging area</dt>
+                            <dd>Liste des modifications à commiter</dd>
+                            <dt>Branche</dt>
+                            <dd>Flux de commits parallèle.</dd>
+                            <dt>Master</dt>
+                            <dd>Branche principale du dépôt</dd>
+                        </dl>
+                    </section>
+                    <section>
+                        <h2>Vocabulaire</h2>
+                        <dl>
+                            <dt>Tag</dt>
+                            <dd>Étiquette désignant un commit précis</dd>
+                            <dt>Fusion / Merge</dt>
+                            <dd>Action de combiner les commits de plusieurs branches</dd>
+                            <dt>Conflit</dt>
+                            <dd>Incompatibilité empêchant une fusion automatique</dd>
+                            <dt>HEAD</dt>
+                            <dd>Désigne le dernier commit de la branche courante</dd>
+                            <dt>ORIG_HEAD</dt>
+                            <dd>La précédente position de HEAD</dd>
+                        </dl>
+                    </section>
+                </section>
+
+                <section>
+                    <h1>Avant de commencer</h1>
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="../reveal.js/lib/js/head.min.js"></script>
+		<script src="../reveal.js/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: '../reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: '../reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
