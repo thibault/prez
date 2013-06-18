@@ -174,11 +174,137 @@
                             <dd>La précédente position de HEAD</dd>
                         </dl>
                     </section>
+                    <section>
+                        <h2>Zones et états</h2>
+                        <figure>
+                            <img src="img/file_lifecycle.png" alt="" />
+                            <figcaption><a href="http://git-scm.com/book/en/Git-Basics-Recording-Changes-to-the-Repository">Pro Git – Scott Chacon</a></figcaption>
+                        </figure>
+                    </section>
                 </section>
 
                 <section>
-                    <h1>Avant de commencer</h1>
+                    <section>
+                        <h1>Avant de démarrer</h1>
+                    </section>
+                    <section>
+                        <h2>La configuration</h2>
+                        <ul>
+                            <li>/etc/gitconfig</li>
+                            <li>~/.gitconfig</li>
+                            <li>.git/config</li>
+                        </ul>
+                        <pre><code>
+$ git config --global user.name "Thibault Jouannic"
+$ git config --global user.email "thibault@miximum.fr"
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>La configuration</h2>
+                        <pre><code>
+[user]
+    name = Thibault Jouannic
+    email = thibault@miximum.fr
+[color]
+    ui = true
+[alias]
+    lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+    st = status
+    ci = commit
+[core]
+    editor = vim
+[merge]
+    tool = vimdiff
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Le prompt</h2>
+                        <p>TODO</p>
+                    </section>
                 </section>
+
+                <section>
+                    <section>
+                        <h1>Opérations basiques</h1>
+                    </section>
+                    <section>
+                        <h2>Premier dépôt</h2>
+                        <p>Créer un nouveau dépôt</p>
+                        <pre><code>$ git init</code></pre>
+                        <p>Cloner un dépôt distant<p>
+                        <pre><code>$ git clone https://github.com/thibault/prez.git</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>.gitignore</h2>
+                        <p>Pour ignorer certains fichiers.</p>
+                        <p><a href="https://gist.github.com/thibault/5804127">Exemple de .gitignore</a>
+                    </section>
+
+                    <section>
+                        <h2>Préparer le commit</h2>
+                        <pre><code>
+$ # WD &#x2192; Staging
+$ git add .  # Ajoute tous les fichiers sous le dir. courant
+$ git add &lt;file&gt;  # Ajoute un seul fichier ou dir.
+$ git add -u  # Ignore les fichiers non trackés, enregistre la suppr. de fichiers
+$ git add -f  # Ajout de fichiers ignorés
+$ git add -p / git add -i  # Interactif KILLER FEATURE!
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Commiter</h2>
+                        <pre><code>
+$ # Staging &#x2192; Repository
+$ git commit  # Commit et lance l'éditeur pour saisir le message
+$ git commit -m "Mon message"
+$ git commit -a  # Tout commiter, même ce qui n'est pas dans le staging
+$ git commit -am "Mon message"  # Svn style
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Visualiser l'état du dépôt</h2>
+                        <pre><code>
+$ # HEAD &#x2260; Staging &#x2260; WD
+$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD file..." to unstage)
+#
+#	modified:   index.html
+#
+# Changes not staged for commit:
+#   (use "git add file..." to update what will be committed)
+#   (use "git checkout -- file..." to discard changes in working directory)
+#
+#	modified:   index.html
+#
+# Untracked files:
+#   (use "git add file..." to include in what will be committed)
+#
+#	img
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Supprimer et déplacer des fichiers</h2>
+                        <pre><code>
+$ git rm  # Supprimer du repository et du WD
+$ git rm --cached  # Supprimer du repository mais pas du WD
+$ git mv source destination  # Déplace un fichier
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Sortir des fichiers du staging</h2>
+                        <pre><code>
+                        </code></pre>
+                    </section>
+
+                </section>
+
 
 			</div>
 
