@@ -354,8 +354,42 @@ $ git diff --word-diff  # Différences mot à mot (au lieu de ligne à ligne)
 $ git diff -w  # Ignore les espaces dans la comparaison
                         </code></pre>
                     </section>
+                    <section>
+                        <h2>Fouiller l'historique</h2>
+                        <pre><code>
+$ git log
+$ git log &lt;branch&gt; 
+$ git log --author=Thibault
+$ git log --grep=keyword -i -E
+$ git log --graph
+$ git log --format=oneline
+$ git log --since="yesterday"
+$ git log --since="1 hour ago"
+$ git lg
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Voir des objets git</h2>
+                        <pre><code>
+$ git show  # Voir le dernier commit
+$ git show &lt;commit&gt;
+$ git show &lt;blob&gt;
+$ git show &lt;tag&gt; 
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Spécifier un commit / révision</h2>
+                        <pre><code>
+$ git … HEAD^
+$ git … efc95493798d878735a7ecf823c3aaacb59cf8c8
+$ git … efc95493798d878735a7ecf823c3aaacb59cf8c8^^
+$ git … efc95493798d8~3
+$ git … hotfixes@{yesterday}
+$ git … HEAD@{5}
+$ git … HEAD@{"1 hour ago"}
+                        </code></pre>
+                    </section>
                 </section>
-
 
 			</div>
 
