@@ -300,9 +300,59 @@ $ git mv source destination  # Déplace un fichier
                     <section>
                         <h2>Sortir des fichiers du staging</h2>
                         <pre><code>
+$ git reset HEAD file  # Égal la commande suivante :
+$ git reset file  # Copie la dernière version commitée dans le staging
+$ git reset -p  # La même, en interactif
+$ # Ces trois dernières commandes ne touchent pas au WD
+                        </code></pre>
+                        <p><i>git reset</i> peut faire bien plus, comme nous
+                            allons le voir plus tard.</p>
+                    </section>
+
+                    <section>
+                        <h2>Annuler les modifications d'un fichier</h2>
+                        <pre><code>
+$ git checkout file  # Copie la version staging de file dans le WD
                         </code></pre>
                     </section>
 
+                    <section>
+                        <h2>Annuler un commit</h2>
+                        <p>Attention, il existe plusieurs méthodes. git revert créé un commit opposé à un commit existant.</p>
+                        <pre><code>
+$ git revert commit
+$ git revert commit -n  # Annule un commit mais attends votre validation pour commiter
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <p>Créez et commitez plusieurs fichiers.</p>
+                        <p>Modifiez plusieurs lignes d'un fichier, mais n'en
+                           commitez qu'une partie.</p>
+                        <p>Faites en sorte que <i>git status</i> affiche un même fichier
+                            dans le staging ET le WD.</p>
+                        <p>Amenez une modification dans le staging, puis annulez-la.</p>
+                    </section>
+                </section>
+
+
+                <section>
+                    <section>
+                        <h1>Retrouver ce que l'on a fait</h1>
+                    </section>
+                    <section>
+                        <h2>Voir les différences entre deux états</h2>
+                        <pre><code>
+$ git diff  # Montre les différences entre le WD et le staging
+$ git diff &lt;file&gt;  # Limite à un seul fichier ou chemin
+$ git diff --cached  # Différences entre staging et HEAD
+$ git diff HEAD  # Différences entre le WD et HEAD
+$ git diff &lt;commit&gt;  # Différences avec un commit / branch particulier
+$ git diff &lt;commit&gt; &lt;commit&gt; # Différences entre deux commits
+$ git diff --word-diff  # Différences mot à mot (au lieu de ligne à ligne)
+                        </code></pre>
+                    </section>
                 </section>
 
 
