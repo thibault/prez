@@ -734,6 +734,222 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                     </section>
                 </section>
+
+                <section>
+                    <section>
+                        <h1>Rebasing</h1>
+                    </section>
+                    <section>
+                        <h2>Qu'est-ce qu'un rebase ?</h2>
+                        <p>Le rebase est une autre façon d'intégrer les modifications de
+                            deux branches.</p>
+                        <p><i>git rebase</i> réapplique les commits d'une branche sur
+                            une autre base.</p>
+                    </section>
+                    <section>
+                        <h2>Merge vs. Rebase</h2>
+                        <pre><code>
+                            A---B---C---D &#x2190; master
+                                 \
+                                  E---F---G &#x2190; hotfix
+                        </code></pre>
+                        <pre><code>
+                            $ git merge hotfix
+                        </code></pre>
+                        
+                        <pre><code>
+                            A---B---C---D---H &#x2190; master, hotfix
+                                 \         /
+                                  E---F---G
+                        </code></pre>
+                        <pre><code>
+                            $ git rebase master
+                        </code></pre>
+                        
+                        <pre><code>
+                            A---B---C---D---E'---F'---G' &#x2190; hotfix
+                                         \
+                                          master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Comment ça fonctionne ?</h2>
+                        <pre><code>
+                            A---B---C---D &#x2190; master
+                                 \
+                                  E---F---G &#x2190; hotfix
+                        </code></pre>
+                        <ol>
+                            <li>git met de côté tous les commits de la branche <i>hotfix</i></li>
+                            <li>la branche <i>hotfix</i> est déplacée sur le dernier commit de <i>master</i></li>
+                            <li>les commits de côté sont tous ré-appliqués <em>un par un</em></li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>Conséquences</h2>
+                        <ul>
+                            <li>Le résultat est le même que le merge, mais l'historique est « plat »</li>
+                            <li>Il n'y a pas de commits de fusion vide</li>
+                            <li>Chaque commit peut provoquer un conflit</li>
+                            <li>Les commits sont réécrits, ce ne sont pas les mêmes (ids différents)</li>
+                        </ul>
+                        <pre><code>
+                            A---B---C---D---E'---F'---G' &#x2190; master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Quand privilégier rebase sur merge ?</h2>
+                        <ul>
+                            <li>Soigner son historique</li>
+                            <li>Faciliter l'intégration de branches</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Éviter les commits de fusion</h2>
+                        <p>Si l'on créé de petites branches en local, on se retrouve facilement
+                            avec beaucoup de commits de fusion, et un historique difficile à lire.</p>
+                        <pre><code>
+                                      F---G &#x2190; bug2
+                                     /
+                            A---B---E---H---I &#x2190; master
+                                 \
+                                  C---D &#x2190; bug1
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Éviter les commits de fusion</h2>
+                        <pre><code>
+                            $ git rebase master bug1
+                            $ git checkout master && merge bug1
+                            $ git rebase master bug2
+                            $ git checkout master && merge bug2
+                        </code></pre>
+                        <pre><code>
+                                                                 bug2
+                                                                /
+                            A---B---E---H---I---C'---D'---F'---G' &#x2190; master
+                                                      \
+                                                       bug1
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Réparer un mauvais historique</h2>
+                        <p>Je n'ai pas créé ma branche depuis le bon commit.</p>
+                        <pre><code>
+                            A---B---H---I---J &#x2190; production
+                                 \
+                                  C---D---G &#x2190; bug_en_cours
+                                       \
+                                        E---F &#x2190; bug_urgent
+                        </code></pre>
+                        <p>Et si je veux passer <i>bug_urgent</i> en production, mais
+                            pas <i>bug_en_cours</i> ?</p>
+                    </section>
+                    <section>
+                        <h2>Réparer un mauvais historique</h2>
+                        <pre><code>
+                            $ git rebase --onto production bug_en_cours bug_urgent
+                        </code></pre>
+                        <pre><code>
+                            A---B---H---I---J---E'---F' &#x2190; production
+                                 \
+                                  C---D---G &#x2190; bug_en_cours
+                        </code></pre>
+                        <p>Les commits sont tous ceux qui sont dans <i>bug_urgent</i>
+                            mais pas dans <i>bug_en_cours</i>.</p>
+                    </section>
+                    <section>
+                        <h2>Autre exemple</h2>
+                        <pre><code>
+                            A---B &#x2190; production
+                                 \
+                                  C---D---G &#x2190; bug_1
+                                       \
+                                        E---F &#x2190; bug_2
+                        </code></pre>
+                        <p>Oups ! bug_1 et bug_2 n'ont rien à voir.</p>
+                    </section>
+                    <section>
+                        <h2>Autre exemple</h2>
+                        <pre><code>
+                            $ git rebase --onto production  bug_1 bug_2
+                        </code></pre>
+                        <pre><code>
+                            A---B &#x2190; production
+                                |\
+                                | C---D---G &#x2190; bug_1
+                                 \
+                                   E'---F' &#x2190; bug_2
+
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Supprimer des commits</h2>
+                        <pre><code>
+                            A---B---C---D---E---F---G &#x2190; master
+                        </code></pre>
+                        <p>Si je veux supprimer les commits C et D ?</p>
+                    </section>
+                    <section>
+                        <h2>Supprimer des commits</h2>
+                        <pre><code>
+                            A---B---C---D---E---F---G &#x2190; master
+                        </code></pre>
+                        <pre><code>
+                            $ git rebase --onto B D master
+                            $ # Remplacer B et D par les sha1 des commits
+                        </code></pre>
+                        <pre><code>
+                            A---B---E'---F'---G' &#x2190; master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Travailler proprement avec les branches distantes</h2>
+                        <pre><code>
+                            A---B---C---D &#x2190; master distant
+                                 \
+                                  E---F---G &#x2190; master local
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Travailler proprement avec les branches distantes</h2>
+                        <pre><code>
+                            $ git pull --rebase
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D &#x2190; master distant
+                                         \
+                                          E'---F'---G' &#x2190; master local
+                        </code></pre>
+                        <pre><code>
+                            $ git push
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D---E'---F'---G' &#x2190; master distant
+                                                       \
+                                                        master local
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Grands pouvoirs, grandes responsabilités</h2>
+                        <p>si vous réécrivez l'historique d'une branche partagée,
+                            vos collègues vous tremperont dans le goudron et les plumes.</p>
+                        <p><i>git rebase</i> ne doit donc être utilisé que pour
+                            les branches locales.</p>
+                    </section>
+                    <section>
+                        <h2>Et si un rebase ne se passe pas bien ?</h2>
+                        <p>Les commits sont réappliqués un par un. Il y a donc des
+                            conflits potentiels.</p>
+                        <pre><code>
+                            $ git status  # Comprendre ce qui se passe
+                            $ # régler le conflit, puis :
+                            $ git rebase --continue  # reprendre le travail, ou
+                            $ git rebase --abort  # Tout annuler, ou
+                            $ git rebase --skip  # Continuer en laissant de côté ce commit
+                        </code></pre>
+                    </section>
+                </section>
 			</div>
 
 		</div>
