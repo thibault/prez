@@ -950,6 +950,161 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                     </section>
                 </section>
+
+                <section>
+                    <section>
+                        <h1>Dépôts distants</h1>
+                        <p>Parce qu'il faut bien partager le code à un moment ou à un autre.</p>
+                    </section>
+                    <section>
+                        <h2>Git est décentralisé</h2>
+                        <p>Rappel : git est un système décentralisé. Il n'y a pas
+                            de notion de dépôt central.</p>
+                        <p>Sauf par convention.</p>
+                        <p>Il est donc possible de créer autant de dépôts distants
+                            que nécessaire.</p>
+                    </section>
+                    <section>
+                        <h2>Git remote</h2>
+                        <p>Si vous clonez un dépôt, git l'enregistre comme dépôt distant
+                            dans le nouveau dépôt local.
+                        </p>
+                        <pre><code>
+                            $ git clone …
+                            $ git remote  # Lister les dépôts distants
+                            $ git remote show origin  # Détail sur le dépôt distant
+                        </code></pre>
+                       <p>Par convention, le dépôt distant par défaut se nomme <i>origin</i>.</p>
+                    </section>
+                    <section>
+                        <h2>Git remote</h2>
+                        <p><i>git remote</i> sert à gérer les dépôts distants.</p>
+                        <pre><code>
+                            $ git remote add &lt;name&gt; &lt;url&gt;  # Ajoute un nouveau remote
+                            $ git remote rm …
+                            $ git remote mv …
+                            $ git help remote
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Protocoles de communication</h2>
+                        <p>Un dépôt git peut être partagé via de nombreux protocoles. Parmi les plus courants :</p>
+                        <ul>
+                            <li>SSH : ssh://[user@]host.xz[:port]/path/to/repo.git/</li>
+                            <li>GIT : git://host.xz[:port]/path/to/repo.git/</li>
+                            <li>Filesystem : file:///path/to/repo.git</li>
+                        </ul>
+                        <p>Ssh:// est le plus sécurisé et recommandé. Git:// est en read-only.
+                           Le filesystem n'est à utiliser que pour les tests durant cette
+                           formation.</p>
+                    </section>
+                    <section>
+                        <h2>Branches distantes</h2>
+                        <p>Une branche distante est une branche locale <i>read-only</i>
+                            qui représente une branche sur le dépôt distant. Euh… wat ?
+                        </p>
+                        <pre><code>
+                            $ git branch -a
+                            * master
+                            remotes/origin/master
+                        </code></pre>
+                        <pre><code>
+                            Serveur distant :
+
+                            A---B---C---D &#x2190; master
+
+                            Serveur local :
+
+                            A---B---C---D &#x2190; origin/master
+                                         \
+                                          E---F &#x2190; master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Branches distantes</h2>
+                        <pre><code>
+                            A---B---C---D &#x2190; origin/master
+                                         \
+                                          master
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D &#x2190; origin/master
+                                     \
+                                      master
+                        </code></pre>
+                        <pre><code>
+                            A---B---C &#x2190; origin/master
+                                     \
+                                      D &#x2190; master
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---E &#x2190; origin/master
+                                     \
+                                      D &#x2190; master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Mettre à jour le dépôt local</h2>
+                        <pre><code>
+                            Serveur distant :
+
+                            A---B---C---D---G &#x2190; master
+
+                            Serveur local :
+
+                            A---B---C---D &#x2190; origin/master
+                                         \
+                                          E---F &#x2190; master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Mettre à jour le dépôt local</h2>
+                        <pre><code>
+                            $ git fetch  # Télécharge les données du serveur
+                            $ git merge / git rebase  # ou, plus court :
+                            $ git pull / git pull --rebase
+                        </code></pre>
+                        <pre><code>
+                            Serveur distant :
+
+                            A---B---C---D---G &#x2190; master
+
+                            Serveur local :
+
+                            A---B---C---D---G &#x2190; origin/master
+                                             \
+                                              E---F &#x2190; master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Branches trackées ou non</h2>
+                        <p>Toutes les branches du serveur local n'ont pas à être sur le serveur, et
+                            vice-versa.</p>
+                        <p>Une <i>branche trackée</i> est une branche locale qui a
+                            une relation directe avec une branche distante.</p>
+                        <pre><code>
+            $ git fetch  # Ne télécharge que les branches trackées de origin
+            $ git fetch origin &lt;branch&gt;  # Pour les autres branches
+            $ git pull  # Fetch + pull pour les branches correspondantes
+            $ git push  # Envoie les données vers la branches distante correspondante
+            $ git checkout -b origin/&lt;branch&gt;  # Récupère et tracke une branche distante
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Envoyer son travail sur le serveur</h2>
+                        <p><i>git push</i> envoie les données locales sur le serveur distant.</p>
+                        <pre><code>
+                            $ git push  # Seulement les branches trackées
+                            $ git push -u origin &lt;branch&gt; # Push une nouvelle branche
+                            $ git push origin :&lt;branch&gt;  # Supprime une branche distante
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Envoyer son travail sur le serveur</h2>
+                        <p>Évidemment, il faut avoir un droit le lecture / écriture sur le dépôt distant.</p>
+                        <p>Il faut également que le dépôt local soit à jour.</p>
+                    </section>
+                </section>
 			</div>
 
 		</div>
