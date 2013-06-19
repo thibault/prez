@@ -358,7 +358,7 @@ $ git diff -w  # Ignore les espaces dans la comparaison
                         <h2>Fouiller l'historique</h2>
                         <pre><code>
 $ git log
-$ git log &lt;branch&gt; 
+$ git log &lt;branch&gt;
 $ git log --author=Thibault
 $ git log --grep=keyword -i -E
 $ git log --graph
@@ -374,7 +374,7 @@ $ git lg
 $ git show  # Voir le dernier commit
 $ git show &lt;commit&gt;
 $ git show &lt;blob&gt;
-$ git show &lt;tag&gt; 
+$ git show &lt;tag&gt;
                         </code></pre>
                     </section>
                     <section>
@@ -390,7 +390,350 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                     </section>
                 </section>
+                <section>
+                    <section>
+                        <h1>Les branches</h1>
+                        <p>Tatatiiiiinnn…</p>
+                    </section>
+                    <section>
+                        <h2>Utilisez-les!</h2>
+                        <p>Avec d'autres SCM, les branches sont lentes, complexes et pénibles à utiliser.</p>
+                        <p>Pas avec Git ! Les branches sont un outil essentiel à maîtriser.</p>
+                    </section>
+                    <section>
+                        <h2>Qu'est-ce qu'une branche ?</h2>
+                        <p>Uniquement une étiquette qui pointe sur un commit.</p>
+                        <p>C'est tout ? C'est tout !</p>
+                    </section>
+                    <section>
+                        <h2>Qu'est-ce qu'une branche ?</h2>
+                        <img src="img/git_branch_1.png" />
+                        <pre><code>
+                            $ git branch testing
+                            $ git checkout testing
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Qu'est-ce qu'une branche ?</h2>
+                        <img src="img/git_branch_2.png" />
+                        <pre><code>
+                            Edit… Edit… Edit…
+                            $ git commit
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Qu'est-ce qu'une branche ?</h2>
+                        <img src="img/git_branch_3.png" />
+                        <pre><code>
+                            $ git checkout master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Qu'est-ce qu'une branche ?</h2>
+                        <img src="img/git_branch_4.png" />
+                        <pre><code>
+                            $ Edit… Edit… Edit…
+                            $ git commit
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Conséquences</h2>
+                        <p>Créer / supprimer une branche est… rapide !</p>
+                        <p>Il est possible de créer une branche n'importe quand… même depuis un ancien commit !</p>
+                    </section>
+                    <section>
+                        <h2>Exemple</h2>
+                        <pre><code>
+                            A---B---C---D &#x2190; master &#x2190; HEAD
+                        </code></pre>
+                        <p>Oups, j'ai oublié de faire une branche.</p>
+                    </section>
+                    <section>
+                        <h2>Exemple</h2>
+                        <pre><code>
+                            $ git branch new_feature
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D &#x2190; master &#x2190; HEAD
+                                         \
+                                          new_feature
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Exemple</h2>
+                        <pre><code>
+                            $ git reset --soft HEAD~2
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D &#x2190; new_feature
+                                 \
+                                  master &#x2190; HEAD
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Exemple</h2>
+                        <pre><code>
+                            $ Commit… Commit… Commit…
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D &#x2190; new_feature
+                                 \
+                                  E---F---G &#x2190; master &#x2190; HEAD
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Exemple</h2>
+                        <pre><code>
+                            $ git checkout new_feature
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D &#x2190; new_feature &#x2190; HEAD
+                                 \
+                                  E---F---G &#x2190; master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Quand utiliser une branche ?</h2>
+                        <ul>
+                            <li>Pour isoler un développement un peu long</li>
+                            <li>Pour faire des tests sans casser tout le dépôt</li>
+                            <li>Pour mettre quelques commits de côté</li>
+                            <li>Juste parce qu'on peut !</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Créer une branche</h2>
+                        <pre><code>
+                            $ git branch &lt;name&gt; && git checkout &lt;name&gt;
+                            $ # ou, plus rapide
+                            $ git checkout -b &lt;name&gt;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Passer d'une branche à l'autre</h2>
+                        <pre><code>
+                            $ git checkout &lt;branch1&gt;
+                            $ git checkout &lt;branch2&gt;
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Supprimer une branche</h2>
+                        <pre><code>
+                            $ git branch -d &lt;name&gt;
+                            $ git branch -D &lt;name&gt;  # si branche non fusionnée
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Lister les branches</h2>
+                        <pre><code>
+                            $ git branch  # Lister les branches locales
+                            $ git branch -r  # Lister les branches distantes
+                            $ git branch -a  # Combine les deux
+                        </code></pre>
+                    </section>
+                </section>
 
+                <section>
+                    <section>
+                        <h1>Fusions de branches</h1>
+                        <pre><code>
+                            A---B---C---D &#x2190; master
+                                 \
+                                  E---F---G &#x2190; hotfix
+                        </code></pre>
+                        <p>Now… what?</p>
+                    </section>
+                    <section>
+                        <h2>Pas de panique !</h2>
+                        <p>Si vous avez déjà tenté une fusion avec SVN ou autre, il est
+                           probable que vous soyez terrifié.</p>
+                        <p>Avec Git, ça va bien se passer :)</p>
+                    </section>
+                    <section>
+                        <h2>Avant la fusion…</h2>
+                        <p>Il est important d'avoir un dépôt propre.</p>
+                        <p>Tous les fichiers sont commités, le WD et l'index sont propres.</p>
+                        <p>Placer le HEAD sur la branche principale.</p>
+                    </section>
+                    <section>
+                        <h2>Cas simple, le fast forward</h2>
+                        <pre><code>
+                            A---B &#x2190; master &#x2190; HEAD
+                                 \
+                                  C---D---E &#x2190; hotfix
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Cas simple, le fast forward</h2>
+                        <pre><code>
+                            $ git merge hotfix
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D---E &#x2190; master &#x2190; HEAD
+                                             \
+                                              hotfix
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Cas simple, le fast forward</h2>
+                        <pre><code>
+                            $ git branch -d hotfix
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D---E &#x2190; master &#x2190; HEAD
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Cas plus complexe</h2>
+                        <pre><code>
+                            A---B---C---D &#x2190; master &#x2190; HEAD
+                                 \
+                                  E---F---G &#x2190; hotfix
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Cas plus complexe</h2>
+                        <pre><code>
+                            $ git merge hotfix
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D---H &#x2190; master &#x2190; HEAD
+                                 \         /
+                                  E---F---G &#x2190; hotfix
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Cas plus complexe</h2>
+                        <p>Git rejoue les commits de <i>hotfix</i> sur master.</p>
+                        <p>Le résultat est enregistré dans un commit qui a deux parents.</p>
+                        <p>S'il n'y a pas de conflits, ce sera un commit vide.</p>
+                        <pre><code>
+                            A---B---C---D---H &#x2190; master &#x2190; HEAD
+                                 \         /
+                                  E---F---G &#x2190; hotfix
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Aah! les conflits…</h2>
+                        <p>Il arrive qu'un merge ne puisse être réalisé automatiquement.</p>
+                        <p>Ex : Le même fichier modifé différemment dans deux branches distinctes.</p>
+                    </section>
+                    <section>
+                        <h2>Comment se passe un merge ?</h2>
+                        <p>Imaginons un fichier A, et ses différentes versions à travers le temps.</p>
+                        <pre><code>
+                            A1---A2---A3---A4
+                                  \
+                                   A5---A6---A6
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Comment se passe un merge ?</h2>
+                        <p>Git considère trois versions du fichier : les deux dernières versions, et
+                           le dernier ancêtre commun.</p>
+                        <pre><code>
+                            A1---A2---A3---A4
+                                  \
+                                   A5---A6---A6
+                        </code></pre>
+                        <p>Ici, A2, A4 et A6.</p>
+                    </section>
+                    <section>
+                        <h2>Résoudre les conflits</h2>
+                        <p><i>git status</i> permet de voir les fichiers mergés avec succès, et les autres.</p>
+                        <p><i>git log --merge -p</i> montre uniquement les commits qui impactent les fichiers à merger.</p>
+                        <p><i>git show [:1,:2,:3]:&lt;file&gt;</i> montre les différentes versions du fichier.</p>
+                        <p><i>git diff / git difftool</i> pour voir des différences.</p>
+                    </section>
+                    <section>
+                        <h2>Résoudre les conflits</h2>
+                        <p>Git modifie les fichiers conflictuels pour inclure des marqueurs de diff.</p>
+                        <pre><code>
+                            Cette ligne est la même dans les deux branches                                  
+                                                                                
+                            <<<<<<< HEAD                                                                    
+                            Ajouté dans la branche master                                                   
+                            =======                                                                         
+                            Ajouté dans la branche test                                                     
+                            >>>>>>> test                                                                    
+                                                                                                            
+                            Cette partie du fichier est commune
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Résoudre les conflits</h2>
+                        <p>Modifier le fichier pour résoudre les conflits.</p>
+                        <p><i>git add</i> puis <i>git commit</i></p>
+                        <p><i>git mergetool</i> permet de lancer un outil de résolution de merge.</p>
+                    </section>
+                    <section>
+                        <h2>Que faire après un merge ?</h2>
+                        <pre><code>
+                            $ git branch --merged  # montre toutes les branches mergées
+                            $ git branch -d &lt;bug_42&gt;  # supprime la branche
+                            $ git branch --no-merged  # montre les branches non fusionnées
+                        </code></pre>
+                        <p>Même une fois fusionnée, une branche peut continuer à vivre. Un autre
+                            merge pourra être réalisé plus tard.</p>
+                    </section>
+                    <section>
+                        <h2>Et si je supprime une branche non fusionnée ?</h2>
+                        <p>Tentons l'expérience suivante :</p>
+                        <pre><code>
+                            A---B---C---D---H &#x2190; master &#x2190; HEAD
+                                 \
+                                  E---F---G &#x2190; hotfix
+                        </code></pre>
+                        <pre><code>
+                            $ git branch -D hotfix
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Et si je supprime une branche non fusionnée ?</h2>
+                        <pre><code>
+                            A---B---C---D---H &#x2190; master &#x2190; HEAD
+                        </code></pre>
+                        <p>Les commits de ma branche <i>hotfix</i> sont-ils perdus ?</p>
+                    </section>
+                    <section>
+                        <h2>Et si je supprime une branche non fusionnée ?</h2>
+                        <pre><code>
+                            A---B---C---D---H &#x2190; master &#x2190; HEAD
+                                 \
+                                  E---F---G
+                        </code></pre>
+                        <p>En fait, les commits existent toujours, ils sont simplement inaccessibles.</p>
+                        <p>Au bout de quelques jours, ils seront supprimés par le <i>Garbage collector</i> de git.</p>
+                    </section>
+                    <section>
+                        <h2>Le reflog</h2>
+                        <p>Git garde une trace de tous les changements de position de HEAD.</p>
+                        <pre><code>
+                            $ git reflog
+                            $ git checkout G
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D---H &#x2190; master
+                                 \
+                                  E---F---G &#x2190; HEAD
+                        </code></pre>
+                        <p>Mais… HEAD pointe directement vers un commit ? Pas une branche ?</p>
+                    </section>
+                    <section>
+                        <h2>L'état <i>Detached HEAD</i></h2>
+                        <p>Quand HEAD pointe directement vers un commit, on parle de detached HEAD.
+                           Pour retrouver une situation stable, il suffit de créer une branche,
+                           et de continuer comme si de rien n'était.</p>
+                        <pre><code>
+                            $ git commit -b newbranch
+                        </code></pre>
+                        <pre><code>
+                            A---B---C---D---H &#x2190; master
+                                 \
+                                  E---F---G &#x2190; newbranch &#x2190; HEAD
+                        </code></pre>
+                    </section>
+                </section>
 			</div>
 
 		</div>
