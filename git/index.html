@@ -1370,8 +1370,80 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Git sur le serveur</h1>
                     </section>
+                    <section>
+                        <h2>Rappel : protocoles de partage</h2>
+                        <ul>
+                            <li>SSH : authentifié, lecture + écriture ;</li>
+                            <li>Git : Lecture seulement, aucuns droits d'accès ;</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Créer un dépôt sur le serveur</h2>
+                        <pre><code>
+                            $ git init --bare repository_name.git
+                            $ # ou
+                            $ git clone --bare &lt;repository&gt; repository_name.git
+                        </code></pre>
+                        <p>Un <i>bare repository</i> est un dépôt uniquement dédié au partage :
+                            il ne contient pas de WD.</p>
+                        <p>Deux solutions : créer le dépôt sur le serveur, ou l'envoyer après coup (scp).</p>
+                    </section>
+                    <section>
+                        <h2>Et c'est tout !</h2>
+                        <p>Vos développeurs ont accès SSH sur un serveur quelconque ?</p>
+                        <p>Placez-y un dépôt <i>bare</i>, et c'est tout bon.</p>
+                    </section>
+                    <section>
+                        <h2>Configuration du serveur</h2>
+                        <p>Première solution : créer un compte utilisateur pour chaque développeur sur le serveur.</p>
+                        <p>Deuxième solution : créer un seul utilisateur <i>git</i>.</p>
+                    </section>
+                    <section>
+                        <h2>Rappel : authentification par clés publiques</h2>
+                        <pre><code>
+                            $ ssh-keygen -t dsa
+                            $ ssh-copy-id -i .ssh/id_dsa.pub git@git.serveur.com
+                        </code></pre>
+                        <p>Vous pouvez restreindre l'utilisateur aux commandes git en
+                            lui assignant un shell spécial dans <i>/etc/passwd</i>.</p>
+                        <pre><code>
+                            git:x:1000:1000::/home/git:/usr/bin/git-shell
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Initialisation du dépôt</h2>
+                        <pre><code>
+        $ git clone ssh://git@git.serveur.com:/path/to/repository.git
+        $ # ou
+        $ git init
+        $ Commit…
+        $ git remote add origin ssh://git@git.serveur.com:/path/to/repository.git
+        $ git push origin master
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Autres solutions</h2>
+                        <p>Gitosis (obsolète, dernier commit date de 4 ans ;</p>
+                        <p>Gitolite : gère les permissions de manière fine ;</p>
+                        <p>Git Daemon : pour un accès public read-only ;</p>
+                        <p>Git Web : pour un accès http (mais pourquoi ?!) ;</p>
+                    </section>
+                    <section>
+                        <h2>Github</h2>
+                        <p>Faites plaisir à vos développeurs.
+                            Github est devenu en quelques années un des principaux outils du monde du
+                            développement.</p>
+                        <p>Un peu comme un Facebook pour codeurs.</p>
+                        <ul>
+                            <li>Hébergement de dépôts gits</li>
+                            <li>Dépôts publics / privés</li>
+                            <li>Wiki</li>
+                            <li>Bug tracker</li>
+                            <li>Pull requests</li>
+                            <li>Plans entrerpises</li>
+                        </ul>
+                    </section>
                 </section>
-
 
                 <section>
                     <section>
