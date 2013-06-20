@@ -1263,17 +1263,106 @@ $ git … HEAD@{"1 hour ago"}
                 <section>
                     <section>
                         <h1>Nettoyer son historique</h1>
+                        <h2>« Range ta chambre ! »</h2>
+                    </section>
+                    <section>
+                        <h2>Avantages d'un historique bien propre</h2>
+                        <ul>
+                            <li>Lecture plus simple et rapide</li>
+                            <li>Annulation de commits plus facile</li>
+                            <li>Débuggage moins complexe</li>
+                            <li>Partage de code et maintenance plus simple</li>
+                            <li>Faciliter les fusions</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Rappel imporant</h2>
+                        <blockquote>
+                            « L'historique partagé jamais tu ne modifieras, sinon de toi et ton équipe
+                              le malheur s'emparera » — Yoda.
+                        </blockquote>
+                    </section>
+                    <section>
+                        <h2>Commiter avec soin</h2>
+                        <pre><code>
+                            $ git commit -i
+                            $ git add -p
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Réparer un commit</h2>
+                        <pre><code>
+                            $ git commit --amend  # Remplace le commit existant
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Supprimer les derniers commits</h2>
+                        <pre><code>
+                                              master &#x2190; HEAD
+                                             /
+                            A---B---C---D---E
+                        </code></pre>
+                        <pre><code>
+                            $ git reset HEAD~3  # Reset le HEAD
+                        </code></pre>
+                        <pre><code>
+                                  master &#x2190; HEAD
+                                 /
+                            A---B---C---D---E
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Supprimer un fichier</h2>
+                        <pre><code>
+    $ git rm --cached  # Supprime du HEAD
+    $ git reset HEAD &lt;file&gt; # Supprime du staging
+    $ # Pour les fichiers sensibles (à éviter si possible)
+    $ git filter-branch --index-filter 'git rm --cached --ignore-unmatch &lt;file&gt;' \
+        --prune-empty --tag-name-filter cat -- --all
+    $ git push --all --force  # Vos collègues vous détesteront
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Récupérer un seul commit d'une autre branche</h2>
+                        <pre><code>
+                            $ git cherry-pick &lt;sha1&gt; 
+                        </code></pre>
+                        
+                    </section>
+                    <section>
+                        <h2>L'artillerie lourde</h2>
+                        <pre><code>
+                    $ git rebase -i --onto &lt;destination&gt; &lt;upstream&gt; &lt;branch&gt; 
+                        </code></pre>
+                        <p>Le rebase interactif permet de modifier, réordonner, découper, fusionner des commits.</p>
+                        <pre><code>
+                    $ git rebase -i HEAD~5  # Réécrire les 5 derniers commits
+                        </code></pre>
                     </section>
                 </section>
 
                 <section>
                     <section>
-                        <h1>Problèmatiques usuelles</h1>
-                        git blame
-                        git stash
-                        git bisect
-                        amend
-                        supprimer commit
+                        <h1>Débugging avec git</h1>
+                    </section>
+                    <section>
+                        <h2>Git blame</h2>
+                        <p>Qui a fait ça ?!</p>
+                        <pre><code>
+                            $ git blame &lt;file&gt; 
+                            $ git blame &lt;file&gt; -L 50,55
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Git bisect</h2>
+                        <p>Recherche dichotomique de régression.</p>
+                        <pre><code>
+                            $ git bisect start
+                            $ git bisect bad
+                            $ git bisect good &lt;bon_commit&gt; 
+                            $ git bisect [bad|good|skip]  # Repeat
+                            $ git bisect reset
+                        </code></pre>
                     </section>
                 </section>
 
