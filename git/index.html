@@ -1543,12 +1543,52 @@ $ git … HEAD@{"1 hour ago"}
                 <section>
                     <section>
                         <h1>Les Hooks</h1>
+                        <img src="http://www.linternaute.com/cinema/image_cache/objdbfilm/image/540/27222.jpg" />
                     </section>
+                    <section>
+                        <h2>Les hooks</h2>
+                        <p>Un <i>hook</i> est un script prévu pour se déclencher à un moment précis.</p>
+                        <pre><code>
+                            $ ls .git/hooks
+                        </code></pre>
+                        <p>Les hooks peuvent être côté client ou côté serveur.</p>
+                    </section>
+                    <section>
+                        <h2>Les hooks</h2>
+                        <p>Exemples d'utilisation :</p>
+                        <ul>
+                            <li>vérifier que le message de commit respecte une certaine convention ;</li>
+                            <li>vérifier les droits d'accès de certains fichiers ;</li>
+                            <li>vérifer que les conventions de codage sont respectées ;</li>
+                            <li>interdire de commiter des fichiers qui contiennent TODO, README, Fuck, etc. ;</li>
+                            <li>lancer la mise en production après un push ;</li>
+                            <li>interdire les commits après 17h ;</li>
+                            <li>faire une bonne blague à un collègue ;</li>
+                            <li>etc.</li>
+                        </ul>
+                    </section>
+
                 </section>
 
                 <section>
                     <section>
                         <h1>Git et svn</h1>
+                    </section>
+                    <section>
+                        <h2>Un comparatif Git / Svn</h2>
+                        <p>Serait injuste pour SVN.</p>
+                    </section>
+                    <section>
+                        <h2>Si vous aimez les antiquités…</h2>
+                        <pre><code>
+                            $ aptitude install git-svn
+                            $ git-svn clone http://svn.example.com/svn/projet -T trunk projet
+                            $ cd projet
+                            $ git-svn show-ignore &gt;&gt; .git/info/exclude
+                            $ Commit… Commit… Commit…
+                            $ git svn rebase
+                            $ git svn dcommit
+                        </code></pre>
                     </section>
                 </section>
 
