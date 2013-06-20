@@ -1427,15 +1427,15 @@ $ git log HEAD~5..
                     <section>
                         <h2>Récupérer un seul commit d'une autre branche</h2>
                         <pre><code>
-                            $ git cherry-pick &lt;sha1&gt; 
+                            $ git cherry-pick &lt;sha1&gt;
                         </code></pre>
-                        
+
                     </section>
 
                     <section>
                         <h2>L'artillerie lourde</h2>
                         <pre><code>
-                    $ git rebase -i --onto &lt;destination&gt; &lt;upstream&gt; &lt;branch&gt; 
+                    $ git rebase -i --onto &lt;destination&gt; &lt;upstream&gt; &lt;branch&gt;
                         </code></pre>
                         <p>Le rebase interactif permet de modifier, réordonner, découper, fusionner des commits.</p>
                         <pre><code>
@@ -1453,7 +1453,7 @@ $ git log HEAD~5..
                         <h2>Git blame</h2>
                         <p>Qui a fait ça ?!</p>
                         <pre><code>
-                            $ git blame &lt;file&gt; 
+                            $ git blame &lt;file&gt;
                             $ git blame &lt;file&gt; -L 50,55
                         </code></pre>
                     </section>
@@ -1464,7 +1464,7 @@ $ git log HEAD~5..
                         <pre><code>
                             $ git bisect start
                             $ git bisect bad
-                            $ git bisect good &lt;bon_commit&gt; 
+                            $ git bisect good &lt;bon_commit&gt;
                             $ git bisect [bad|good|skip]  # Repeat
                             $ git bisect reset
                         </code></pre>
@@ -1555,6 +1555,58 @@ $ git log HEAD~5..
                             <li>Pull requests</li>
                             <li>Plans entrerpises</li>
                         </ul>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Quelques commandes en détails</h1>
+                    </section>
+
+                    <section>
+                        <h2>Git stash</h2>
+                        <p>Je suis en plein milieu du dev, mais je dois faire un commit / merge / autre chose.</p>
+                        <pre><code>
+        $ git stash  # Met de côté les modifications en cours
+        $ git stash save Message détaillé  # Idem, mais avec un message
+        $ git stash list  # Liste les stashs disponibles
+        $ git stash pop  # Applique les dernier stash
+        $ git stash pop --index  # Idem, mais prend en compte le staging
+        $ git stash branch  # Créé une branche depuis le commit initial
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Git reset</h2>
+                        <pre><code>
+        Premier mode : reset sur un commit (HEAD si non spécifié)
+        $ git reset --soft &lt;commit&gt;  # Déplace le HEAD *et* la branche sur &lt;commit&gt; 
+        $ git reset --mixed &lt;commit&gt;  # Idem, mais copie HEAD dans le staging
+        $ git reset --hard &lt;commit&gt;   # Les deux premiers, mais copie HEAD dans le WD
+                        </code></pre>
+                        <pre><code>
+        Deuxième mode : reset vers un chemin (idem, HEAD si commit non spécifié)
+        $ git reset HEAD file.txt…
+        Mêmes étapes que ci-dessus *mais* ne déplace pas le HEAD, et ne travaille que sur
+        les fichiers / répertoires spécifiés.
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Git checkout</h2>
+                        <p>Contrairement à <i>git reset --hard</i>, <i>git checkout</i>
+                           n'écrasera pas le WD en cas de risque de perte de données.</p>
+                        <pre><code>
+        $ git checkout &lt;commit&gt;
+        # Déplace le HEAD (pas la branche) sur &lt;commit&gt;,
+        et met à jour l'index et le WD *sauf* les fichiers modifiés (pfiou !)
+
+        $ git checkout &lt;path&gt; 
+        # Met à jour le &lt;path&gt; du WD avec celui de l'index
+
+        $ git checkout &lt;commit&gt; &lt;path&gt;
+        # Met à jour le &lt;path&gt; du WD avec celui de &lt;commit&gt; 
+                        </code></pre>
                     </section>
                 </section>
 
