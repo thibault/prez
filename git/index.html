@@ -1581,13 +1581,13 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h2>Si vous aimez les antiquités…</h2>
                         <pre><code>
-                            $ aptitude install git-svn
-                            $ git-svn clone http://svn.example.com/svn/projet -T trunk projet
-                            $ cd projet
-                            $ git-svn show-ignore &gt;&gt; .git/info/exclude
-                            $ Commit… Commit… Commit…
-                            $ git svn rebase
-                            $ git svn dcommit
+            $ aptitude install git-svn
+            $ git-svn clone http://svn.example.com/svn/projet -T trunk projet
+            $ cd projet
+            $ git-svn show-ignore &gt;&gt; .git/info/exclude
+            $ Commit… Commit… Commit…
+            $ git svn rebase
+            $ git svn dcommit
                         </code></pre>
                     </section>
                 </section>
@@ -1596,10 +1596,47 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Fonctionnement interne de Git</h1>
                     </section>
+                    <section>
+                        <h2>Dans le cœur de la bête</h2>
+                        <p>Tout le dépôt git se trouve dans <i>.git</i>.</p>
+                        <pre><code>
+                            config -> Configuration du dépôt
+                            HEAD -> Pointeur vers le commit en cours
+                            index -> Staging area
+                            objects -> Base de données des objets
+                            refs -> Pointeurs vers des commits
+                        </code></pre>
+                        <p>Les objets sont indexés par contenu : clé = sha1 hash du contenu.</p>
+                    </section>
+                    <section>
+                        <h2>Les objets</h2>
+                        <p>Git gère quatre types d'objets :</p>
+                        <ul>
+                            <li>blob : contenu d'un fichier ;</li>
+                            <li>tree : liste d'objet et leurs meta-données (noms, permissions) ;</li>
+                            <li>commit : référence vers un tree, meta-datas, un ou plusieurs commits parents ;</li>
+                            <li>tag : les tags ;</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Les références</h2>
+                        <p>Une référence est simplement une étiquette qui pointe vers un commit / une arborescence ;</p>
+                    </section>
+                    <section>
+                        <h2>Les packfiles</h2>
+                        <p>À chaque commit, Git stocke l'intégralité du fichier commité.</p>
+                        <p>Périodiquement, Git empaquette les fichiers presque identiques pour gagner en espace et efficacité.</p>
+                        p+
+                    </section>
                 </section>
 
                 <section>
                     <h1>{Biblio|Réseau}graphie</h1>
+                    <ul>
+                        <li><a href="http://git-scm.com/book">http://git-scm.com/book</a></li>
+                        <li><a href="http://www.github.com">http://www.github.com</a></li>
+                        <li><a href="http://gitready.com/">http://gitready.com/</a></li>
+                    </ul>
                 </section>
 
 			</div>
