@@ -1449,6 +1449,95 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Submodules et subtrees</h1>
                     </section>
+                    <section>
+                        <h2>Combiner des dépôts git</h2>
+                        <p>Parfois, le besoin se fait sentir d'importer un dépôt git
+                            dans un autre dépôt git.</p>
+                        <p>Ex : bibliothèque.</p>
+                        <p>Deux solutions : submodules et subtree.</p>
+                    </section>
+                    <section>
+                        <h2>AVERTISSEMENT !</h2>
+                        <p>Si vous pouvez l'éviter, faites-le !</p>
+                        <p>Préférez utiliser les outils de votre langage pour lier
+                            des projets ensembles.
+                            Exemple : Virtualenv + pip + requirements.txt en Python.</p>
+                        <p>Vous me remercierez plus tard.</p>
+                    </section>
+                    <section>
+                        <h2>Les submodules</h2>
+                        <p>Un submodule est un dépôt git dans un dépôt git.</p>
+                        <p>Les dépôts sont liés mais restent indépendants.</p>
+                        <pre><code>
+            $ git submodule add https://github.com/twitter/bootstrap.git bootstrap
+            $ git status
+            $ cd bootstrap && git status
+            $ cd ..
+            $ cat .gitmodules
+            $ git diff --cached bootstrap
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Modifier un submodule</h2>
+                        <p>Une fois un sumbodule à jour (suite à un commit ou un merge),
+                            il faut modifier la référence dans le projet principal,
+                            et commiter.</p>
+                    </section>
+                    <section>
+                        <h2>Attention aux pièges !</h2>
+                        <pre><code>
+            $ # Après avoir modifié un submodule, ne pas oublier de le pusher !
+            $ git push --recurse-submodules=check
+            $ # Après un git clone :
+            $ git submodule init && git submodule update
+            $ # Après un pull, si un submodule est modifié
+            $ git submodule update
+                        </code></pre>
+                        <p>Et si le commit sur lequel pointe mon submodule n'est pas public ? Pas de bol !</p>
+                        <p>Attention également aux changements de branche avec / sans submodules.</p>
+                    </section>
+                    <section>
+                        <h2>Les subtrees</h2>
+                        <p>Une solution alternative : dédier une branche distincte
+                            pour le dépôt distant.</p>
+                    </section>
+                    <section>
+                        <h2>Euh… Pardon ?</h2>
+                        <pre><code>
+            $ git remote add bootstrap_remote https://github.com/twitter/bootstrap.git
+            $ git fetch bootstrap_remote
+            $ git checkout -b bootstrap_branch bootstrap_remote/master
+                        </code></pre>
+                        <p>Vous voilà donc avec deux branches distinctes dont le contenu
+                            est totalement différent.</p>
+                        <p>Intégrons la nouvelle branche dans un sous répertoire de la première.</p>
+                        <pre><code>
+            $ git read-tree --prefix=bootstrap -u bootstrap_branch
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Euh… Pardon ?</h2>
+                        <p>Récupérer le subtree distant :</p>
+                        <pre><code>
+                            $ git checkout bootstrap_branch
+                            $ git pull
+                            $ git checkout master
+                            $ git merge --squash --no-commit -s subtree bootstrap_branch
+                        </code></pre>
+                        <p>Modifier le subtree local et pusher :</p>
+                        <pre><code>
+                            $ git checkout bootstrap_branch
+                            $ git merge -s subtree master
+                            $ git push
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Et mon diff ?</h2>
+                        <pre><code>
+                            $ git diff-tree -p bootstrap_branch
+                            $ git diff-tree -p bootstrap_remote/master
+                        </code></pre>
+                    </section>
                 </section>
 
                 <section>
