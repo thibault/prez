@@ -649,14 +649,14 @@ $ git … HEAD@{"1 hour ago"}
                         <h2>Résoudre les conflits</h2>
                         <p>Git modifie les fichiers conflictuels pour inclure des marqueurs de diff.</p>
                         <pre><code>
-                            Cette ligne est la même dans les deux branches                                  
-                                                                                
-                            <<<<<<< HEAD                                                                    
-                            Ajouté dans la branche master                                                   
-                            =======                                                                         
-                            Ajouté dans la branche test                                                     
-                            >>>>>>> test                                                                    
-                                                                                                            
+                            Cette ligne est la même dans les deux branches
+
+                            <<<<<<< HEAD
+                            Ajouté dans la branche master
+                            =======
+                            Ajouté dans la branche test
+                            >>>>>>> test
+
                             Cette partie du fichier est commune
                         </code></pre>
                     </section>
@@ -756,7 +756,7 @@ $ git … HEAD@{"1 hour ago"}
                         <pre><code>
                             $ git merge hotfix
                         </code></pre>
-                        
+
                         <pre><code>
                             A---B---C---D---H &#x2190; master, hotfix
                                  \         /
@@ -765,7 +765,7 @@ $ git … HEAD@{"1 hour ago"}
                         <pre><code>
                             $ git rebase master
                         </code></pre>
-                        
+
                         <pre><code>
                             A---B---C---D---E'---F'---G' &#x2190; hotfix
                                          \
@@ -1078,7 +1078,7 @@ $ git … HEAD@{"1 hour ago"}
                     </section>
                     <section>
                         <h2>Branches trackées ou non</h2>
-                        <p>Toutes les branches du serveur local n'ont pas à être sur le serveur, et
+                        <p>Toutes les branches locales n'ont pas à être sur le serveur, et
                             vice-versa.</p>
                         <p>Une <i>branche trackée</i> est une branche locale qui a
                             une relation directe avec une branche distante.</p>
@@ -1105,6 +1105,213 @@ $ git … HEAD@{"1 hour ago"}
                         <p>Il faut également que le dépôt local soit à jour.</p>
                     </section>
                 </section>
+
+                <section>
+                    <section>
+                        <h1>Organisation et workflows</h1>
+                    </section>
+                    <section>
+                        <h2>Bienvenue dans la jungle</h2>
+                        <p>Avec git, on peut créer autant qu'on veut de :</p>
+                        <ul>
+                            <li>branches locales ;</li>
+                            <li>dépôts distants ;</li>
+                            <li>branches distantes.</li>
+                        </ul>
+                        <p>Sans obligations de correspondances directes entre les uns et les autres.</p>
+                    </section>
+                    <section>
+                        <h2>Bienvenue dans la jungle</h2>
+                        <p>Du coup, ça peut vite devenir… b**lique.</p>
+                        <ol>
+                            <li>Comment organiser ses branches locales ?</li>
+                            <li>Quel workflow pour le travail collaboratif ?</li>
+                        </ol>
+                        <p>Il n'y a pas de réponses unique, mais voici quelques pistes de réflexion.</p>
+                    </section>
+                    <section>
+                        <h2>Organiser ses branches</h2>
+                        <p>Journée classique d'un développeur :</p>
+                        <ul>
+                            <li>Je travaille sur un projet X</li>
+                            <li>Depuis une semaine, je bosse sur la fonctionnalité Y, assez complexe</li>
+                            <li>En parallèle, je dois résoudre un bug complexe avant la fin de la semaine</li>
+                            <li>Zut ! le client remonte un bug, simple à corriger mais urgent</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>SVN (bad) style</h2>
+                        <p>Exemples de mauvaises pratiques issues d'une habitude SVN :</p>
+                        <ol>
+                            <li>Travailler sur une seule branche (master) ;</li>
+                            <li>Pusher trés régulièrement ;</li>
+                            <li>Puller trés régulièrement ;</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>SVN (bad) style</h2>
+                        <p>Conséquences :</p>
+                        <ol>
+                            <li>La branche principale est potentiellement cassée ;</li>
+                            <li>L'historique global est pourri de commits de fusion ;</li>
+                            <li>Mes développements sont mélangés dans mon historique ;</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h2>Propositions de workflows</h2>
+                        <p>Deux branches permanentes.</p>
+                        <p><i>Master</i> contient le code déployé en production.</p>
+                        <p><i>Dev</i> est la branche d'intégration.</p>
+                        <pre><code>
+                                        v1.0.0  v1.0.1
+                                       /       /
+                            o---------o-------o &#x2190; master
+                                     /       /
+                            o---o---o---o---o---o  &#x2190; dev
+                        </code></pre>
+                        <p><i>Master</i> est <em>toujours</em> stable, et peut donc
+                            servir pour déployer régulièrement (déploiement automatique).</p>
+                        <p><i>Dev</i> contient tous les derniers développements, et
+                            sert pour l'intégration continue (tests + builds).</p>
+                    </section>
+                    <section>
+                        <h2>Développer des fonctionnalités</h2>
+                        <pre><code>
+                              o---o---o---o---o &#x2190; feature-login
+                             /                 \
+                            o---o-----------o---o---o  &#x2190; dev
+                            |    \         /
+                            |     o---o---o &#x2190; feature-newsletter
+                             \
+                              o---o---o---o &#x2190; feature-stupidtest
+                        </code></pre>
+                        <pre><code>
+                            $ git checkout -b feature-login dev
+                            $ Commit… Commit… Commit…
+                            $ git checkout dev
+                            $ git merge --no-ff feature-login
+                            $ git branch -d feature-login
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Préparer une <i>release</i></h2>
+                        <pre><code>
+                                                  v1.0.1
+                                                 /
+                            o---------o---------o &#x2190; master
+                                               /
+                                      o---o---o &#x2190; release-1.0.1
+                                     /     \   \
+                            o---o---o---o---o---o  &#x2190; dev
+                        </code></pre>
+                        <pre><code>
+                            $ git checkout -b release-1.0.1 dev
+                            $ cat "1.0.1" > VERSION
+                            $ git commit -am "Bump version number"
+                            $ Corrige un bug… Commit…
+                            $ git checkout master
+                            $ git merge --no-ff release-1.0.1
+                            $ git tag -a 1.0.1
+                            $ git checkout dev
+                            $ git merge --no-ff release-1.0.1
+                            $ git branch -d release-1.0.1
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Corriger un bug urgent</h2>
+                        <pre><code>
+                                                    v1.0.2
+                                                   /
+                            o---------o-----------o &#x2190; master
+                                       \         /
+                                        o---o---o &#x2190; hotfix-1.0.2
+                                                 \
+                              o---o---o---o---o---o  &#x2190; dev
+                        </code></pre>
+                        <pre><code>
+                            $ git checkout -b hotfix-1.0.2 master
+                            $ cat "1.0.1" > VERSION
+                            $ git commit -am "Bump version number"
+                            $ Corrige un bug… Commit…
+                            $ git checkout master
+                            $ git merge --no-ff hotfix-1.0.2
+                            $ git tag -a 1.0.2
+                            $ git checkout dev
+                            $ git merge --no-ff hotfix-1.0.2
+                            $ git branch -d hotfix-1.0.2
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Organiser ses dépôts distants</h2>
+                        <h3>Le dépôt centralisé</h3>
+                        <p>Le plus simple pour démarrer.</p>
+                        <img src="img/workflow1.png" />
+                    </section>
+                    <section>
+                        <h2>Organiser ses dépôts distants</h2>
+                        <h3>Le dépôt d'intégration</h3>
+                        <img src="img/workflow2.png" />
+                    </section>
+                    <section>
+                        <h2>Organiser ses dépôts distants</h2>
+                        <h3>Le modèle « dictateur / lieutenants »</h3>
+                        <p>Pour les trés gros projets.</p>
+                        <img src="img/workflow3.png" />
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Nettoyer son historique</h1>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Problèmatiques usuelles</h1>
+                        git blame
+                        git stash
+                        git bisect
+                        amend
+                        supprimer commit
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Git sur le serveur</h1>
+                    </section>
+                </section>
+
+
+                <section>
+                    <section>
+                        <h1>Submodules et subtrees</h1>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Les Hooks</h1>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Git et svn</h1>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Fonctionnement interne de Git</h1>
+                    </section>
+                </section>
+
+                <section>
+                    <h1>{Biblio|Réseau}graphie</h1>
+                </section>
+
 			</div>
 
 		</div>
