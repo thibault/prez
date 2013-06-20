@@ -131,6 +131,7 @@
                     <section>
                         <h1>Concepts et fonctionnement</h1>
                     </section>
+
                     <section>
                         <h2>Deux stuctures de données</h2>
                         <p>La base de données d'objets : toute modification s'apparente à un ajout à la base.
@@ -138,6 +139,7 @@
                         <p>L'index mutable (<i>Stage</i> ou <i>Cache</i>) qui contient les infos sur
                             le répertoire de travail et le prochain commit.</p>
                     </section>
+
                     <section>
                         <h2>Vocabulaire</h2>
                         <dl>
@@ -155,6 +157,7 @@
                             <dd>Branche principale du dépôt</dd>
                         </dl>
                     </section>
+
                     <section>
                         <h2>Vocabulaire</h2>
                         <dl>
@@ -170,6 +173,7 @@
                             <dd>La précédente position de HEAD</dd>
                         </dl>
                     </section>
+
                     <section>
                         <h2>Zones et états</h2>
                         <figure>
@@ -183,6 +187,7 @@
                     <section>
                         <h1>Avant de démarrer</h1>
                     </section>
+
                     <section>
                         <h2>La configuration</h2>
                         <ul>
@@ -195,6 +200,7 @@ $ git config --global user.name "Thibault Jouannic"
 $ git config --global user.email "thibault@miximum.fr"
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>La configuration</h2>
                         <pre><code>
@@ -213,6 +219,7 @@ $ git config --global user.email "thibault@miximum.fr"
     tool = vimdiff
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Le prompt</h2>
                         <p>TODO</p>
@@ -223,6 +230,7 @@ $ git config --global user.email "thibault@miximum.fr"
                     <section>
                         <h1>Opérations basiques</h1>
                     </section>
+
                     <section>
                         <h2>Premier dépôt</h2>
                         <p>Créer un nouveau dépôt</p>
@@ -337,6 +345,7 @@ $ git revert commit -n  # Annule un commit mais attends votre validation pour co
                     <section>
                         <h1>Retrouver ce que l'on a fait</h1>
                     </section>
+
                     <section>
                         <h2>Voir les différences entre deux états</h2>
                         <pre><code>
@@ -350,6 +359,7 @@ $ git diff --word-diff  # Différences mot à mot (au lieu de ligne à ligne)
 $ git diff -w  # Ignore les espaces dans la comparaison
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Fouiller l'historique</h2>
                         <pre><code>
@@ -364,6 +374,7 @@ $ git log --since="1 hour ago"
 $ git lg
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Voir des objets git</h2>
                         <pre><code>
@@ -373,6 +384,7 @@ $ git show &lt;blob&gt;
 $ git show &lt;tag&gt;
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Spécifier un commit / révision</h2>
                         <pre><code>
@@ -386,21 +398,25 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                     </section>
                 </section>
+
                 <section>
                     <section>
                         <h1>Les branches</h1>
                         <p>Tatatiiiiinnn…</p>
                     </section>
+
                     <section>
                         <h2>Utilisez-les!</h2>
                         <p>Avec d'autres SCM, les branches sont lentes, complexes et pénibles à utiliser.</p>
                         <p>Pas avec Git ! Les branches sont un outil essentiel à maîtriser.</p>
                     </section>
+
                     <section>
                         <h2>Qu'est-ce qu'une branche ?</h2>
                         <p>Uniquement une étiquette qui pointe sur un commit.</p>
                         <p>C'est tout ? C'est tout !</p>
                     </section>
+
                     <section>
                         <h2>Qu'est-ce qu'une branche ?</h2>
                         <img src="img/git_branch_1.png" />
@@ -409,6 +425,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git checkout testing
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Qu'est-ce qu'une branche ?</h2>
                         <img src="img/git_branch_2.png" />
@@ -417,6 +434,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git commit
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Qu'est-ce qu'une branche ?</h2>
                         <img src="img/git_branch_3.png" />
@@ -424,6 +442,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git checkout master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Qu'est-ce qu'une branche ?</h2>
                         <img src="img/git_branch_4.png" />
@@ -432,11 +451,13 @@ $ git … HEAD@{"1 hour ago"}
                             $ git commit
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Conséquences</h2>
                         <p>Créer / supprimer une branche est… rapide !</p>
                         <p>Il est possible de créer une branche n'importe quand… même depuis un ancien commit !</p>
                     </section>
+
                     <section>
                         <h2>Exemple</h2>
                         <pre><code>
@@ -444,6 +465,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         <p>Oups, j'ai oublié de faire une branche.</p>
                     </section>
+
                     <section>
                         <h2>Exemple</h2>
                         <pre><code>
@@ -455,6 +477,7 @@ $ git … HEAD@{"1 hour ago"}
                                           new_feature
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Exemple</h2>
                         <pre><code>
@@ -466,6 +489,7 @@ $ git … HEAD@{"1 hour ago"}
                                   master &#x2190; HEAD
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Exemple</h2>
                         <pre><code>
@@ -477,6 +501,7 @@ $ git … HEAD@{"1 hour ago"}
                                   E---F---G &#x2190; master &#x2190; HEAD
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Exemple</h2>
                         <pre><code>
@@ -488,6 +513,7 @@ $ git … HEAD@{"1 hour ago"}
                                   E---F---G &#x2190; master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Quand utiliser une branche ?</h2>
                         <ul>
@@ -497,6 +523,7 @@ $ git … HEAD@{"1 hour ago"}
                             <li>Juste parce qu'on peut !</li>
                         </ul>
                     </section>
+
                     <section>
                         <h2>Créer une branche</h2>
                         <pre><code>
@@ -505,6 +532,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git checkout -b &lt;name&gt;
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Passer d'une branche à l'autre</h2>
                         <pre><code>
@@ -512,6 +540,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git checkout &lt;branch2&gt;
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Supprimer une branche</h2>
                         <pre><code>
@@ -519,6 +548,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git branch -D &lt;name&gt;  # si branche non fusionnée
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Lister les branches</h2>
                         <pre><code>
@@ -539,18 +569,21 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         <p>Now… what?</p>
                     </section>
+
                     <section>
                         <h2>Pas de panique !</h2>
                         <p>Si vous avez déjà tenté une fusion avec SVN ou autre, il est
                            probable que vous soyez terrifié.</p>
                         <p>Avec Git, ça va bien se passer :)</p>
                     </section>
+
                     <section>
                         <h2>Avant la fusion…</h2>
                         <p>Il est important d'avoir un dépôt propre.</p>
                         <p>Tous les fichiers sont commités, le WD et l'index sont propres.</p>
                         <p>Placer le HEAD sur la branche principale.</p>
                     </section>
+
                     <section>
                         <h2>Cas simple, le fast forward</h2>
                         <pre><code>
@@ -559,6 +592,7 @@ $ git … HEAD@{"1 hour ago"}
                                   C---D---E &#x2190; hotfix
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Cas simple, le fast forward</h2>
                         <pre><code>
@@ -570,6 +604,7 @@ $ git … HEAD@{"1 hour ago"}
                                               hotfix
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Cas simple, le fast forward</h2>
                         <pre><code>
@@ -579,6 +614,7 @@ $ git … HEAD@{"1 hour ago"}
                             A---B---C---D---E &#x2190; master &#x2190; HEAD
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Cas plus complexe</h2>
                         <pre><code>
@@ -587,6 +623,7 @@ $ git … HEAD@{"1 hour ago"}
                                   E---F---G &#x2190; hotfix
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Cas plus complexe</h2>
                         <pre><code>
@@ -598,6 +635,7 @@ $ git … HEAD@{"1 hour ago"}
                                   E---F---G &#x2190; hotfix
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Cas plus complexe</h2>
                         <p>Git rejoue les commits de <i>hotfix</i> sur master.</p>
@@ -609,11 +647,13 @@ $ git … HEAD@{"1 hour ago"}
                                   E---F---G &#x2190; hotfix
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Aah! les conflits…</h2>
                         <p>Il arrive qu'un merge ne puisse être réalisé automatiquement.</p>
                         <p>Ex : Le même fichier modifé différemment dans deux branches distinctes.</p>
                     </section>
+
                     <section>
                         <h2>Comment se passe un merge ?</h2>
                         <p>Imaginons un fichier A, et ses différentes versions à travers le temps.</p>
@@ -623,6 +663,7 @@ $ git … HEAD@{"1 hour ago"}
                                    A5---A6---A6
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Comment se passe un merge ?</h2>
                         <p>Git considère trois versions du fichier : les deux dernières versions, et
@@ -634,6 +675,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         <p>Ici, A2, A4 et A6.</p>
                     </section>
+
                     <section>
                         <h2>Résoudre les conflits</h2>
                         <p><i>git status</i> permet de voir les fichiers mergés avec succès, et les autres.</p>
@@ -641,6 +683,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p><i>git show [:1,:2,:3]:&lt;file&gt;</i> montre les différentes versions du fichier.</p>
                         <p><i>git diff / git difftool</i> pour voir des différences.</p>
                     </section>
+
                     <section>
                         <h2>Résoudre les conflits</h2>
                         <p>Git modifie les fichiers conflictuels pour inclure des marqueurs de diff.</p>
@@ -656,12 +699,14 @@ $ git … HEAD@{"1 hour ago"}
                             Cette partie du fichier est commune
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Résoudre les conflits</h2>
                         <p>Modifier le fichier pour résoudre les conflits.</p>
                         <p><i>git add</i> puis <i>git commit</i></p>
                         <p><i>git mergetool</i> permet de lancer un outil de résolution de merge.</p>
                     </section>
+
                     <section>
                         <h2>Que faire après un merge ?</h2>
                         <pre><code>
@@ -672,6 +717,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p>Même une fois fusionnée, une branche peut continuer à vivre. Un autre
                             merge pourra être réalisé plus tard.</p>
                     </section>
+
                     <section>
                         <h2>Et si je supprime une branche non fusionnée ?</h2>
                         <p>Tentons l'expérience suivante :</p>
@@ -684,6 +730,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git branch -D hotfix
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Et si je supprime une branche non fusionnée ?</h2>
                         <pre><code>
@@ -691,6 +738,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         <p>Les commits de ma branche <i>hotfix</i> sont-ils perdus ?</p>
                     </section>
+
                     <section>
                         <h2>Et si je supprime une branche non fusionnée ?</h2>
                         <pre><code>
@@ -701,6 +749,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p>En fait, les commits existent toujours, ils sont simplement inaccessibles.</p>
                         <p>Au bout de quelques jours, ils seront supprimés par le <i>Garbage collector</i> de git.</p>
                     </section>
+
                     <section>
                         <h2>Le reflog</h2>
                         <p>Git garde une trace de tous les changements de position de HEAD.</p>
@@ -715,6 +764,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         <p>Mais… HEAD pointe directement vers un commit ? Pas une branche ?</p>
                     </section>
+
                     <section>
                         <h2>L'état <i>Detached HEAD</i></h2>
                         <p>Quand HEAD pointe directement vers un commit, on parle de detached HEAD.
@@ -735,6 +785,7 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Rebasing</h1>
                     </section>
+
                     <section>
                         <h2>Qu'est-ce qu'un rebase ?</h2>
                         <p>Le rebase est une autre façon d'intégrer les modifications de
@@ -742,6 +793,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p><i>git rebase</i> réapplique les commits d'une branche sur
                             une autre base.</p>
                     </section>
+
                     <section>
                         <h2>Merge vs. Rebase</h2>
                         <pre><code>
@@ -768,6 +820,7 @@ $ git … HEAD@{"1 hour ago"}
                                           master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Comment ça fonctionne ?</h2>
                         <pre><code>
@@ -781,6 +834,7 @@ $ git … HEAD@{"1 hour ago"}
                             <li>les commits de côté sont tous ré-appliqués <em>un par un</em></li>
                         </ol>
                     </section>
+
                     <section>
                         <h2>Conséquences</h2>
                         <ul>
@@ -793,6 +847,7 @@ $ git … HEAD@{"1 hour ago"}
                             A---B---C---D---E'---F'---G' &#x2190; master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Quand privilégier rebase sur merge ?</h2>
                         <ul>
@@ -800,6 +855,7 @@ $ git … HEAD@{"1 hour ago"}
                             <li>Faciliter l'intégration de branches</li>
                         </ul>
                     </section>
+
                     <section>
                         <h2>Éviter les commits de fusion</h2>
                         <p>Si l'on créé de petites branches en local, on se retrouve facilement
@@ -812,6 +868,7 @@ $ git … HEAD@{"1 hour ago"}
                                   C---D &#x2190; bug1
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Éviter les commits de fusion</h2>
                         <pre><code>
@@ -828,6 +885,7 @@ $ git … HEAD@{"1 hour ago"}
                                                        bug1
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Réparer un mauvais historique</h2>
                         <p>Je n'ai pas créé ma branche depuis le bon commit.</p>
@@ -841,6 +899,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p>Et si je veux passer <i>bug_urgent</i> en production, mais
                             pas <i>bug_en_cours</i> ?</p>
                     </section>
+
                     <section>
                         <h2>Réparer un mauvais historique</h2>
                         <pre><code>
@@ -854,6 +913,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p>Les commits sont tous ceux qui sont dans <i>bug_urgent</i>
                             mais pas dans <i>bug_en_cours</i>.</p>
                     </section>
+
                     <section>
                         <h2>Autre exemple</h2>
                         <pre><code>
@@ -865,6 +925,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         <p>Oups ! bug_1 et bug_2 n'ont rien à voir.</p>
                     </section>
+
                     <section>
                         <h2>Autre exemple</h2>
                         <pre><code>
@@ -879,6 +940,7 @@ $ git … HEAD@{"1 hour ago"}
 
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Supprimer des commits</h2>
                         <pre><code>
@@ -886,6 +948,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         <p>Si je veux supprimer les commits C et D ?</p>
                     </section>
+
                     <section>
                         <h2>Supprimer des commits</h2>
                         <pre><code>
@@ -899,6 +962,7 @@ $ git … HEAD@{"1 hour ago"}
                             A---B---E'---F'---G' &#x2190; master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Travailler proprement avec les branches distantes</h2>
                         <pre><code>
@@ -907,6 +971,7 @@ $ git … HEAD@{"1 hour ago"}
                                   E---F---G &#x2190; master local
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Travailler proprement avec les branches distantes</h2>
                         <pre><code>
@@ -926,6 +991,7 @@ $ git … HEAD@{"1 hour ago"}
                                                         master local
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Grands pouvoirs, grandes responsabilités</h2>
                         <p>si vous réécrivez l'historique d'une branche partagée,
@@ -933,6 +999,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p><i>git rebase</i> ne doit donc être utilisé que pour
                             les branches locales.</p>
                     </section>
+
                     <section>
                         <h2>Et si un rebase ne se passe pas bien ?</h2>
                         <p>Les commits sont réappliqués un par un. Il y a donc des
@@ -952,6 +1019,7 @@ $ git … HEAD@{"1 hour ago"}
                         <h1>Dépôts distants</h1>
                         <p>Parce qu'il faut bien partager le code à un moment ou à un autre.</p>
                     </section>
+
                     <section>
                         <h2>Git est décentralisé</h2>
                         <p>Rappel : git est un système décentralisé. Il n'y a pas
@@ -960,6 +1028,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p>Il est donc possible de créer autant de dépôts distants
                             que nécessaire.</p>
                     </section>
+
                     <section>
                         <h2>Git remote</h2>
                         <p>Si vous clonez un dépôt, git l'enregistre comme dépôt distant
@@ -972,6 +1041,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                        <p>Par convention, le dépôt distant par défaut se nomme <i>origin</i>.</p>
                     </section>
+
                     <section>
                         <h2>Git remote</h2>
                         <p><i>git remote</i> sert à gérer les dépôts distants.</p>
@@ -982,6 +1052,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git help remote
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Protocoles de communication</h2>
                         <p>Un dépôt git peut être partagé via de nombreux protocoles. Parmi les plus courants :</p>
@@ -994,6 +1065,7 @@ $ git … HEAD@{"1 hour ago"}
                            Le filesystem n'est à utiliser que pour les tests durant cette
                            formation.</p>
                     </section>
+
                     <section>
                         <h2>Branches distantes</h2>
                         <p>Une branche distante est une branche locale <i>read-only</i>
@@ -1016,6 +1088,7 @@ $ git … HEAD@{"1 hour ago"}
                                           E---F &#x2190; master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Branches distantes</h2>
                         <pre><code>
@@ -1039,6 +1112,7 @@ $ git … HEAD@{"1 hour ago"}
                                       D &#x2190; master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Mettre à jour le dépôt local</h2>
                         <pre><code>
@@ -1053,6 +1127,7 @@ $ git … HEAD@{"1 hour ago"}
                                           E---F &#x2190; master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Mettre à jour le dépôt local</h2>
                         <pre><code>
@@ -1072,6 +1147,7 @@ $ git … HEAD@{"1 hour ago"}
                                               E---F &#x2190; master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Branches trackées ou non</h2>
                         <p>Toutes les branches locales n'ont pas à être sur le serveur, et
@@ -1086,6 +1162,7 @@ $ git … HEAD@{"1 hour ago"}
             $ git checkout -b origin/&lt;branch&gt;  # Récupère et tracke une branche distante
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Envoyer son travail sur le serveur</h2>
                         <p><i>git push</i> envoie les données locales sur le serveur distant.</p>
@@ -1095,6 +1172,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git push origin :&lt;branch&gt;  # Supprime une branche distante
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Envoyer son travail sur le serveur</h2>
                         <p>Évidemment, il faut avoir un droit le lecture / écriture sur le dépôt distant.</p>
@@ -1106,6 +1184,7 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Organisation et workflows</h1>
                     </section>
+
                     <section>
                         <h2>Bienvenue dans la jungle</h2>
                         <p>Avec git, on peut créer autant qu'on veut de :</p>
@@ -1116,6 +1195,7 @@ $ git … HEAD@{"1 hour ago"}
                         </ul>
                         <p>Sans obligations de correspondances directes entre les uns et les autres.</p>
                     </section>
+
                     <section>
                         <h2>Bienvenue dans la jungle</h2>
                         <p>Du coup, ça peut vite devenir… b**lique.</p>
@@ -1125,6 +1205,7 @@ $ git … HEAD@{"1 hour ago"}
                         </ol>
                         <p>Il n'y a pas de réponses unique, mais voici quelques pistes de réflexion.</p>
                     </section>
+
                     <section>
                         <h2>Organiser ses branches</h2>
                         <p>Journée classique d'un développeur :</p>
@@ -1135,6 +1216,7 @@ $ git … HEAD@{"1 hour ago"}
                             <li>Zut ! le client remonte un bug, simple à corriger mais urgent</li>
                         </ul>
                     </section>
+
                     <section>
                         <h2>SVN (bad) style</h2>
                         <p>Exemples de mauvaises pratiques issues d'une habitude SVN :</p>
@@ -1144,6 +1226,7 @@ $ git … HEAD@{"1 hour ago"}
                             <li>Puller trés régulièrement ;</li>
                         </ol>
                     </section>
+
                     <section>
                         <h2>SVN (bad) style</h2>
                         <p>Conséquences :</p>
@@ -1153,6 +1236,7 @@ $ git … HEAD@{"1 hour ago"}
                             <li>Mes développements sont mélangés dans mon historique ;</li>
                         </ol>
                     </section>
+
                     <section>
                         <h2>Propositions de workflows</h2>
                         <p>Deux branches permanentes.</p>
@@ -1170,6 +1254,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p><i>Dev</i> contient tous les derniers développements, et
                             sert pour l'intégration continue (tests + builds).</p>
                     </section>
+
                     <section>
                         <h2>Développer des fonctionnalités</h2>
                         <pre><code>
@@ -1189,6 +1274,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git branch -d feature-login
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Préparer une <i>release</i></h2>
                         <pre><code>
@@ -1213,6 +1299,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git branch -d release-1.0.1
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Corriger un bug urgent</h2>
                         <pre><code>
@@ -1237,17 +1324,20 @@ $ git … HEAD@{"1 hour ago"}
                             $ git branch -d hotfix-1.0.2
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Organiser ses dépôts distants</h2>
                         <h3>Le dépôt centralisé</h3>
                         <p>Le plus simple pour démarrer.</p>
                         <img src="img/workflow1.png" />
                     </section>
+
                     <section>
                         <h2>Organiser ses dépôts distants</h2>
                         <h3>Le dépôt d'intégration</h3>
                         <img src="img/workflow2.png" />
                     </section>
+
                     <section>
                         <h2>Organiser ses dépôts distants</h2>
                         <h3>Le modèle « dictateur / lieutenants »</h3>
@@ -1261,6 +1351,7 @@ $ git … HEAD@{"1 hour ago"}
                         <h1>Nettoyer son historique</h1>
                         <h2>« Range ta chambre ! »</h2>
                     </section>
+
                     <section>
                         <h2>Avantages d'un historique bien propre</h2>
                         <ul>
@@ -1271,6 +1362,7 @@ $ git … HEAD@{"1 hour ago"}
                             <li>Faciliter les fusions</li>
                         </ul>
                     </section>
+
                     <section>
                         <h2>Rappel imporant</h2>
                         <blockquote>
@@ -1278,6 +1370,7 @@ $ git … HEAD@{"1 hour ago"}
                               le malheur s'emparera » — Yoda.
                         </blockquote>
                     </section>
+
                     <section>
                         <h2>Commiter avec soin</h2>
                         <pre><code>
@@ -1285,12 +1378,14 @@ $ git … HEAD@{"1 hour ago"}
                             $ git add -p
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Réparer un commit</h2>
                         <pre><code>
                             $ git commit --amend  # Remplace le commit existant
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Supprimer les derniers commits</h2>
                         <pre><code>
@@ -1307,6 +1402,7 @@ $ git … HEAD@{"1 hour ago"}
                             A---B---C---D---E
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Supprimer un fichier</h2>
                         <pre><code>
@@ -1318,6 +1414,7 @@ $ git … HEAD@{"1 hour ago"}
     $ git push --all --force  # Vos collègues vous détesteront
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Récupérer un seul commit d'une autre branche</h2>
                         <pre><code>
@@ -1325,6 +1422,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         
                     </section>
+
                     <section>
                         <h2>L'artillerie lourde</h2>
                         <pre><code>
@@ -1341,6 +1439,7 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Débugging avec git</h1>
                     </section>
+
                     <section>
                         <h2>Git blame</h2>
                         <p>Qui a fait ça ?!</p>
@@ -1349,6 +1448,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git blame &lt;file&gt; -L 50,55
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Git bisect</h2>
                         <p>Recherche dichotomique de régression.</p>
@@ -1366,6 +1466,7 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Git sur le serveur</h1>
                     </section>
+
                     <section>
                         <h2>Rappel : protocoles de partage</h2>
                         <ul>
@@ -1373,6 +1474,7 @@ $ git … HEAD@{"1 hour ago"}
                             <li>Git : Lecture seulement, aucuns droits d'accès ;</li>
                         </ul>
                     </section>
+
                     <section>
                         <h2>Créer un dépôt sur le serveur</h2>
                         <pre><code>
@@ -1384,16 +1486,19 @@ $ git … HEAD@{"1 hour ago"}
                             il ne contient pas de WD.</p>
                         <p>Deux solutions : créer le dépôt sur le serveur, ou l'envoyer après coup (scp).</p>
                     </section>
+
                     <section>
                         <h2>Et c'est tout !</h2>
                         <p>Vos développeurs ont accès SSH sur un serveur quelconque ?</p>
                         <p>Placez-y un dépôt <i>bare</i>, et c'est tout bon.</p>
                     </section>
+
                     <section>
                         <h2>Configuration du serveur</h2>
                         <p>Première solution : créer un compte utilisateur pour chaque développeur sur le serveur.</p>
                         <p>Deuxième solution : créer un seul utilisateur <i>git</i>.</p>
                     </section>
+
                     <section>
                         <h2>Rappel : authentification par clés publiques</h2>
                         <pre><code>
@@ -1406,6 +1511,7 @@ $ git … HEAD@{"1 hour ago"}
                             git:x:1000:1000::/home/git:/usr/bin/git-shell
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Initialisation du dépôt</h2>
                         <pre><code>
@@ -1417,6 +1523,7 @@ $ git … HEAD@{"1 hour ago"}
         $ git push origin master
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Autres solutions</h2>
                         <p>Gitosis (obsolète, dernier commit date de 4 ans ;</p>
@@ -1424,6 +1531,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p>Git Daemon : pour un accès public read-only ;</p>
                         <p>Git Web : pour un accès http (mais pourquoi ?!) ;</p>
                     </section>
+
                     <section>
                         <h2>Github</h2>
                         <p>Faites plaisir à vos développeurs.
@@ -1445,6 +1553,7 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Submodules et subtrees</h1>
                     </section>
+
                     <section>
                         <h2>Combiner des dépôts git</h2>
                         <p>Parfois, le besoin se fait sentir d'importer un dépôt git
@@ -1452,6 +1561,7 @@ $ git … HEAD@{"1 hour ago"}
                         <p>Ex : bibliothèque.</p>
                         <p>Deux solutions : submodules et subtree.</p>
                     </section>
+
                     <section>
                         <h2>AVERTISSEMENT !</h2>
                         <p>Si vous pouvez l'éviter, faites-le !</p>
@@ -1460,6 +1570,7 @@ $ git … HEAD@{"1 hour ago"}
                             Exemple : Virtualenv + pip + requirements.txt en Python.</p>
                         <p>Vous me remercierez plus tard.</p>
                     </section>
+
                     <section>
                         <h2>Les submodules</h2>
                         <p>Un submodule est un dépôt git dans un dépôt git.</p>
@@ -1473,12 +1584,14 @@ $ git … HEAD@{"1 hour ago"}
             $ git diff --cached bootstrap
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Modifier un submodule</h2>
                         <p>Une fois un sumbodule à jour (suite à un commit ou un merge),
                             il faut modifier la référence dans le projet principal,
                             et commiter.</p>
                     </section>
+
                     <section>
                         <h2>Attention aux pièges !</h2>
                         <pre><code>
@@ -1492,11 +1605,13 @@ $ git … HEAD@{"1 hour ago"}
                         <p>Et si le commit sur lequel pointe mon submodule n'est pas public ? Pas de bol !</p>
                         <p>Attention également aux changements de branche avec / sans submodules.</p>
                     </section>
+
                     <section>
                         <h2>Les subtrees</h2>
                         <p>Une solution alternative : dédier une branche distincte
                             pour le dépôt distant.</p>
                     </section>
+
                     <section>
                         <h2>Euh… Pardon ?</h2>
                         <pre><code>
@@ -1511,6 +1626,7 @@ $ git … HEAD@{"1 hour ago"}
             $ git read-tree --prefix=bootstrap -u bootstrap_branch
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Euh… Pardon ?</h2>
                         <p>Récupérer le subtree distant :</p>
@@ -1527,6 +1643,7 @@ $ git … HEAD@{"1 hour ago"}
                             $ git push
                         </code></pre>
                     </section>
+
                     <section>
                         <h2>Et mon diff ?</h2>
                         <pre><code>
@@ -1541,6 +1658,7 @@ $ git … HEAD@{"1 hour ago"}
                         <h1>Les Hooks</h1>
                         <img src="http://www.linternaute.com/cinema/image_cache/objdbfilm/image/540/27222.jpg" />
                     </section>
+
                     <section>
                         <h2>Les hooks</h2>
                         <p>Un <i>hook</i> est un script prévu pour se déclencher à un moment précis.</p>
@@ -1549,6 +1667,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         <p>Les hooks peuvent être côté client ou côté serveur.</p>
                     </section>
+
                     <section>
                         <h2>Les hooks</h2>
                         <p>Exemples d'utilisation :</p>
@@ -1570,10 +1689,12 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Git et svn</h1>
                     </section>
+
                     <section>
                         <h2>Un comparatif Git / Svn</h2>
                         <p>Serait injuste pour SVN.</p>
                     </section>
+
                     <section>
                         <h2>Si vous aimez les antiquités…</h2>
                         <pre><code>
@@ -1592,6 +1713,7 @@ $ git … HEAD@{"1 hour ago"}
                     <section>
                         <h1>Fonctionnement interne de Git</h1>
                     </section>
+
                     <section>
                         <h2>Dans le cœur de la bête</h2>
                         <p>Tout le dépôt git se trouve dans <i>.git</i>.</p>
@@ -1604,6 +1726,7 @@ $ git … HEAD@{"1 hour ago"}
                         </code></pre>
                         <p>Les objets sont indexés par contenu : clé = sha1 hash du contenu.</p>
                     </section>
+
                     <section>
                         <h2>Les objets</h2>
                         <p>Git gère quatre types d'objets :</p>
@@ -1614,10 +1737,12 @@ $ git … HEAD@{"1 hour ago"}
                             <li>tag : les tags ;</li>
                         </ul>
                     </section>
+
                     <section>
                         <h2>Les références</h2>
                         <p>Une référence est simplement une étiquette qui pointe vers un commit / une arborescence ;</p>
                     </section>
+
                     <section>
                         <h2>Les packfiles</h2>
                         <p>À chaque commit, Git stocke l'intégralité du fichier commité.</p>
