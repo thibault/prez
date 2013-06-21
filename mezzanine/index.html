@@ -6,8 +6,8 @@
 
 		<title>Mezzanine, le CMS pour les pythonistes pragmatiques</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="">
+		<meta name="author" content="">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -21,10 +21,7 @@
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+		<link rel="stylesheet" href="../css/print/pdf.css" type="text/css" media="print">
 
 		<!--[if lt IE 9]>
 		<script src="../reveal.js/lib/js/html5shiv.js"></script>
@@ -37,7 +34,6 @@
 
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-
 				<section>
 					<h1>Mezzanine</h1>
 					<h2>Le CMS des développeurs pragmatiques</h2>
@@ -50,12 +46,12 @@
 				</section>
 
                 <section>
-                    <h2>&lt;Troll&gt;</h2>
+                    <h2>Les CMS</h2>
+                    <p>-> PHP</p>
                 </section>
 
                 <section>
-                    <h2>Les CMS</h2>
-                    <p>-> PHP</p>
+                    <h2>&lt;Troll&gt;</h2>
                 </section>
 
                 <section>
@@ -67,14 +63,6 @@
                 </section>
 
                 <section>
-                    <img src='' alt='Capture web ui ez publish' />
-                </section>
-
-                <section>
-                    <img src='' alt='Capture query count' />
-                </section>
-
-                <section>
                     <h2>&lt;/Troll&gt;</h2>
                 </section>
 
@@ -83,7 +71,8 @@
                     <ul>
                         <li>des fonctionnalités ;</li>
                         <li>de la simplicité ;</li>
-                        <li>de la cohérence.</li>
+                        <li>de la cohérence ;</li>
+                        <li>du Python.</li>
                     </ul>
                 </section>
 
@@ -156,6 +145,7 @@
                         <li>Types de contenus custom</li>
                         <li>Override de templates</li>
                         <li><i>Page processors</i></li>
+                        <li>Intégration Bootstrap (on aime ou pas)</li>
                     </ul>
                 </section>
 
@@ -164,7 +154,17 @@
                     <ul>
                         <li>Stratégie de cache</li>
                         <li>Déploiement : fabfile super complet</li>
-                        <li>Hébergement : fichers de conf</li>
+                        <li>Hébergement : fichiers de conf</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Ce qui manque</h2>
+                    <ul>
+                        <li>Worflow complexe de publication ;</li>
+                        <li>Versioning de contenu ;</li>
+                        <li>Multilinguisme ;</li>
+                        <li>Gestion fine des ACLs ;</li>
                     </ul>
                 </section>
 
@@ -173,8 +173,22 @@
                 </section>
 
                 <section>
+                    <h2>Urls.py</h2>
+                    <pre><code>
+                    urlpatterns = patterns("",
+                        …
+                        ("^", include("mezzanine.urls")),
+                        …
+                    )
+                    </code></pre>
+                    
+                </section>
+
+                <section>
                     <h2>Type de contenu custom</h2>
                     <pre><code>
+# authors/models.py
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.pages.models import Page
@@ -190,6 +204,8 @@ class Author(Page, RichText):
                 <section>
                     <h2>Type de contenu custom</h2>
                     <pre><code>
+# authors/admin.py
+
 from django.contrib import admin
 from mezzanine.pages.admin import PageAdmin
 
@@ -226,11 +242,43 @@ admin.site.register(Author, PageAdmin)
                 </section>
 
                 <section>
+                    <h2>Page processors</h2>
+                    <pre><code>
+# page_processors.py
+
+from django import forms
+from mezzanine.pages.page_processors import processor_for
+from .models import Author
+from .forms import AuthorForm
+
+
+@processor_for(Author)
+def author_form(request, page):
+    form = AuthorForm(request.POST or None)
+    if form.is_valid():
+        # Form processing
+        pass
+    return { "form": form }
+                    </code></pre>
+                </section>
+
+                <section>
                     <h2>Mezzanine est extensible sans faire de saletés</h2>
                     <img src="img/dirty_cat.jpg" alt='' />
                 </section>
 
+                <section>
+                    <h2>Questions ?</h2>
+                    <img src="img/pingu.gif" class="nostyle" />
+                </section>
+
 			</div>
+
+            <footer>
+                Thibault Jouannic –
+                <a href="http://www.miximum.fr">Miximum.fr</a> –
+                <a href="http://www.twitter.com/thibaultj">@thibaultj</a>
+            </footer>
 
 		</div>
 
@@ -246,6 +294,7 @@ admin.site.register(Author, PageAdmin)
 				progress: true,
 				history: true,
 				center: true,
+                rollingLinks: false,
 
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none

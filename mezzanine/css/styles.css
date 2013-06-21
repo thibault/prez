@@ -1,3 +1,14 @@
 .reveal h2 {
     line-height: 1.2;
 }
+.reveal > footer {
+    position: fixed;
+    bottom: 25px;
+    left: 15px;
+    font-size: 80% !important;
+}
+img.nostyle {
+    border: 0 !important;
+    background: inherit !important;
+    box-shadow: inherit !important;
+}
