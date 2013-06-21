@@ -204,21 +204,6 @@ class Author(Page, RichText):
                 <section>
                     <h2>Type de contenu custom</h2>
                     <pre><code>
-# authors/admin.py
-
-from django.contrib import admin
-from mezzanine.pages.admin import PageAdmin
-
-from .models import Author
-
-
-admin.site.register(Author, PageAdmin)
-                    </code></pre>
-                </section>
-
-                <section>
-                    <h2>Type de contenu custom</h2>
-                    <pre><code>
 {% extends "pages/richtextpage.html" %}
 {% load mezzanine_tags %}
 
