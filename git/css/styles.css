@@ -1,3 +1,47 @@
+/*
+.reveal .slides > section > section {
+    background: url('../img/bg.png') 0 95% no-repeat !important;
+}
+.reveal .slides > section:first-child > section:first-child {
+    background: inherit !important;
+}*/
+.reveal {
+    font-size: 18pt;
+}
+.reveal .slides > section > section {
+    padding-top: 0 !important;
+}
+header,
+footer {
+    background-color: #2b647f;
+    color: white;
+    font-family: 'Lato';
+    text-align: left;
+    vertical-align: middle;
+}
+header {
+    font-size: 24px;
+    padding: 5px !important;
+    margin-bottom: 0;
+}
+header img {
+    width: 60px;
+    height: 60px;
+    vertical-align: middle !important;
+    border: none !important;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 20px;
+    padding: 8px;
+}
+footer span {
+    float: right;
+    margin-right: 16px;
+}
 dl {
     text-align: left;
 }

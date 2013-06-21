@@ -15,8 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 		<link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
-		<link rel="stylesheet" href="../reveal.js/css/theme/night.css" id="theme">
-		<link rel="stylesheet" href="css/styles.css" id="theme">
+		<link rel="stylesheet" href="../reveal.js/css/theme/beige.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
@@ -26,12 +25,16 @@
 			document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
 
+		<link rel="stylesheet" href="css/styles.css" id="theme">
+
 		<!--[if lt IE 9]>
 		<script src="../reveal.js/lib/js/html5shiv.js"></script>
 		<![endif]-->
 	</head>
 
 	<body>
+
+        <footer id="slide-footer"> Formation Git<br /> Thibault Jouannic <span>24 ~ 25 juin 2013</span> </footer>
 
 		<div class="reveal">
 
@@ -40,6 +43,7 @@
 
 				<section>
                     <section>
+                        <img src="img/gros_logo.png" style="border: 0 !important; box-shadow: none !important; background: inherit !important; "/>
                         <h1>Formation Git</h1>
                     </section>
 
@@ -1898,12 +1902,8 @@ $ git log HEAD~5..
 					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 					{ src: '../reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
 					{ src: '../reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: '../reveal.js/plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
-					// { src: '../reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
 				]
 			});
-
 		</script>
-
 	</body>
 </html>
