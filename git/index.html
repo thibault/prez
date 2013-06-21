@@ -237,6 +237,19 @@ $ git config --global user.email "thibault@miximum.fr"
                         <h2>.gitignore</h2>
                         <p>Pour ignorer certains fichiers.</p>
                         <p><a href="https://gist.github.com/thibault/5804127">Exemple de .gitignore</a>
+                        <pre><code>
+*.pyc
+cache/
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+*.swp
+.*.swp
+*~
+*.lock
+*.out
+                        </code></pre>
                     </section>
 
                     <section>
@@ -1518,7 +1531,7 @@ $ git log HEAD~5..
 
                     <section>
                         <h2>Autres solutions</h2>
-                        <p>Gitosis (obsolète, dernier commit date de 4 ans ;</p>
+                        <p>Gitosis : obsolète, dernier commit date de 4 ans ;</p>
                         <p>Gitolite : gère les permissions de manière fine ;</p>
                         <p>Git Daemon : pour un accès public read-only ;</p>
                         <p>Git Web : pour un accès http (mais pourquoi ?!) ;</p>
@@ -1563,7 +1576,7 @@ $ git log HEAD~5..
                         <h2>Git reset</h2>
                         <pre><code>
         Premier mode : reset sur un commit (HEAD si non spécifié)
-        $ git reset --soft &lt;commit&gt;  # Déplace le HEAD *et* la branche sur &lt;commit&gt; 
+        $ git reset --soft &lt;commit&gt;  # Déplace le HEAD *et* la branche sur &lt;commit&gt;
         $ git reset --mixed &lt;commit&gt;  # Idem, mais copie HEAD dans le staging
         $ git reset --hard &lt;commit&gt;   # Les deux premiers, mais copie HEAD dans le WD
                         </code></pre>
@@ -1584,11 +1597,11 @@ $ git log HEAD~5..
         # Déplace le HEAD (pas la branche) sur &lt;commit&gt;,
         et met à jour l'index et le WD *sauf* les fichiers modifiés (pfiou !)
 
-        $ git checkout &lt;path&gt; 
+        $ git checkout &lt;path&gt;
         # Met à jour le &lt;path&gt; du WD avec celui de l'index
 
         $ git checkout &lt;commit&gt; &lt;path&gt;
-        # Met à jour le &lt;path&gt; du WD avec celui de &lt;commit&gt; 
+        # Met à jour le &lt;path&gt; du WD avec celui de &lt;commit&gt;
                         </code></pre>
                     </section>
                 </section>
