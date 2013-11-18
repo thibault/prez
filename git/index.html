@@ -275,6 +275,16 @@ $ git config --global user.email "thibault@miximum.fr"
                             directement.</p>
                         <p><a href="https://github.com/git/git/tree/master/contrib/completion">https://github.com/git/git/tree/master/contrib/completion</a></p>
                     </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Récupérez le .gitconfig sample</li>
+                            <li>https://github.com/thibault/prez/blob/master/git/gitconfig</li>
+                            <li>Enregistrez-le à l'emplacement adéquat</li>
+                        </ul>
+                    </section>
+
                 </section>
 
                 <section>
@@ -392,6 +402,17 @@ $ git revert commit
 $ git revert commit -n  # Annule un commit mais attends votre validation pour commiter
                         </code></pre>
                     </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Clonez le dépôt tpgit</li>
+                            <li>git clone https://github.com/thibault/tpgit/</li>
+                            <li>Modifiez un fichier existant et commitez</li>
+                            <li>Créez un fichier existant et commitez</li>
+                        </ul>
+                    </section>
+
                 </section>
 
                 <section>
@@ -458,6 +479,16 @@ $ git log efc95493798d8..
 $ git log efc95493798d8..efc95493798d8~5
 $ git log HEAD~5..
                         </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Affichez le log du dépôt tpgit</li>
+                            <li>Affichez le détail d'un commit</li>
+                            <li>Affichez les modifs des 5 derniers commits</li>
+                            <li>Affichez les modifs de cette semaine</li>
+                        </ul>
                     </section>
                 </section>
 
@@ -618,6 +649,17 @@ $ git log HEAD~5..
                             $ git branch -r  # Lister les branches distantes
                             $ git branch -a  # Combine les deux
                         </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Listez toutes les branches du dépôt</li>
+                            <li>Listez les branches non fusionnées</li>
+                            <li>Passez de la branch master à la branche dev</li>
+                            <li>Visualisez les différences entre les deux</li>
+                            <li>Supprimez la branche "test_branch"</li>
+                        </ul>
                     </section>
                 </section>
 
@@ -840,6 +882,16 @@ $ git log HEAD~5..
                                  \
                                   E---F---G &#x2190; newbranch &#x2190; HEAD
                         </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Fusionnez feature1 vers master</li>
+                            <li>Supprimez feature2</li>
+                            <li>Changez d'avis, et récupérez la branche feature2</li>
+                            <li>Fusionnez feature2 vers master</li>
+                        </ul>
                     </section>
                 </section>
 
@@ -1074,6 +1126,14 @@ $ git log HEAD~5..
                             $ git rebase --skip  # Continuer en laissant de côté ce commit
                         </code></pre>
                     </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Rebasez feature3 vers master</li>
+                            <li>Rebasez hotfix vers master</li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section>
@@ -1239,6 +1299,14 @@ $ git log HEAD~5..
                         <h2>Envoyer son travail sur le serveur</h2>
                         <p>Évidemment, il faut avoir un droit le lecture / écriture sur le dépôt distant.</p>
                         <p>Il faut également que le dépôt local soit à jour.</p>
+                    </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Affichez la liste des branches distantes</li>
+                            <li>Affichez le log de la branche master distante</li>
+                        </ul>
                     </section>
                 </section>
 
@@ -1494,6 +1562,16 @@ $ git log HEAD~5..
                         <pre><code>
                     $ git rebase -i HEAD~5  # Réécrire les 5 derniers commits
                         </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Ajoutez plusieurs paragraphes dans un fichier</li>
+                            <li>N'en commitez qu'un seul</li>
+                            <li>Changez le commentaire du dernier commit</li>
+                            <li>Supprimez les deux derniers commits de master</li>
+                        </ul>
                     </section>
                 </section>
 
@@ -1765,6 +1843,14 @@ $ git log HEAD~5..
                             $ git diff-tree -p bootstrap_remote/master
                         </code></pre>
                     </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Intégrez votre librairie / framework préféré via un submodule</li>
+                            <li>Idem via un subtree</li>
+                        </ul>
+                    </section>
                 </section>
 
                 <section>
@@ -1820,6 +1906,13 @@ $ git log HEAD~5..
             $ git svn rebase
             $ git svn dcommit
                         </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Créez un dépôt git de votre projet courant à partir de son svn</li>
+                        </ul>
                     </section>
                 </section>
 
