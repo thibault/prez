@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>JS</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/night.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+    <div class="reveal"><div class="slides">
+
+            <section>
+                <h1>Single page webpapps</h1>
+            </section>
+
+            <section>
+                <h2>Objectifs pédagogiques</h2>
+                <ul>
+                    <li>Comprendre ce qu'est une "single page app".</li>
+                    <li>Comprendre l'articulation de ses composants.</li>
+                    <li>Concevoir une appli dynamique et moderne.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Ce support de cours</h2>
+                <span>https://github.com/thibault/prez/tree/master/javascript</span>
+            </section>
+
+            <section>
+                <h2>Me contacter</h2>
+                <p>TODO</p>
+            </section>
+
+            <section>
+                <h2>Évaluation</h2>
+                <ul>
+                    <li>Une seule note sur un projet</li>
+                    <li>Réparti sur 4 TPs</li>
+                    <li>Possibilité de travailler à deux</li>
+                    <li>Ou en groupe…</li>
+                    <li>Ou tous ensembles…</li>
+                </ul>
+            </section>
+
+
+        </div></div>
+
+        <script src="../reveal.js/lib/js/head.min.js"></script>
+        <script src="../reveal.js/js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                rollingLinks: false,
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                ]
+            });
+        </script>
+    </body>
+</html>
