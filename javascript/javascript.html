@@ -111,20 +111,6 @@ console.log(pomodoro.getDuration());
         </section>
 
         <section>
-            <h2>Définir une variable</h2>
-            <pre class="javascript"><code>
-var name = "Thibault";
-console.log(name);  // Thibault
-name = 5;  // Haha ! Je suis typée dynamiquement \o/
-console.log(name);  // 5
-
-var test;
-typeof test;
-=> undefined
-            </code></pre>
-        </section>
-
-        <section>
             <h2>Les types en Javascript</h2>
             <ul>
                 <li>Number</li>
@@ -141,6 +127,44 @@ typeof test;
                     </ul>
                 </li>
             </ul>
+        </section>
+
+        <section>
+            <h2>Les variables</h2>
+            <pre class="javascript"><code>
+var name = "Thibault";
+name;
+=> 'Thibault'
+
+name = 5;
+name;
+=> 5
+
+var test;
+typeof test;
+=> 'undefined'
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Attention aux variables globales !</h2>
+            <pre class="javascript"><code>
+var pasGlop = function() {
+    test_var = "I'm alive!";
+};
+
+var glop = function() {
+    var test_var_2 = "Where am I?";
+};
+
+pasGlop();
+test_var;
+=> "I'm alive"
+
+glop();
+test_var_2;
+=> 'undefined';
+            </code></pre>
         </section>
 
         <section>
@@ -291,6 +315,9 @@ var s = "Je suis une chaîne";
 typeof s
 => "string"
 
+var nbErrors = 5;
+var errorLog = "We have met " + nbErrors + " errors";
+
 s.length;
 => 18;
 
@@ -312,6 +339,7 @@ a[1] = 'dans les bois';
 a.push('pendant que le loup n'\'y est pas');
 a.length;
 => 3
+
 a[150] = "Qu'est-ce que je fous là?";
 a.length;
 => 151;
@@ -319,6 +347,58 @@ a.length;
 var b = ['si le loup', 'y était', 'il nous mangerait'];
             </code></pre>
         </section>
+
+    <section>
+        <h1>Fin de l'échauffement</h1>
+    </section>
+
+    <section>
+        <h1>Les objets</h1>
+    </section>
+
+    <section>
+        <h2>Certaines choses ne sont pas des objets</h2>
+        <ul>
+            <li>Les nombres</li>
+            <li>Les booléens</li>
+            <li>Les strings</li>
+            <li>Null et undefined</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Tout le reste = object !</h2>
+    </section>
+
+    <section>
+        <h2>Liste de valeurs indexées</h2>
+        <pre class="javascript"><code>
+var post = {
+    title: "How to teach javascript",
+    date: Date.now(),
+    tags: ['javascript', 'teaching', 'mdn'],
+    author: {
+        first_name: "Thibault",
+        last_name: "Jouannic"
+    }
+};
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+typeof post;
+=> "object";
+
+post.title;
+=> 'How to teach javascript'
+
+post['author'];
+=> "Thibault"
+
+post.related_post_ids = [5, 55, 75];
+        </code></pre>
+    </section>
 
     </div></div>
 
@@ -347,13 +427,3 @@ var b = ['si le loup', 'y était', 'il nous mangerait'];
     </script>
     </body>
 </html>
-Hi Paul,
-
-I'm Thibault, from Montpellier. I will be in Thonon-les-bains on the mentioned dates with five other friends (adults). We are attenting an Aikido seminar and are looking for a place to stay.
-
-Your house looks like exactly what we are looking for, and I wanted to get in touch to get a confirmation that it would be available at the required dates.
-
-You can email me at this address: teeboo@gmail.com. I could also call you if you prefer but my english accent probably sounds terrible. It's up to you anyway.
-
-Regards,
-Thibault
