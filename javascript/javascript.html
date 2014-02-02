@@ -400,6 +400,369 @@ post.related_post_ids = [5, 55, 75];
         </code></pre>
     </section>
 
+    <section>
+        <h1>Les fonctions</h1>
+    </section>
+
+    <section>
+        <h2>Déclarer une fonction</h2>
+        <pre class="javascript"><code>
+// Glop mais pas top…
+function add(a, b) {
+    return a + b;
+}
+
+// Beaucoup plus glop !
+var add = function(a, b) {
+    return a + b;
+};
+
+typeof add;
+=> 'function'
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var success = function() {
+    console.log('Opération réussie');
+};
+
+$.ajax({
+    type: 'POST',
+    url: '/hostels/create',
+    success: success
+});
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>L'argument <em>arguments</em></h2>
+        <pre class="javascript"><code>
+var avg = function() {
+    var sum = 0;
+    for (var i = 0 ; i < arguments.length ; i++) {
+        sum += arguments[i];
+    }
+
+    return sum / arguments.length;
+};
+avg(5, 6, 8, 13, 2);
+=> 6.8
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>L'argument <em>this</em></h2>
+        <pre class="javascript"><code>
+var person = {
+    firstName: 'Bob',
+    lastName: 'Sponge',
+    fullName: function() {
+        return this.firstName + ' ' + this.lastName;
+    }
+};
+person.fullName();
+=> 'Bob Sponge'
+        </code></pre>
+
+        <pre class="fragment javascript"><code>
+var fn = person.fullName;
+fn();
+=> 'undefined undefined'
+        </code></pre>
+    </section>
+
+    <section>
+        <h1>Maintenant, la partie difficile</h1>
+    </section>
+
+    <section>
+        <h2>Javascript est orienté objet…</h2>
+        <h2>mais pas orienté classe !</h2>
+    </section>
+
+    <section>
+        <h2>Il n'y a pas de classes en javascript</h2>
+    </section>
+
+    <section>
+        <h2>Il y a des classes dans beaucoup de langages,
+        mais pas en javascript</h2>
+    </section>
+
+    <section>
+        <h2>Les classes ne font pas partie des multiples
+        éléments syntaxiques disponibles en javascript.</h2>
+    </section>
+
+    <section>
+        <h2>Javascript met à votre disposition de nombreux outils,
+        mais si vous cherchez les classes parmi eux, vous ne
+        les trouverez pas.</h2>
+    </section>
+
+    <section>
+        <h2>Tu connais l'histoire de la classe javascript ?</h2>
+        <h2 class="fragment">Normal, il n'y en a pas.</h2>
+    </section>
+
+    <section>
+        <h1>Digressons un moment</h1>
+        <p class="fragment">(gressons)</p>
+    </section>
+
+    <section>
+        <h2>À quoi sert une classe ?</h2>
+        <ul class="fragment">
+            <li>Réutilisation de code</li>
+            <li>Architecturer le code</li>
+            <li>Créer une abstraction compréhensible</li>
+            <li>Faciliter la (re-) lecture</li>
+        </ul>
+    </section>
+
+    <section>
+        <pre class="python"><code>
+class User:
+    """Represents a single user in the application."""
+
+    PASSWORD = 'gloubiboulga'
+
+    def __init__(self, first_name, last_name):
+        """Create a new user."""
+        self.firts_name = first_name
+        self.last_name = last_name
+        self.is_authenticated = False
+
+    def __str__(self):
+        return '%s %s' % (self.first_name, self.last_name)
+
+    def authenticate(self, password):
+        """Mark the user as authenticated."""
+        if password == self.PASSWORD:
+            self.is_authenticated = True
+
+
+riri = User('Riri', 'Duck')
+riri.authenticate('schmilblick')
+riri.is_authenticated
+=> False
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Comprendre Javascript, c'est comprendre comment
+            atteindre ces objectifs sans le concept de classe.</h2>
+    </section>
+
+    <section>
+        <ul>
+            <li>Le constructor pattern</li>
+            <li>Les protoypes</li>
+            <li>Les closures</li>
+            <li>Les IIFEs</li>
+        </ul>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var riri = {
+    firstName: 'Riri',
+    lastName: 'Duck',
+    toString: function() {
+        return this.firstName + ' ' + this.lastName;
+    }
+};
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var makeUser = function(firstName, lastName) {
+    return {
+        firstName: firstName,
+        lastName: lastName,
+        toString: function() {
+            return this.firstName + ' ' + this.lastName;
+        }
+    };
+};
+var riri = makeUser('Riri', 'Duck');
+var fifi = makeUser('Fifi', 'Duck');
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var User = function(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.toString = function() {
+        return this.firstName + ' ' + this.lastName;
+    };
+};
+var riri = new user('Riri', 'Duck');
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var User = function(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.toString = function() {
+        return this.firstName + ' ' + this.lastName;
+    };
+};
+
+var riri = new User('Riri', 'Duck');
+var picsou = new User('Picsou', 'Duck');
+
+picsou.toString = function() {
+    return "I'm rich, bitch!";
+};
+
+riri.toString();
+=> 'Riri Duck'
+
+picsou.toString();
+=> 'I'm rich, bitch!'
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var User = function(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+};
+
+User.prototype.toString = function() {
+    return this.firstName + ' ' + this.lastName;
+};
+
+var riri = new User('Riri', 'Duck');
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+PASSWORD = 'gloubiboulga';
+
+var User = function(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.isAuthenticated = false;
+};
+
+User.prototype.toString = function() {
+    return this.firstName + ' ' + this.lastName;
+};
+
+User.prototype.authenticate = function(password) {
+    if (password == PASSWORD) {
+        this.isAuthenticated = true;
+    }
+};
+
+var riri = new User('Riri', 'Duck');
+riri.authenticate('schmilblick');
+riri.isAuthenticated;
+=> false
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>Créons des modules</h2>
+        <h2>Avec le pattern IIFE</h2>
+        <p>Pour Immediatly Invoked Function Expression</p>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var makeUserClass = function() {
+    var PASSWORD = 'gloubiboulga';
+
+    var User = function(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isAuthenticated = false;
+    };
+
+    User.prototype.toString = function() {
+        return this.firstName + ' ' + this.lastName;
+    };
+
+    User.prototype.authenticate = function(password) {
+        if (password == PASSWORD) {
+            this.isAuthenticated = true;
+        }
+    };
+
+    return User;
+};
+User = makeUserClass();
+
+typeof User;
+=> 'function'
+
+typeof PASSWORD;
+=> 'undefined'
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var User = (function() {
+    var PASSWORD = 'gloubiboulga';
+
+    var User = function(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isAuthenticated = false;
+    };
+
+    User.prototype.toString = function() {
+        return this.firstName + ' ' + this.lastName;
+    };
+
+    User.prototype.authenticate = function(password) {
+        if (password == PASSWORD) {
+            this.isAuthenticated = true;
+        }
+    };
+
+    return User;
+})();
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+(function(exports) {
+    var PASSWORD = 'gloubiboulga';
+
+    var User = function(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.isAuthenticated = false;
+    };
+    exports.User = User;
+
+    User.prototype.toString = function() {
+        return this.firstName + ' ' + this.lastName;
+    };
+
+    User.prototype.authenticate = function(password) {
+        if (password == PASSWORD) {
+            this.isAuthenticated = true;
+        }
+    };
+})(this);
+        </code></pre>
+    </section>
+
     </div></div>
 
     <script src="../reveal.js/lib/js/head.min.js"></script>
