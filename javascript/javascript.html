@@ -602,7 +602,7 @@ var User = function(firstName, lastName) {
         return this.firstName + ' ' + this.lastName;
     };
 };
-var riri = new user('Riri', 'Duck');
+var riri = new User('Riri', 'Duck');
         </code></pre>
     </section>
 
@@ -632,6 +632,53 @@ picsou.toString();
     </section>
 
     <section>
+        <h2>Les prototypes</h2>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var riri = {
+    firstName: 'Riri',
+    lastName: 'Duck',
+};
+Object.prototype.toString = function() {
+    return this.firstName + ' ' + this.lastName;
+};
+riri.toString();
+=> 'Riri Duck'
+        </code></pre>
+    </section>
+
+    <section>
+        <pre class="javascript"><code>
+var User = function(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+};
+User.prototype;
+=> '{}'
+        </code></pre>
+
+        <pre class="javascript fragment"><code>
+User.prototype.toString = function() {
+    return this.firstName + ' ' + this.lastName;
+};
+User.prototype;
+=> { toString: [Function] }
+        </code></pre>
+
+        <pre class="javascript fragment"><code>
+var riri = new User('Riri', 'Duck');
+riri.toString();
+=> 'Riri Duck'
+        </code></pre>
+    </section>
+
+    <section>
+        <h2>L'héritage prototypal</h2>
+    </section>
+
+    <section>
         <pre class="javascript"><code>
 var User = function(firstName, lastName) {
     this.firstName = firstName;
@@ -642,7 +689,22 @@ User.prototype.toString = function() {
     return this.firstName + ' ' + this.lastName;
 };
 
-var riri = new User('Riri', 'Duck');
+var AuthenticatedUser = function() {
+    User.apply(this, arguments);
+};
+AuthenticatedUser.prototype = new User();
+        </code></pre>
+
+        <pre class="javascript fragment"><code>
+var zaza = new AuthenticatedUser('Zaza', 'Duck');
+zaza.toString();
+=> 'Zaza Duck'
+
+zaza instanceof AuthenticatedUser;
+=> true
+zaza intsanceof User;
+=> true
+
         </code></pre>
     </section>
 
