@@ -52,8 +52,220 @@
                     <section>
                         <h1>La gestion de version</h1>
                     </section>
+
+                    <section>
+                        <h2>C'est la gestion du changement</h2>
+                        <ul>
+                            <li>Code source</li>
+                            <li>Documentation</li>
+                            <li>Configuration</li>
+                            <li>Tests</li>
+                            <li>Media</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Ne concerne pas</h2>
+                        <ul>
+                            <li>Les backups</li>
+                            <li>Gros fichiers binaires</li>
+                            <li>Fichiers auto-générés (processus de build, cache)</li>
+                            <li>Tout fichier dont on ne souhaite pas suivre les révisions</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Pour travailler seul</h2>
+                        <ul>
+                            <li>Conserver un historique</li>
+                            <li>Revenir en arrière</li>
+                            <li>Ne pas perdre de données</li>
+                            <li>Savoir où l'on en est</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Pour travailler à plusieurs</h2>
+                        <li>Partager le travail</li>
+                        <li>Éviter les conflits</li>
+                        <li>Résoudre les conflits</li>
+                        <li>Savoir qui a fait quoi</li>
+                    </section>
+
+                    <section>
+                        <h2>Fonctionnalités avancées</h2>
+                        <li>Par fichier / projet</li>
+                        <li>Gérer des versions parallèles</li>
+                        <li>Tagger certaines révisions</li>
+                        <li>Réordonner l'historique</li>
+                    </section>
+
                 </section>
 
+                <section>
+                    <section>
+                        <h1>Types de gestions de versions</h1>
+                    </section>
+
+                    <section>
+                        <h2>La préhistoire : la gestion manuelle</h2>
+                        <p>Création d'archives, copie dans un répertoire, etc.</p>
+                    </section>
+
+                    <section>
+                        <h2>Le moyen-âge : la gestion centralisée</h2>
+                        <p>La version de référence est stockée sur un serveur.</p>
+                    </section>
+
+                    <section>
+                        <h2>L'époque moderne : la gestion décentralisée</h2>
+                        <p>Chaque développeur dispose d'une copie sur son environnement.</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Les outils de gestion de version</h1>
+                    </section>
+
+                    <section>
+                        <h2>Les ancêtres</h2>
+                        <p>CVS, SVN</p>
+                    </section>
+
+                    <section>
+                        <h2>Les mammouths</h2>
+                        <p>ClearCase, Perforce</p>
+                    </section>
+
+                    <section>
+                        <h2>Les concurrents</h2>
+                        <p>Bazaar, Mercurial</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Concepts</h1>
+                    </section>
+
+                    <section>
+                        <h2>Source Code Management (SCM) system</h2>
+                        <p>Logiciel de gestion de version.</p>
+                    </section>
+
+                    <section>
+                        <h2>Révision</h2>
+                        <p>Version donnée d'un fichier ou d'un projet.</p>
+                    </section>
+
+                    <section>
+                        <h2>Commit</h2>
+                        <p>Action d'enregistrer une nouvelle révision</p>
+                    </section>
+
+                    <section>
+                        <h2>Patch</h2>
+                        <p>Fichier qui contient les modifications entre plusieurs révisions.</p>
+                    </section>
+
+                    <section>
+                        <h2>Working copy</h2>
+                        <p>Copie locale du projet.</p>
+                    </section>
+
+                    <section>
+                        <h2>Branche</h2>
+                        <p>Suite cohérente de révisions.</p>
+                    </section>
+
+                    <section>
+                        <h2>Fusion</h2>
+                        <p>Action qui consiste à intégrer dans une même révision les modifications issues de plusieurs branches.</p>
+                    </section>
+
+                    <section>
+                        <h2>Tag</h2>
+                        <p>Nom associé à une révision donnée.</p>
+                    </section>
+
+                    <section>
+                        <h2>Tip ou HEAD</h2>
+                        <p>Révision la plus récente.</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Les rôles et acteurs</h1>
+                    </section>
+
+                    <section>
+                        <h2>Ingénieur développement</h2>
+                    </section>
+
+                    <section>
+                        <h2>Ingénieur système</h2>
+                    </section>
+
+                    <section>
+                        <h2>Ingénieur qualité</h2>
+                    </section>
+
+                    <section>
+                        <h2>Expert technique</h2>
+                    </section>
+
+                    <section>
+                        <h2>Support technique</h2>
+                    </section>
+
+                    <section>
+                        <h2>Management</h2>
+                    </section>
+
+                    <section>
+                        <h2>Documentation</h2>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Les bonnes pratiques</h1>
+                    </section>
+
+                    <section>
+                        <h2>Commiter atomiquement</h2>
+                        <p>Un commit concerne une seule modification.</p>
+                        <p>(bug, faute d'orthographe, nouvelle fonctionnalité, refactoring, etc.)</p>
+                    </section>
+
+                    <section>
+                        <h2>Être précis et descriptif</h2>
+                        <p>Dans ses messages de commit.</p>
+                    </section>
+
+                    <section>
+                        <h2>Commiter souvent</h2>
+                        <p>Dès qu'on a quelque chose à commiter, on le fait.</p>
+                    </section>
+
+                    <section>
+                        <h2>Travailler sur des branches</h2>
+                        <p>Pour ne pas casser la branche principale.</p>
+                    </section>
+
+                    <section>
+                        <h2>Créer un dépôt par projet</h2>
+                        <p>Au lieu d'un gros dépôt fourre-tout</p>
+                    </section>
+
+                    <section>
+                        <h2>Ne pas commiter d'information sensible</h2>
+                        <p>Pour des raisons évidentes</p>
+                    </section>
+                </section>
             </div>
 
         </div>
