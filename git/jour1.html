@@ -16,16 +16,20 @@
 
         <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
         <link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">
-
-        <!-- For syntax highlighting -->
         <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+        <link rel="stylesheet" href="css/styles.css">
 
         <!-- If the query includes 'print-pdf', use the PDF print sheet -->
         <script>
             document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+            document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
         </script>
 
-        <link rel="stylesheet" href="css/styles.css">
+        <style media="print">
+            section > section {
+                background: transparent url(img/bg.png) 0 100% no-repeat;
+            }
+        </style>
 
         <!--[if lt IE 9]>
         <script src="../reveal.js/lib/js/html5shiv.js"></script>
@@ -43,7 +47,7 @@
 
                 <section>
                     <section>
-                        <img src="img/gros_logo.png" style="border: 0 !important; box-shadow: none !important; background: inherit !important; "/>
+                        <img src="img/gros_logo.png" style="border: 0 !important; box-shadow: none !important; background: none !important; "/>
                         <h1>Formation Git</h1>
                     </section>
 
@@ -107,9 +111,11 @@
 
                     <section>
                         <h2>Pour travailler à plusieurs</h2>
-                        <li>Partager le travail</li>
-                        <li>Éviter les conflits</li>
-                        <li>Savoir qui fait quoi</li>
+                        <ul>
+                            <li>Partager le travail</li>
+                            <li>Éviter les conflits</li>
+                            <li>Savoir qui fait quoi</li>
+                        </ul>
                     </section>
 
                     <section>
