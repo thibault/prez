@@ -1,0 +1,24 @@
+body {
+    width: 297mm;
+    height: 210mm !important;
+}
+@page {
+    size: a4 landscape;
+    width: 297mm;
+    height: 210mm;
+}
+.reveal .slides section {
+    height: 210mm !important;
+    min-height: 210mm !important;
+}
+.reveal section.stack {
+    height: auto !important;
+    min-height: auto !important;
+}
+.reveal section > h1,
+.reveal section > h2 {
+    padding-top: 1em !important;
+}
+footer {
+    display: none;
+}
