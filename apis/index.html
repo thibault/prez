@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Conception d'apis</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/night.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+        <link rel="stylesheet" href="../css/styles.css">
+        <!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+    <div class="reveal"><div class="slides">
+
+        <section>
+            <h1>Un Web programmable</h1>
+            <h2>Avec des apis RESTful</h2>
+        </section>
+
+        <section>
+            <section>
+                <h1>Retour à la préhistoire</h1>
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/02/MF0LKKHYVB_l.png" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/02/JHJ3QWZONV_l.jpg" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/02/WQ3YI6NFIC_l.png" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/02/SHU5DP6KPX_l.jpg" alt="" />
+            </section>
+
+            <section>
+                <h2>Le Web aujourd'hui</h2>
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/02/NN5XZ034EW_l.png" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/02/EYOHNWHUTA_l.jpg" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/02/7UATYO3S8U_l.jpg" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/02/DC9J80V7DB_l.png" alt="" />
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Le Web en tant que plateforme programmable</h1>
+            </section>
+
+            <section>
+                <ul>
+                    <li>IFTTT</li>
+                    <li>Yahoo Pipes</li>
+                    <li>Open Data</li>
+                    <li>etc.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Même pour le plus basique des sites Web</h2>
+                <ul>
+                    <li>Site Web dynamique</li>
+                    <li>Version mobile</li>
+                    <li>Application mobile</li>
+                    <li>Programme desktop</li>
+                    <li>Librairie embarquée</li>
+                    <li>Etc.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Comment concevoir un Web qui fonctionne pour les humains et les machines ?</h2>
+            </section>
+
+            <section>
+                <h2>Créons une API !</h2>
+            </section>
+
+            <section>
+                <pre><code>
+# Get an article
+
+curl -X GET http://api.miximum.fr/?action=getArticle&article=mon-article
+
+curl -X GET http://api.miximum.fr/getArticle?url=mon-article
+
+curl -X GET http://api.miximum.fr/articles/mon-article
+
+# Create a new article
+
+curl -X GET http://api.miximum.fr/createArticle?url=nouvel-article&author=thibault&body=mon%20nouvel%20article
+
+curl -X PUT http://api.miximum.fr/articles/nouvel-article/ \
+    -d "body=Ceci est mon nouvel article" \
+    -d author=thibault
+
+curl -X POST http://api.miximum.fr/articles/ \
+    -d url=nouvel-article \
+    -d "body=Ceci est mon nouvel article" \
+    -d author=thibault
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Qu'est-ce que le Web ?</h1>
+            </section>
+
+            <section>
+                <h2>HTTP !</h2>
+            </section>
+
+            <section>
+                <h2>Des messages dans des enveloppes</h2>
+            </section>
+
+            <section>
+                <pre><code>
+                    GET /index.html HTTP/1.1
+                    Host: www.miximum.fr
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code>
+HTTP/1.1 200 OK
+Server: nginx/1.2.1
+Date: Thu, 27 Feb 2014 10:03:03 GMT
+Content-Type: text/html
+Content-Length: 15405
+Last-Modified: Wed, 26 Feb 2014 17:31:37 GMT
+Connection: keep-alive
+Accept-Ranges: bytes
+
+&lt;!DOCTYPE html&gt;
+&lt;html dir="ltr" lang="fr"&gt;
+&lt;head&gt;
+    &lt;title&gt;Miximum&lt;/title&gt;
+    &lt;meta charset="utf-8" /&gt;
+&lt;/head&gt;
+&lt;body id="index" class="home"&gt;
+…
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Qu'est-ce qu'une ressource ?</h2>
+                <ul>
+                    <li>Ressources (document)…</li>
+                    <li>Nommées (urls)</li>
+                    <li>Avec une représentation (HTML, JSON)</li>
+                    <li>Liens</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Adressabilité</h2>
+            </section>
+
+            <section>
+                <h2><em>Statelessness</em></h2>
+            </section>
+
+            <section>
+                <h2><em>Connectedness</em></h2>
+            </section>
+
+            <section>
+                <h2>Interface uniforme</h2>
+                <ul>
+                    <li>GET : récupérer une représentation</li>
+                    <li>PUT : définir l'état d'une ressource</li>
+                    <li>DELETE : supprimer une ressource</li>
+                    <li>POST : c'est compliqué…</li>
+                    <li>HEAD, OPTIONS</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Réponses HTTP</h2>
+                <ul>
+                    <li>200 : ok</li>
+                    <li>201 : created</li>
+                    <li>301 : page déplacée</li>
+                    <li>403 : accès interdit</li>
+                    <li>404 : non trouvé</li>
+                    <li>418 : I'm a teapot</li>
+                    <li>500 : erreur serveur</li>
+                    <li>etc.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Conséquences intéressantes</h2>
+                <ul>
+                    <li>Sûreté (GET, HEAD) : actions sans effets sur le serveur</li>
+                    <li>Idempotence (GET, HEAD, PUT, DELETE) : même effet quelque soit le nombre d'application</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>REST et ROA</h1>
+            </section>
+
+            <section>
+                <h2>Étapes pour définir une belle API</h2>
+                <ol>
+                    <li>Évaluer le jeu de données</li>
+                    <li>Le découper en ressources</li>
+                    <li>Pour chaque ressource… nommer la ressource avec une uri</li>
+                    <li>Déterminer les verbes utilisables de l'interface uniforme</li>
+                    <li>Définir les représentations acceptées de la part du client</li>
+                    <li>Définir les représentation servies au client</li>
+                    <li>Intégrer cette ressource au ressources existantes, en utilisant les liens et les formulaires</li>
+                    <li>Traiter le cheminement usuel : qu'est ce qui est supposé se produire ?</li>
+                    <li>Traiter les erreurs : que faire lorsque ça ne va pas ?</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Évaluer le jeu de données</h2>
+                <ul class="fragment">
+                    <li>Hôtels</li>
+                    <li>Quartier</li>
+                    <li>Villes</li>
+                    <li>Notes, commentaires</li>
+                    <li>Tarifs, Disponibilités</li>
+                    <li>Réservations existantes</li>
+                    <li>Résultats de moteur de recherche</li>
+                    <li>Cartes des hôtels</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Découper les données en ressources</h2>
+                <p>Tout ce qui est assez intéressant pour être la cible d'un lien.</p>
+            </section>
+
+            <section>
+                <h2>Découper les données en ressources</h2>
+                <ul>
+                    <li>Liste des hôtels à Montpellier</li>
+                    <li>Hôtel des cœurs brisés, Montpellier</li>
+                    <li>Montpellier</li>
+                    <li>Liste des villes</li>
+                    <li>Liste des commentaires sur l'hôtel des cœurs brisés</li>
+                    <li>Liste des hôtels de Montpellier avec une note &gt; 80%</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Découper les données en ressources</h2>
+                <ul>
+                    <li>Liste des villes</li>
+                    <li>Liste des hôtels par ville</li>
+                    <li>Liste des hôtels qui répondent à certains critères</li>
+                    <li>Un hôtel</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Nommer chaque ressource avec une uri</h2>
+                <dl>
+                    <dt>Liste des villes</dt>
+                    <dd>/</dd>
+                    <dt>Liste des hôtels par ville</dt>
+                    <dd>/montpellier/</dd>
+                    <dt>Recherche</dt>
+                    <dd>/montpellier/?search=heartbreak+hotel</dd>
+                    <dd>/montpellier/?minrate=80</dd>
+                    <dt>Un hôtel</dt>
+                    <dd>/montpellier/heartbreak-hotel/</dd>
+                </dl>
+            </section>
+
+            <section>
+                <h2>Déterminer les verbes utilisables</h2>
+            </section>
+
+            <section>
+                <h2>/</h2>
+                <ul class="fragment">
+                    <li>GET : Lister les villes</li>
+                    <li>PUT : N. A.</li>
+                    <li>DELETE : N. A.</li>
+                    <li>POST : N. A.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>/montpellier/</h2>
+                <ul class="fragment">
+                    <li>GET : Lister les hôtels de Montpellier</li>
+                    <li>PUT : Créer ou modifier la ressource</li>
+                    <li>DELETE : Supprimer la ville et tous les hôtels associés</li>
+                    <li>POST : N. A.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>/montpellier/?search=heartbreak</h2>
+                <ul class="fragment">
+                    <li>GET : Lister les hôtels qui correspondent à la recherche</li>
+                    <li>PUT : N. A.</li>
+                    <li>DELETE : N. A.</li>
+                    <li>POST : N. A.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>/montpellier/heartbreak-hotel</h2>
+                <ul class="fragment">
+                    <li>GET : Obtenir la représentation de l'hôtel</li>
+                    <li>PUT : Modifier ou créer l'hôtel</li>
+                    <li>DELETE : Supprimer l'hôtel</li>
+                    <li>POST : Ajouter un commentaire</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Définir les représentations acceptées de la part du client</h2>
+                <pre><code>
+{
+    name: 'Montpellier',
+    description: 'Montpellier est une ville bla bla bla…'
+}
+                </code></pre>
+                <pre><code>
+name=Montpellier&description=Montpellier+est+une+ville+bla+bla+bla
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Définir les représentations servies au client</h2>
+                <ul>
+                    <li>Plain text</li>
+                    <li>HTML</li>
+                    <li>XML</li>
+                    <li>Json</li>
+                    <li>etc.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lier les ressources entre elles</h2>
+                <pre><code>
+[
+    {
+        name: 'Montpellier',
+        description: 'Montpellier bla bla bla…',
+        url: '/montellier',
+    },
+    {
+        name: 'Marseille',
+        description: 'Marseille bla bla bla…',
+        url: '/marseille',
+    },
+    …
+]
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Traiter le cheminement usuel</h2>
+<pre><code>
+    PUT /montpellier/heartbreak-hotel HTTP/1.1
+    …
+
+    HTTP/1.1 201 Created
+    Location: /montpellier/heartbreak-hotel
+    …
+
+    PUT /montpellier/heartbreak-hotel HTTP/1.1
+    …
+
+    HTTP/1.1 200 OK
+    …
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Traiter les erreurs</h2>
+                <p><a href="http://fr.wikipedia.org/wiki/Liste_des_codes_HTTP">http://fr.wikipedia.org/wiki/Liste_des_codes_HTTP</a></p>
+                <ul>
+                    <li>400 : Bad request</li>
+                    <li>401 : Unauthorized</li>
+                    <li>403 : Forbidden</li>
+                    <li>405 : Method not found</li>
+                    <li>500 : Server error</li>
+                    <li>503 : Service unavailable</li>
+                </ul>
+            </section>
+        </section>
+
+
+    </div></div>
+
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.min.js"></script>
+
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            rollingLinks: false,
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            ]
+        });
+    </script>
+    </body>
+</html>
