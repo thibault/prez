@@ -89,7 +89,7 @@
                     <li>Site Web dynamique</li>
                     <li>Version mobile</li>
                     <li>Application mobile</li>
-                    <li>Programme desktop</li>
+                    <li>Client desktop</li>
                     <li>Librairie embarquée</li>
                     <li>Etc.</li>
                 </ul>
@@ -419,6 +419,52 @@ name=Montpellier&description=Montpellier+est+une+ville+bla+bla+bla
                     <li>500 : Server error</li>
                     <li>503 : Service unavailable</li>
                 </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Précisions et bonnes pratiques</h1>
+            </section>
+
+            <section>
+                <h2>Servir différentes représentations</h2>
+<pre><code>
+    GET /montpellier/heartbreak-hotel/
+    Accept: application/json
+
+    GET /montpellier/heartbreak-hotel.json
+    GET /montpellier/heartbreak-hotel.html
+    GET /montpellier/heartbreak-hotel.xml
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Versioning</h2>
+<pre><code>
+    GET /v1/montpellier/heartbreak-hotel
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Identification / Authentification</h2>
+                <ul>
+                    <li>Basic</li>
+                    <li>Digest</li>
+                    <li>Token</li>
+                    <li>Oauth</li>
+                    <li>Oauth2</li>
+                    <li>Custom</li>
+                </ul>
+<pre><code>
+    GET /
+
+    401 Unauthorized
+    WWW-Authenticate: Basic realm="my api"
+
+    GET /
+    Authorization: Basic AIieaiGXE==
+</code></pre>
             </section>
         </section>
 
