@@ -20,7 +20,7 @@ app.delete('/:city', routes.deleteCity);
 // Hotel ressource
 app.get('/:city/:hotel', routes.getHotel);
 app.put('/:city/:hotel', routes.setHotel);
-app.post('/:city/:hotel', routes.methodNotAllowed);
+app.post('/:city/:hotel', routes.createComment);
 app.delete('/:city/:hotel', routes.deleteHotel);
 
 app.listen(3000);

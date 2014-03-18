@@ -133,3 +133,29 @@ exports.deleteHotel = function(req, res) {
         }
     });
 };
+
+exports.createComment = function(req, res) {
+    var slug = req.params.city;
+    var hotelSlug = req.params.hotel;
+
+    if (!req.body.hasOwnProperty('body')) {
+        res.send(400, 'The "body" parameter is required');
+    }
+
+    models.City.findById(slug, function(err, city) {
+        if (city === null) {
+            res.send(404, 'City not found');
+        } else {
+            var hotel = city.hotels.id(hotelSlug);
+            if (hotel === null) {
+                res.send(404, 'Hotel not found');
+            } else {
+                var comment = { body: req.body.body };
+                hotel.comments.push(comment);
+                city.save();
+
+                res.send(201, comment);
+            }
+        }
+    });
+};
