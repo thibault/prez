@@ -112,3 +112,24 @@ exports.setHotel = function(req, res) {
         }
     });
 };
+
+exports.deleteHotel = function(req, res) {
+    var slug = req.params.city;
+    var hotelSlug = req.params.hotel;
+
+    models.City.findById(slug, function(err, city) {
+        if (city === null) {
+            res.send(404, 'City not found');
+        } else {
+            var hotel = city.hotels.id(hotelSlug);
+
+            if (hotel === null) {
+                res.send(404, 'Hotel not found');
+            } else {
+                hotel.remove();
+                city.save();
+                res.send(200);
+            }
+        }
+    });
+};

@@ -21,7 +21,7 @@ app.delete('/:city', routes.deleteCity);
 app.get('/:city/:hotel', routes.getHotel);
 app.put('/:city/:hotel', routes.setHotel);
 app.post('/:city/:hotel', routes.methodNotAllowed);
-app.delete('/:city/:hotel', routes.methodNotAllowed);
+app.delete('/:city/:hotel', routes.deleteHotel);
 
 app.listen(3000);
 console.log('Listening on port 3000');
