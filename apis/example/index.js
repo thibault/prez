@@ -14,11 +14,14 @@ app.delete('/', routes.methodNotAllowed);
 // City ressource
 app.get('/:city', routes.getCity);
 app.put('/:city', routes.setCity);
-app.delete('/:city', routes.deleteCity);
 app.post('/:city', routes.methodNotAllowed);
+app.delete('/:city', routes.deleteCity);
 
 // Hotel ressource
 app.get('/:city/:hotel', routes.getHotel);
+app.put('/:city/:hotel', routes.setHotel);
+app.post('/:city/:hotel', routes.methodNotAllowed);
+app.delete('/:city/:hotel', routes.methodNotAllowed);
 
 app.listen(3000);
 console.log('Listening on port 3000');
