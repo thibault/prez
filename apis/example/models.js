@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://mongodb.testing.miximum.fr/api');
+mongoose.connect('mongodb://mongodb.testing.miximum.fr:80/api');
 
 
 var HotelSchema = new mongoose.Schema({
