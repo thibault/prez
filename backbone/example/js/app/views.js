@@ -7,16 +7,31 @@
         tagName: 'li',
         render: function() {
             this.$el.html(this.model.get('name'));
+            return this;
         }
     });
 
-    Models.SidebarView = Backbone.View.extend({
-        el: '#sidebar',
+    Views.CityCollectionView = Backbone.View.extend({
+        el: '#sidebar-menu',
         initialize: function() {
-            this.listenTo(this.collection, "change", this.render);
+            this.collection.on('reset', this.render);
+
+            this.collection.fetch({
+                reset: true,
+                error: function(col, res, options) {
+                    console.log(col);
+                },
+            });
         },
         render: function() {
-            alert('changed');
+            alert('render');
+            this.collection.each(this.addOne, this);
+            return this;
+        },
+        addOne: function(city) {
+            var cityView = new Views.CityView({ model: data });
+            this.$el.append(cityView.render().el);
+
         }
     });
 })(this, Models);
