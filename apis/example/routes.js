@@ -6,7 +6,7 @@ exports.methodNotAllowed = function(req, res) {
 };
 
 exports.getAllCities = function(req, res) {
-    models.City.find(function(err, cities) {
+    models.City.find(null, 'name description', function(err, cities) {
         res.json(cities);
     });
 };
