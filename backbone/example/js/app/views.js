@@ -6,9 +6,11 @@ var App = App || {};
     App.Views = {};
 
     App.Views.CityView = Backbone.View.extend({
-        tagName: 'li',
+        template: _.template($("#tpl-city-item").html()),
         render: function() {
-            this.$el.html(this.model.get('name'));
+            var dict = this.model.toJSON();
+            var html = this.template(dict);
+            this.$el.html(html);
             return this;
         }
     });
