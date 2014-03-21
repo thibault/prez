@@ -7,11 +7,19 @@ var App = App || {};
 
     App.Views.CityView = Backbone.View.extend({
         template: _.template($("#tpl-city-item").html()),
+        events: {
+            'click a': 'onClick'
+        },
         render: function() {
             var dict = this.model.toJSON();
             var html = this.template(dict);
             this.$el.html(html);
             return this;
+        },
+        onClick: function(event) {
+            event.preventDefault();
+            var url = event.target.pathname;
+            Backbone.history.navigate(url);
         }
     });
 

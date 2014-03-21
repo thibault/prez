@@ -1,10 +1,8 @@
 var App = App || {};
 
-(function(App) {
+(function(App, Backbone) {
     "use strict";
 
-    var cities = new App.Models.CityCollection();
-    var cityCollectionView = new App.Views.CityCollectionView({
-        collection: cities
-    });
-})(App);
+    var router = new App.Router();
+    var truc = Backbone.history.start({ pushState: true });
+})(App, Backbone);
