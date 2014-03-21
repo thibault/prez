@@ -5,7 +5,7 @@ var App = App || {};
 
     App.Views = {};
 
-    App.Views.CityView = Backbone.View.extend({
+    App.Views.CityItemView = Backbone.View.extend({
         template: _.template($("#tpl-city-item").html()),
         events: {
             'click a': 'onClick'
@@ -19,7 +19,7 @@ var App = App || {};
         onClick: function(event) {
             event.preventDefault();
             var url = event.target.pathname;
-            Backbone.history.navigate(url);
+            Backbone.history.navigate(url, { trigger: true });
         }
     });
 
@@ -34,9 +34,20 @@ var App = App || {};
             return this;
         },
         addOne: function(city) {
-            var cityView = new App.Views.CityView({ model: city });
+            var cityView = new App.Views.CityItemView({ model: city });
             this.$el.append(cityView.render().el);
 
+        }
+    });
+
+    App.Views.CityDetailView = Backbone.View.extend({
+        el: '#content',
+        template: _.template($("#tpl-city-detail").html()),
+        render: function() {
+            var dict = this.model.toJSON();
+            var html = this.template(dict);
+            this.$el.html(html);
+            return this;
         }
     });
 })(App, Backbone);

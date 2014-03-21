@@ -10,7 +10,7 @@
     <div class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
-                <span class="navbar-brand">Des hotels</span>
+                <a href="/" class="navbar-brand">Des hotels</a>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
             </ul>
         </div>
 
-        <div class="content col-md-8">
+        <div id="content" class="col-md-8">
             Welcome to my hotels list.
         </div>
     </div>
@@ -30,8 +30,13 @@
     <!-- Backbone templates -->
     <script type="text/template" id="tpl-city-item">
     <li class=''>
-        <a href="/cities<%= url %>"><%= name %></a>
+        <a href="/cities/<%= _id %>"><%= name %></a>
     </li>
+    </script>
+
+    <script type="text/template" id="tpl-city-detail">
+    <h1><%= name %></h1>
+    <p><%= description %></p>
     </script>
 
     <!-- Js libraries -->

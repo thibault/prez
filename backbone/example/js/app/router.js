@@ -4,20 +4,27 @@ var App = App || {};
     "use strict";
 
     App.Router = Backbone.Router.extend({
+        initialize: function() {
+            this.cities = new App.Models.CityCollection();
+        },
         routes: {
             '': 'home',
             'cities/:city': 'city',
             'cities/:city/hotels/:hotel': 'hotel'
         },
         home: function() {
-            var cities = new App.Models.CityCollection();
             var cityCollectionView = new App.Views.CityCollectionView({
-                collection: cities
+                collection: this.cities
             });
         },
-        city: function(city) {
+        city: function(citySlug) {
+            var city = this.cities.get(citySlug);
+            city.fetch();
+
+            var cityView = new App.Views.CityDetailView({ model: city });
+            cityView.render();
         },
-        hotel: function(city, hotel) {
+        hotel: function(citySlug, hotelSlug) {
         }
     });
 })(App, Backbone);
