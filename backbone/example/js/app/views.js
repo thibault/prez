@@ -59,4 +59,15 @@ var App = App || {};
             Backbone.history.navigate(url, { trigger: true });
         }
     });
+
+    App.Views.HostelDetailView = Backbone.View.extend({
+        el: '#content',
+        template: _.template($("#tpl-hostel-detail").html()),
+        render: function() {
+            var dict = this.model.toJSON();
+            var html = this.template(dict);
+            this.$el.html(html);
+            return this;
+        }
+    });
 })(App, Backbone);

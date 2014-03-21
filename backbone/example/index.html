@@ -22,7 +22,7 @@
         </div>
 
         <div id="content" class="col-md-8">
-            Welcome to my hotels list.
+            Welcome to my hostels list.
         </div>
     </div>
     </div>
@@ -39,6 +39,18 @@
         <% _.each(hostels, function(hostel) { %>
         <li>
             <a href="/cities/<%= _id %>/hostels/<%= hostel._id %>"><%= hostel.name %></a>
+        </li>
+        <% }); %>
+    </ul>
+    </script>
+
+    <script type="text/template" id="tpl-hostel-detail">
+    <h1><%= name %></h1>
+    <p><%= description %></p>
+    <ul class="comments">
+        <% _.each(comments, function(comment) { %>
+        <li>
+            <%= comment.body %>
         </li>
         <% }); %>
     </ul>
