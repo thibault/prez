@@ -7,16 +7,27 @@ exports.methodNotAllowed = function(req, res) {
 
 exports.getAllCities = function(req, res) {
     models.City.find(null, 'name description', function(err, cities) {
-        res.json(cities);
+        cities = cities.map(function(city) {
+            city = city.toJSON();
+            city.url = '/' + city._id;
+            return city;
+        });
+        res.send(cities);
     });
 };
 
 exports.getCity = function(req, res) {
     var slug = req.params.city;
-    models.City.findById(slug, function(err, city) {
+    models.City.findById(slug, 'name description hotels', function(err, city) {
         if (city === null) {
             res.send(404, 'Not found');
         } else {
+            city = city.toJSON();
+            city.url = '/' + city._id;
+            city.hotels = city.hotels.map(function(hotel) {
+                hotel.url = city.url + '/' + hotel._id;
+                return hotel;
+            });
             res.send(200, city);
         }
     });
