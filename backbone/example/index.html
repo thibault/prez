@@ -29,14 +29,19 @@
 
     <!-- Backbone templates -->
     <script type="text/template" id="tpl-city-item">
-    <li class=''>
-        <a href="/cities/<%= _id %>"><%= name %></a>
-    </li>
+    <a href="/cities/<%= _id %>"><%= name %></a>
     </script>
 
     <script type="text/template" id="tpl-city-detail">
     <h1><%= name %></h1>
     <p><%= description %></p>
+    <ul class="hostels">
+        <% _.each(hostels, function(hostel) { %>
+        <li>
+            <a href="/cities/<%= _id %>/hostels/<%= hostel._id %>"><%= hostel.name %></a>
+        </li>
+        <% }); %>
+    </ul>
     </script>
 
     <!-- Js libraries -->

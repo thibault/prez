@@ -6,6 +6,7 @@ var App = App || {};
     App.Views = {};
 
     App.Views.CityItemView = Backbone.View.extend({
+        tagName: 'li',
         template: _.template($("#tpl-city-item").html()),
         events: {
             'click a': 'onClick'
@@ -43,11 +44,19 @@ var App = App || {};
     App.Views.CityDetailView = Backbone.View.extend({
         el: '#content',
         template: _.template($("#tpl-city-detail").html()),
+        events: {
+            'click ul.hostels li a': 'onHostelClick'
+        },
         render: function() {
             var dict = this.model.toJSON();
             var html = this.template(dict);
             this.$el.html(html);
             return this;
+        },
+        onHostelClick: function(event) {
+            event.preventDefault();
+            var url = event.target.pathname;
+            Backbone.history.navigate(url, { trigger: true });
         }
     });
 })(App, Backbone);

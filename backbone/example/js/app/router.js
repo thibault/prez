@@ -19,10 +19,10 @@ var App = App || {};
         },
         city: function(citySlug) {
             var city = this.cities.get(citySlug);
-            city.fetch();
-
             var cityView = new App.Views.CityDetailView({ model: city });
-            cityView.render();
+
+            var renderCity = _.bind(cityView.render, cityView);
+            city.fetch({ complete: renderCity });
         },
         hotel: function(citySlug, hotelSlug) {
         }
