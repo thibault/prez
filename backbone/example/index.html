@@ -42,6 +42,12 @@
         </li>
         <% }); %>
     </ul>
+    <h2>Create / update hostel</h2>
+    <form class="form-inline" id="create-hostel">
+        <input id="form-name" class="form-control" placeholder="Name" type="text" name="name" />
+        <input id="form-desc" class="form-control" placeholder="Desc" type="text" name="description" />
+        <input class="btn btn-primary" type="submit" value="Save" />
+    </form>
     </script>
 
     <script type="text/template" id="tpl-hostel-detail">
@@ -63,6 +69,7 @@
 
     <!-- Local JS files -->
     <script src="js/app/config.js"></script>
+    <script src="js/app/utils.js"></script>
     <script src="js/app/models.js"></script>
     <script src="js/app/views.js"></script>
     <script src="js/app/router.js"></script>
