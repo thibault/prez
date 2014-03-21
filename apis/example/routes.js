@@ -18,15 +18,15 @@ exports.getAllCities = function(req, res) {
 
 exports.getCity = function(req, res) {
     var slug = req.params.city;
-    models.City.findById(slug, 'name description hotels', function(err, city) {
+    models.City.findById(slug, 'name description hostels', function(err, city) {
         if (city === null) {
             res.send(404, 'Not found');
         } else {
             city = city.toJSON();
             city.url = '/' + city._id;
-            city.hotels = city.hotels.map(function(hotel) {
-                hotel.url = city.url + '/' + hotel._id;
-                return hotel;
+            city.hostels = city.hostels.map(function(hostel) {
+                hostel.url = city.url + '/' + hostel._id;
+                return hostel;
             });
             res.send(200, city);
         }
@@ -78,66 +78,66 @@ exports.deleteCity = function(req, res) {
     });
 };
 
-exports.getHotel = function(req, res) {
+exports.getHostel = function(req, res) {
     var slug = req.params.city;
-    var hotelSlug = req.params.hotel;
+    var hostelSlug = req.params.hostel;
 
     models.City.findById(slug, function(err, city) {
         if (city === null) {
             res.send(404, 'City not found');
         }
 
-        var hotel = city.hotels.id(hotelSlug);
-        if (hotel === null) {
-            res.send(404, 'Hotel not found');
+        var hostel = city.hostels.id(hostelSlug);
+        if (hostel === null) {
+            res.send(404, 'Hostel not found');
         } else {
-            res.send(200, hotel);
+            res.send(200, hostel);
         }
     });
 };
 
-exports.setHotel = function(req, res) {
+exports.setHostel = function(req, res) {
     var slug = req.params.city;
-    var hotelSlug = req.params.hotel;
+    var hostelSlug = req.params.hostel;
 
     models.City.findById(slug, function(err, city) {
         if (city === null) {
             res.send(404, 'Not found');
         } else {
-            var hotel = city.hotels.id(hotelSlug);
+            var hostel = city.hostels.id(hostelSlug);
             var statusCode;
 
-            if (hotel === null) {
-                hotel = new models.Hotel(req.body);
-                hotel._id = hotelSlug;
-                city.hotels.push(hotel);
+            if (hostel === null) {
+                hostel = new models.Hostel(req.body);
+                hostel._id = hostelSlug;
+                city.hostels.push(hostel);
                 statusCode = 201;
             } else {
-                hotel.name = req.body.name;
-                hotel.description = req.body.description;
+                hostel.name = req.body.name;
+                hostel.description = req.body.description;
                 statusCode = 200;
             }
 
             city.save();
-            res.send(statusCode, hotel);
+            res.send(statusCode, hostel);
         }
     });
 };
 
-exports.deleteHotel = function(req, res) {
+exports.deleteHostel = function(req, res) {
     var slug = req.params.city;
-    var hotelSlug = req.params.hotel;
+    var hostelSlug = req.params.hostel;
 
     models.City.findById(slug, function(err, city) {
         if (city === null) {
             res.send(404, 'City not found');
         } else {
-            var hotel = city.hotels.id(hotelSlug);
+            var hostel = city.hostels.id(hostelSlug);
 
-            if (hotel === null) {
-                res.send(404, 'Hotel not found');
+            if (hostel === null) {
+                res.send(404, 'Hostel not found');
             } else {
-                hotel.remove();
+                hostel.remove();
                 city.save();
                 res.send(200);
             }
@@ -147,7 +147,7 @@ exports.deleteHotel = function(req, res) {
 
 exports.createComment = function(req, res) {
     var slug = req.params.city;
-    var hotelSlug = req.params.hotel;
+    var hostelSlug = req.params.hostel;
 
     if (!req.body.hasOwnProperty('body')) {
         res.send(400, 'The "body" parameter is required');
@@ -157,12 +157,12 @@ exports.createComment = function(req, res) {
         if (city === null) {
             res.send(404, 'City not found');
         } else {
-            var hotel = city.hotels.id(hotelSlug);
-            if (hotel === null) {
-                res.send(404, 'Hotel not found');
+            var hostel = city.hostels.id(hostelSlug);
+            if (hostel === null) {
+                res.send(404, 'Hostel not found');
             } else {
                 var comment = { body: req.body.body };
-                hotel.comments.push(comment);
+                hostel.comments.push(comment);
                 city.save();
 
                 res.send(201, comment);

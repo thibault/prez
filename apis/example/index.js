@@ -26,11 +26,11 @@ app.put('/:city', routes.setCity);
 app.post('/:city', routes.methodNotAllowed);
 app.delete('/:city', routes.deleteCity);
 
-// Hotel ressource
-app.get('/:city/:hotel', routes.getHotel);
-app.put('/:city/:hotel', routes.setHotel);
-app.post('/:city/:hotel', routes.createComment);
-app.delete('/:city/:hotel', routes.deleteHotel);
+// Hostel ressource
+app.get('/:city/:hostel', routes.getHostel);
+app.put('/:city/:hostel', routes.setHostel);
+app.post('/:city/:hostel', routes.createComment);
+app.delete('/:city/:hostel', routes.deleteHostel);
 
 app.listen(3000);
 console.log('Listening on port 3000');
