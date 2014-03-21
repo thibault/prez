@@ -1,9 +1,11 @@
-(function(exports, Models) {
+var App = App || {};
+
+(function(App, Backbone) {
     "use strict";
 
-    exports.Views = {};
+    App.Views = {};
 
-    Views.CityView = Backbone.View.extend({
+    App.Views.CityView = Backbone.View.extend({
         tagName: 'li',
         render: function() {
             this.$el.html(this.model.get('name'));
@@ -11,27 +13,20 @@
         }
     });
 
-    Views.CityCollectionView = Backbone.View.extend({
+    App.Views.CityCollectionView = Backbone.View.extend({
         el: '#sidebar-menu',
         initialize: function() {
-            this.collection.on('reset', this.render);
-
-            this.collection.fetch({
-                reset: true,
-                error: function(col, res, options) {
-                    console.log(col);
-                },
-            });
+            this.collection.on('reset', this.render, this);
+            this.collection.fetch({ reset: true });
         },
         render: function() {
-            alert('render');
             this.collection.each(this.addOne, this);
             return this;
         },
         addOne: function(city) {
-            var cityView = new Views.CityView({ model: data });
+            var cityView = new App.Views.CityView({ model: city });
             this.$el.append(cityView.render().el);
 
         }
     });
-})(this, Models);
+})(App, Backbone);

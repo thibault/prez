@@ -1,9 +1,10 @@
-(function(exports, Models, Views) {
+var App = App || {};
+
+(function(App) {
     "use strict";
 
-    var cities = new Models.CityCollection();
-
-    var cityCollectionView = new Views.CityCollectionView({
+    var cities = new App.Models.CityCollection();
+    var cityCollectionView = new App.Views.CityCollectionView({
         collection: cities
     });
-})(this, Models, Views);
+})(App);

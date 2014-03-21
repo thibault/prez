@@ -1,14 +1,16 @@
-(function(exports, CONFIG, Backbone) {
+var App = App || {};
+
+(function(App, Backbone) {
     "use strict";
 
-    exports.Models = {};
+    App.Models = {};
 
-    Models.City = Backbone.Model.extend({
+    App.Models.City = Backbone.Model.extend({
         idAttribute: '_id'
     });
 
-    Models.CityCollection = Backbone.Collection.extend({
-        model: Models.City,
-        url: CONFIG.API_ROOT,
+    App.Models.CityCollection = Backbone.Collection.extend({
+        model: App.Models.City,
+        url: App.Config.API_ROOT,
     });
-})(this, CONFIG, Backbone);
+})(App, Backbone);
