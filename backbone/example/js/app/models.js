@@ -7,14 +7,12 @@ var App = App || {};
 
     App.Models.City = Backbone.Model.extend({
         idAttribute: '_id',
-        parse: function(resp) {
-            return resp;
-        }
     });
 
     App.Models.CityCollection = Backbone.Collection.extend({
         model: App.Models.City,
         url: App.Config.API_ROOT,
+        comparator: 'name',
     });
 
     App.Models.Hostel = Backbone.Model.extend({

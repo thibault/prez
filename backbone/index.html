@@ -27,6 +27,373 @@
             <h2>…qui ne sent pas le fromage moisi</h2>
         </section>
 
+        <section>
+            <section>
+                <h1>« Fromage moisi » ?</h1>
+            </section>
+
+            <section>
+                <pre><code>
+&lt;?php
+$con = mysql_connect('localhost', 'thibault', 'blabla45');
+mysql_select_db('hotels', $con);
+
+$query = "SELECT id, name, description FROM hotels";
+$res = mysql_query($query);
+?&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Les hotels&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Les hotels:&lt;/h1&gt;
+    &lt;ul&gt;
+      &lt;?php while($r = mysql_fetch_object($result)) { ?&gt;
+      &lt;li&gt;
+        &lt;a href="/hotels/&lt;?php echo $r-&gt;id; ?&gt;"&gt;
+          &lt;?php echo $r-&gt;name; ?&gt;
+        &lt;/a&gt;
+      &lt;/li&gt;
+      &lt;?php } ?&gt;
+    &lt;/ul&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+&lt;?php
+mysql_close($con);
+?&gt;
+                </code></pre>
+            </section>
+
+            <section>
+                <ul>
+                    <li>Pas de séparation données / présentation</li>
+                    <li>Pas d'isolation de la couche d'accès données</li>
+                    <li>Pas de contrôleur unique</li>
+                    <li>Pas de contrôle d'erreur</li>
+                    <li>Etc.</li>
+                </ul>
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/3A8MIIV51W.jpg" alt="" />
+            </section>
+
+            <section>
+                <h2>Les frameworks MVC</h2>
+                <img src="http://i.miximum.fr/i/2014/03/6W99KVNB86.png" alt="" />
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Et Javascript ?</h1>
+            </section>
+
+            <section>
+<pre><code>
+&lt;h2 id="name"&gt;&lt;/h2&gt;
+&lt;p id="description"&gt;&lt;/p&gt;
+&lt;script&gt;
+    var hotelId = 5;
+    $.getJSON('http://api.hotels.com/hotels/' + hotelId, function(data) {
+        $('#name').html(data.name);
+        $('#description').html(data.description);
+    });
+&lt;/script&gt;
+</code></pre>
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/3A8MIIV51W.jpg" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/XNC090BZJW.png" alt="" />
+            </section>
+
+            <section>
+                <h2>Utilisons un framework !</h2>
+                <img src="http://i.miximum.fr/i/2014/03/X28DBUODO3.jpg" alt="" />
+            </section>
+
+            <section>
+                <h2>TodoMVC</h2>
+                <img src="http://i.miximum.fr/i/2014/03/FRWISV2OW8.jpg" alt="" />
+            </section>
+
+            <section>
+                <h2>Frameworks vs. libraries</h2>
+                <ul>
+                    <li>Framework : prescriptif et structurant</li>
+                    <li>Library : plus généralistes et moins contraignantes</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Lequel choisir ?</h2>
+                <ul>
+                    <li>Angular</li>
+                    <li>Backbone</li>
+                    <li>Ember</li>
+                    <li>Knockout</li>
+                    <li>…</li>
+                </ul>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Backbone.js</h1>
+            </section>
+
+            <section>
+                <ul>
+                    <li>Minimaliste</li>
+                    <li>Peu contraignant</li>
+                    <li>S'intègre avec de l'existant</li>
+                    <li>Pas de structure</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <li>Models : données et méthodes associées</li>
+                    <li>Collections : liste de modèles</li>
+                    <li>Views : affichage / manipulation des modèles</li>
+                    <li>Router : des urls sexy</li>
+                    <li>Events : gestion d'événements</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Les modèles</h2>
+<pre><code>
+var Hotel = Backbone.Models.extend({
+    defaults: {
+        name: 'default name',
+        description: 'please fill a description',
+        isAvailable: true
+    },
+    validate: function() { … },
+    findNextBookingDate: function() { … },
+});
+
+var heartbreakHotel = new Hotel({
+    urlRoot: '/hotels/',
+    id: 'heartbreak-hotel',
+    name: 'Heartbreak hotel'
+});
+
+heartbreakHotel.set('isAvailable', false);
+heartbreakHotel.save();
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Les collections</h2>
+<pre><code>
+var HotelCollection = Backbone.Collections.extend({
+    model: HotelModel,
+    url: 'http://api.hotels.com/',
+    cheapHotels: function() {
+        return this.filter(function(hotel) {
+            return hotel.get('price') <= 15;
+        });
+    }
+});
+
+var hotelCollection = new HotelCollection();
+hotelCollection.fetch();
+
+hotelCollection.add({ id: 'new-hotel', name: 'New hotel' });
+hotelCollection.save();
+
+var cheapHotels = hotelCollection.cheapHotels();
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Les vues</h2>
+<pre><code>
+var HotelView = Backbone.Views.extend({
+    el: '#hotel',
+    template: _.template($('#hotel-tpl').html()),
+    events: {
+        'dblclick .title': 'editHotel',
+        'click .delete': 'deleteHotel'
+    },
+    initialize: function() {
+        this.listenTo(this.model, 'change', this.render);
+        this.listenTo(this.model, 'destroy', this.remove);
+    },
+    render: function() {
+        var data = this.model.attributes;
+        var html = this.template(data);
+        this.$el.html(html);
+        return this;
+    },
+    editHotel: function() { … },
+    deleteHotel: function() {
+        this.model.destroy();
+    }
+});
+
+var view = new HotelView({ model: heartbreakHotel });
+view.render();
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Le Router</h2>
+<pre><code>
+var Router = Backbone.Router.extend({
+    routes: {
+        '': 'home',
+        'hotels': 'hotelList',
+        'hotels/:slug': 'hotelDetail',
+    },
+    home: function() {
+        var homeView = new HomeView();
+        homeView.render();
+    },
+    hotelList: function() {
+        var hotelList = new HotelCollection();
+        var hotelListView = new HotelListView({ collection: hotelList });
+        hotelList.fetch({ reset: true });
+    },
+    hotelDetail: function(slug) {
+        var hotel = new Hotel({ id: slug });
+        var hotelView = new HotelView({ model: hotel });
+        hotel.fetch({ reset: true });
+    }
+});
+
+var router = new Router();
+Backbone.history.start({ pushState: true });
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Les Events</h2>
+<pre><code>
+var HotelListView = Backbone.Views.extend({
+    initialize: function() {
+        this.listenTo(this.collection, 'reset', this.render);
+    }
+});
+
+var HotelView = Backbone.Views.extend({
+    initialize: function() {
+        this.listenTo(this.model, 'change', this.render);
+        this.listenTo(this.model, 'booked', this.playAlert);
+    }
+});
+
+var Hotel = Backbone.Models.extend({
+    book: function() {
+        this.set('isAvailable', false);
+        …
+        this.trigger('booked');
+    }
+});
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Les templates</h2>
+<pre><code>
+&lt;script type="text/template" id="tpl-hostel-detail"&gt;
+&lt;h1&gt;&lt;%= name %&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;%= description %&gt;&lt;/p&gt;
+&lt;ul class="comments"&gt;
+    &lt;% _.each(comments, function(comment) { %&gt;
+    &lt;li&gt;
+        &lt;%= comment.body %&gt;
+    &lt;/li&gt;
+    &lt;% }); %&gt;
+&lt;/ul&gt;
+&lt;/script&gt;
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Underscore.js</h2>
+                <img src="http://i.miximum.fr/i/2014/03/ZXX1P99CIF_l.jpg" alt="" />
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Bonnes pratiques</h1>
+            </section>
+
+            <section>
+                <h2>Structurer son appli</h2>
+<pre><code>
+<script src="js/app/config.js"></script>
+<script src="js/app/utils.js"></script>
+<script src="js/app/models.js"></script>
+<script src="js/app/views.js"></script>
+<script src="js/app/router.js"></script>
+<script src="js/app/app.js"></script>
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Structurer son appli</h2>
+<pre><code>
+var App = App || {};
+
+(function(App, Backbone) {
+    "use strict";
+
+    App.Models = {};
+
+    App.Models.Hotel = Backbone.Model.extend({
+        …
+    });
+
+    App.Models.HotelCollection = Backbone.Collection.extend({
+        model: App.Models.Hostel,
+        …
+    });
+})(App, Backbone);
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Structurer son appli</h2>
+<pre><code>
+var App = App || {};
+
+(function(App, Backbone) {
+    "use strict";
+
+    var router = new App.Router();
+    var truc = Backbone.history.start({ pushState: true });
+})(App, Backbone);
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Structurer son appli</h2>
+                <p><a href="https://speakerdeck.com/ammeep/unsuck-your-backbone">
+                    https://speakerdeck.com/ammeep/unsuck-your-backbone
+                </a></p>
+                <p><a href="http://marionettejs.com/">http://marionettejs.com/</a></p>
+            </section>
+
+            <section>
+                <h2>Séparation des responsabilités</h2>
+                <p>Un modèle ne doit jamais rien savoir des vues qui le concernent.</p>
+            </section>
+
+            <section>
+                <h2>KISS</h2>
+                <p>Éviter de créer des vues monstrueuses.</p>
+            </section>
+        </section>
+
     </div></div>
 
     <script src="../reveal.js/lib/js/head.min.js"></script>

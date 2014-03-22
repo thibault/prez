@@ -27,7 +27,7 @@ var App = App || {};
     App.Views.CityCollectionView = Backbone.View.extend({
         el: '#sidebar-menu',
         initialize: function() {
-            this.collection.on('reset', this.render, this);
+            this.listenTo(this.collection, 'reset', this.render);
             this.collection.fetch({ reset: true });
         },
         render: function() {
