@@ -66,7 +66,8 @@ mysql_close($con);
 
             <section>
                 <ul>
-                    <li>Pas de séparation données / présentation</li>
+                    <li>Pas de séparation des responsabilités</li>
+                    <li>Pas d'astraction de l'accès aux données</li>
                     <li>Pas d'isolation de la couche d'accès données</li>
                     <li>Pas de contrôleur unique</li>
                     <li>Pas de contrôle d'erreur</li>
@@ -125,7 +126,7 @@ mysql_close($con);
                 <h2>Frameworks vs. libraries</h2>
                 <ul>
                     <li>Framework : prescriptif et structurant</li>
-                    <li>Library : plus généralistes et moins contraignantes</li>
+                    <li>Library : plus généraliste et moins contraignant</li>
                 </ul>
             </section>
 
@@ -244,7 +245,7 @@ view.render();
             </section>
 
             <section>
-                <h2>Le Router</h2>
+                <h2>Le routeur</h2>
 <pre><code>
 var Router = Backbone.Router.extend({
     routes: {
@@ -274,7 +275,7 @@ Backbone.history.start({ pushState: true });
             </section>
 
             <section>
-                <h2>Les Events</h2>
+                <h2>Les événements</h2>
 <pre><code>
 var HotelListView = Backbone.Views.extend({
     initialize: function() {
@@ -391,6 +392,22 @@ var App = App || {};
             <section>
                 <h2>KISS</h2>
                 <p>Éviter de créer des vues monstrueuses.</p>
+            </section>
+
+            <section>
+                <h2>Same origin policy et CORS</h2>
+<pre><code>
+var allowCrossDomain = function(req, res, next) {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+    next();
+};
+
+var app = express();
+app.use(allowCrossDomain);
+</code></pre>
             </section>
         </section>
 
