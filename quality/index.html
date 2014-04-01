@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Qualité Web</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/night.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+        <link rel="stylesheet" href="../css/styles.css">
+        <!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+    <div class="reveal"><div class="slides">
+
+        <section>
+            <h1>Qualité</h1>
+        </section>
+
+        <section>
+            <section>
+                <h2>De quoi parle-t-on ? À quoi ça sert ?</h2>
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/51H9ZJL2BM_l.jpg" alt="" />
+            </section>
+
+            <section>
+                <ul>
+                    <li>Vous</li>
+                    <li>Votre employeur</li>
+                    <li>Votre client</li>
+                    <li>Les clients de votre client</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Qu'est-ce que la qualité ?</h2>
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/DZ35DUPS1X.png" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/C3R5MAYV0G.png" alt="" />
+            </section>
+
+            <section>
+                <h2>Savonette</h2>
+                <pre class="fragment"><code>
+rm *# */*# */*/*# */*/*/*# */*/*/*/*# */*/*/*/*/*# */*/*/*/*/*/*# */*/*/*/*/*/*/*#;
+rm *~ */*~ */*/*~ */*/*/*~ */*/*/*/*~ */*/*/*/*/*~ */*/*/*/*/*/*~ */*/*/*/*/*/*/*~;
+echo > log/backend.log;
+echo > log/backend_dev.log;
+echo > log/frontend.log;
+echo > log/frontend_dev.log;
+./symfony cc;
+chmod 777 cache;
+chmod 777 cache/*;
+chmod 777 log/;
+chmod 777 log/*;
+chmod 777 htdocs/uploads;
+chmod -R 777 htdocs/uploads/;
+chmod 777 htdocs/images;
+chmod -R 777 htdocs/images/;
+chmod 777 htdocs/backup;
+chmod 777 htdocs/backup/*;
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>clean_add_and_commit</h2>
+                <pre class="fragment"><code>
+echo "toto plop"
+                </code></pre>
+            </section>
+
+            <section>
+                <pre class="wrap"><code>
+{if and(or($year_end|gt($currentyear), and($year_end|eq($currentyear), $month_end|gt($currentmonth)), and($year_end|eq($currentyear),$month_end|eq($currentmonth), $day_end|gt($currentday)), and($year_end|eq($currentyear), $month_end|eq($currentmonth), $day_end|eq($currentday),
+$hour_end|gt($currenthour)), and($year_end|eq($currentyear), $month_end|eq($currentmonth), $day_end|eq($currentday), $hour_end|eq($currenthour), $min_end|ge($currentmin))), or($year_begin|lt($currentyear), and($year_begin|eq($currentyear), $month_begin|lt($currentmonth)), and($year_begin|eq($currentyear), $month_begin|eq($currentmonth), $day_begin|lt($currentday)), and($year_begin|eq($currentyear), $month_begin|eq($currentmonth), $day_begin|eq($currentday), $hour_begin|lt($currenthour)), and($year_begin|eq($currentyear), $month_begin|eq($currentmonth), $day_begin|eq($currentday), $hour_begin|eq($currenthour), $min_begin|le($currentmin))))}
+    { $temp = 1}
+{ else }
+    { $temp = 0}
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code>
+function faireFacture(…) {
+    // Voir la fonction faireFausseFacture
+}
+                </code></pre>
+
+                <pre class="fragment"><code>
+function faireFausseFacture(…) {
+    // Voir la fonction faireFacture
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <pre class="wrap"><code>
+if(!count($manquants)) // À FAIRE: un peu plus propre. Là c'est une récup' rapide un soir de bourre
+                </code></pre>
+
+                <pre class="wrap"><code>
+if(isset($t[2]) && $t[2] !== null) // Empiriquement, j'ai vu que c'était équivalent, mais sait-on jamais…
+                </code></pre>
+
+                <pre class="wrap"><code>
+// Si tous ses abonnements ont expiré, on tente notre chance avec un vieil abonnement. Pas terrible, sachant que le module était à l'origine prévu pour que si un utilisateur a laissé son compte expirer, ben tant pis pour lui, il recommence tout un processus d'abonnement. Notre permissivité nous perdra. /* BOGUE: ça permet à un utilisateur de laisser expirer son compte, puis de créer deux abonnements de remplacement dans la même journée. Pour peu que par mégarde les deux soient validés, ça va péter! */
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Qu'est-ce que la qualité ?</h2>
+                <ul>
+                    <li>Utilité</li>
+                    <li>Ergonomie</li>
+                    <li>Robustesse</li>
+                    <li>Réactivité</li>
+                    <li>Résilience</li>
+                    <li>…</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Qu'est-ce que la qualité ?</h2>
+                <img src="http://i.miximum.fr/i/2014/03/SZPZ0II81F.jpg" alt="" />
+            </section>
+
+            <section>
+                <ul>
+                    <li>Vitesse de développement constante</li>
+                    <li>Contrôler la quantité de bugs</li>
+                </ul>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h1>Conduite de projet</h1>
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/PXMIKFSQIO.jpg" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/PLOBHGE1Z3.gif" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/PDH75Q07AE_l.jpg" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/0RUIQDVTW7_l.jpg" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/03/SQ7SZZY7WO_l.jpg" alt="" />
+            </section>
+
+            <section>
+                <img src="http://i.miximum.fr/i/2014/04/0B2EJB1CRT_l.jpg" alt="" />
+            </section>
+
+            <section>
+                <h2>Manifeste agile</h2>
+                <p><a href="http://agilemanifesto.org">http://agilemanifesto.org</a></p>
+            </section>
+
+            <section>
+                <h2>Manifeste agile</h2>
+                <ul>
+                    <li>Les individus et leurs interactions plus que les processus et les outils</li>
+                    <li>Des logiciels opérationnels plus qu’une documentation exhaustive</li>
+                    <li>La collaboration avec les clients plus que la négociation contractuelle</li>
+                    <li>L'adaptation au changement plus que le suivi d’un plan</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <li>Créer un logiciel utile</li>
+                    <li>Minimiser les coûts</li>
+                    <li>Travailler en collaboration (win - win)</li>
+                    <li>Constuire un environnement humain soutenable, voire agréable (si on peut)</li>
+                </ul>
+            </section>
+
+            <section>
+                <ul>
+                    <li>Itérations courtes</li>
+                    <li>Développement piloté par la valeur</li>
+                    <li>Pas d'engagement contractuel sur le périmètre fonctionnel</li>
+                    <li>Rythme soutenable</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Scrum</h2>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Pratiques de développement</h1>
+            </section>
+
+            <section>
+                <h2>Software craftsmanship</h2>
+            </section>
+
+            <section>
+                <ul>
+                    <li> Not only working software, but also well-crafted software </li>
+                    <li> Not only responding to change, but also steadily adding value </li>
+                    <li> Not only individuals and interactions, but also a community of professionals </li>
+                    <li> Not only customer collaboration, but also productive partnerships </li>
+                </ul>
+            </section>
+
+            <section>
+                <blockquote>
+                    « You are responsible for the work you put into the world » — Mike Monteiro
+                </blockquote>
+            </section>
+
+            <section>
+                <h2>KISS</h2>
+            </section>
+
+            <section>
+                <h2>YAGNI</h2>
+            </section>
+
+            <section>
+                <h2>Refactorings</h2>
+            </section>
+
+            <section>
+                <h2>Planning poker</h2>
+            </section>
+
+            <section>
+                <h2>Intégration continue</h2>
+            </section>
+
+            <section>
+                <h2>Auto-organisation vs. hiérarchies</h2>
+            </section>
+
+            <section>
+                <h2>Les tests unitaires</h2>
+            </section>
+
+            <section>
+                <h2>TDD</h2>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Les tests en Javascript</h1>
+            </section>
+
+            <section>
+                <pre><code>
+(function(exports) {
+    "use strict";
+
+    var DEFAULT_PRICE = 25;
+    var CHEAP_LIMIT = 15;
+
+    var Hotel = exports.Hotel = function Hotel(name, price) {
+        this.name = name;
+        this.price = ((price === undefined) ? DEFAULT_PRICE : price);
+    };
+
+    Hotel.prototype.isCheap = function() {
+        return this.price <= CHEAP_LIMIT;
+    };
+
+})(this);
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Mocha</h2>
+                <pre><code>
+var assert = require('chai').assert;
+
+var Hotel = require('../js/app').Hotel;
+
+describe('An Hotel', function() {
+    it('should have a name', function() {
+        var hotel = new Hotel('Heartbreak hotel');
+        assert.equal(hotel.name, 'Heartbreak hotel');
+    });
+
+    it('should have a price', function() {
+        var hotel = new Hotel('Heartbreak hotel', 55);
+        assert.equal(hotel.price, 55);
+    });
+
+    it('should have a default price', function() {
+        var hotel = new Hotel('Heartbreak hotel');
+        assert.isDefined(hotel.price);
+    });
+});
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Chai</h2>
+                <pre><code>
+var assert = require('chai').assert;
+
+assert.equal(foo, 'bar');
+assert.isDefined(variable);
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Chai</h2>
+                <pre><code>
+var expect = require('chai').expect;
+
+expect(foo).to.be.equal('bar');
+expect(variable).to.be.undefined;
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Chai</h2>
+                <pre><code>
+var should = require('chai').should();
+
+foo.should.be.equal('bar');
+variable.should.be.defined;
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Sinon</h2>
+            </section>
+
+            <section>
+                <h2>Casper.js</h2>
+            </section>
+        </section>
+
+    </div></div>
+
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.min.js"></script>
+
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            rollingLinks: false,
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            ]
+        });
+    </script>
+    </body>
+</html>
