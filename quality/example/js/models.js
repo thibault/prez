@@ -15,6 +15,8 @@
             console.error('Price must be a number');
         }
         this.price = ((price === undefined) ? DEFAULT_PRICE : price);
+
+        console.log('New hotel created: ' + name);
     };
 
     Hotel.prototype.isCheap = function() {
