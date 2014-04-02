@@ -11,9 +11,11 @@
         if (price <= MIN_PRICE) {
             console.warn('Please check if price is correct');
         }
+
         if (isNaN(price)) {
             console.error('Price must be a number');
         }
+
         this.price = ((price === undefined) ? DEFAULT_PRICE : price);
 
         console.log('New hotel created: ' + name);

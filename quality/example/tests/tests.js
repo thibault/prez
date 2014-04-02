@@ -49,8 +49,20 @@ describe('An Hotel', function() {
             var hotel = new Hotel('Heartbreak hotel');
             assert.isBoolean(hotel.isCheap());
         });
-        it('should return true if price < 15');
-        it('should return false if price > 15');
-        it('should return true if price == 15');
+
+        it('should return true if price < 15', function() {
+            var hotel = new Hotel('Heartbreak hotel', 5);
+            assert.isTrue(hotel.isCheap());
+        });
+
+        it('should return false if price > 15', function() {
+            var hotel = new Hotel('Heartbreak hotel', 16);
+            assert.isFalse(hotel.isCheap());
+        });
+
+        it('should return true if price == 15', function() {
+            var hotel = new Hotel('Heartbreak hotel', 15);
+            assert.isTrue(hotel.isCheap());
+        });
     });
 });
