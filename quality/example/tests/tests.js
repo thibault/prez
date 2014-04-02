@@ -1,7 +1,7 @@
 var assert = require('chai').assert;
 var sinon = require('sinon');
 
-var Hotel = require('../js/app').Hotel;
+var Hotel = require('../js/models').Hotel;
 
 describe('An Hotel', function() {
 
@@ -9,6 +9,8 @@ describe('An Hotel', function() {
 
     beforeEach(function() {
         sandbox = sinon.sandbox.create();
+        sandbox.stub(console, 'warn');
+        sandbox.stub(console, 'error');
     });
 
     afterEach(function() {
@@ -17,15 +19,13 @@ describe('An Hotel', function() {
 
     describe('constructor', function() {
         it('should display a warning if price is unreasonnable', function() {
-            var spy = sandbox.spy(console, 'warn');
             var hotel = new Hotel('Heartbreak hotel', 1);
-            assert.isTrue(spy.called);
+            assert.isTrue(console.warn.called);
         });
 
         it('should display an error if price is not a number', function() {
-            var spy = sandbox.spy(console, 'error');
             var hotel = new Hotel('Heartbreak hotel', 'bla');
-            assert.isTrue(spy.called);
+            assert.isTrue(console.error.called);
         });
     });
 
