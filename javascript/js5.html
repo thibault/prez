@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Wow! Such Javascript!</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/simple.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="../css/googlecode.css">
+        <link rel="stylesheet" href="../css/styles.css">
+        <!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+
+
+        <style>
+            .reveal pre {
+                box-shadow: none;
+                -moz-box-shadow: none;
+            }
+        </style>
+    </head>
+
+    <body>
+    <div class="reveal"><div class="slides">
+
+        <section>
+            <h1>Javascript</h1>
+            <h2>for Python developers</h2>
+            <img src="images/5pc3SSZ.gif" alt="" />
+        </section>
+
+        <section>
+            <pre class="python"><code>
+class User:
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+
+toto = User('Toto', 'de La Rochette de Rochegonde')
+            </code></pre>
+        </section>
+
+        <section>
+            <pre class="javascript"><code>
+(function(exports) {
+    "use strict";
+
+    var Models = {};
+
+    Models.User = function(first_name, last_name) {
+        this.first_name = first_name
+        this.last_name = last_name
+    }
+
+    exports.Models = Models;
+})(this);
+
+var user = new Models.User('Toto', 'de La Rochette de Rochegonde');
+             </code></pre>
+        </section>
+
+        <section>
+            <img class="full" src="http://i.miximum.fr/i/2014/04/49GOZRKFWI.jpg" alt="" />
+        </section>
+
+        <section>
+            <pre class="python"><code>
+class User:
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+
+toto = User('Toto', 'de La Rochette de Rochegonde')
+            </code></pre>
+        </section>
+
+        <section>
+            <pre class="javascript"><code>
+var toto = {
+    firstName: 'Toto',
+    lastName: 'de La Rochette de Rochegonde',
+    toString: function() {
+        return this.firstName + ' ' + this.lastName;
+    }
+};
+            </code></pre>
+        </section>
+
+        <section>
+            <img class="full" src="http://i.miximum.fr/i/2014/02/PK9VLGNMSN.jpg" alt="" />
+        </section>
+
+        <section>
+            <pre><code>
+var makeUser = function(firstName, lastName) {
+    return {
+        firstName: firstName,
+        lastName: lastName,
+        toString: function() {
+            return this.firstName + ' ' + this.lastName;
+        }
+    };
+};
+
+var tata = makeUser('Tata', 'de La Rochette de Rochegonde');
+var toto = makeUser('Toto', "d'Aumont de Rochebaron");
+            </code></pre>
+        </section>
+
+
+        <section>
+            <pre><code>
+var User = function(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.toString = function() {
+        return this.firstName + ' ' + this.lastName;
+    };
+};
+
+var tata = new User('Tata', 'de La Rochette de Rochegonde');
+var toto = new User('Toto', "d'Aumont de Rochebaron");
+            </code></pre>
+        </section>
+
+        <section>
+            <img class="full" src="http://i.miximum.fr/i/2014/02/KCAG7UWKM9.jpg" alt="" />
+        </section>
+
+        <section>
+            <h2>Prototypes</h2>
+        </section>
+
+        <section>
+            <pre><code>
+var User = function(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+};
+
+User.prototype.toString = function() {
+    return this.firstName + ' ' + this.lastName;
+};
+
+var tata = new User('Tata', 'de La Rochette de Rochegonde');
+tata.toString();  // Tata de la Rochette de Rochegonde
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Modules</h2>
+        </section>
+
+        <section>
+            <pre><code>
+var greetings = "Bonjour monde, my name is ";
+
+var User = …
+
+User.prototype.toString = function() {
+    return greetings + this.firstName + ' ' + this.lastName;
+};
+
+var tata = new User('Tata', 'de La Rochette de Rochegonde');
+tata.toString();  // Bonjour monde, my name is Tata de la Rochette de Rochegonde
+            </code></pre>
+        </section>
+
+        <section>
+            <pre><code>
+var makeUserConstructor = function() {
+
+    var greetings = "Bonjour monde, my name is ";
+
+    var User = …
+
+    User.prototype.toString = function() {
+        return greetings + this.firstName + ' ' + this.lastName;
+    };
+
+    return User;
+};
+var User = makeUserConstructor();
+            </code></pre>
+        </section>
+
+        <section>
+            <pre><code>
+var User = (function() {
+
+    var greetings = "Bonjour monde, my name is ";
+
+    var User = …
+
+    User.prototype.toString = function() {
+        return greetings + this.firstName + ' ' + this.lastName;
+    };
+
+    return User;
+})();
+            </code></pre>
+        </section>
+
+        <section>
+            <pre><code>
+(function(exports) {
+
+    var greetings = "Bonjour monde, my name is ";
+
+    var User = …
+
+    User.prototype.toString = function() {
+        return greetings + this.firstName + ' ' + this.lastName;
+    };
+
+    exports.User;
+})(this);  // this = global scope
+            </code></pre>
+        </section>
+
+        <section>
+            <img class="full" src="http://i.miximum.fr/i/2014/04/6OMMNXSMAX.jpg" alt="" />
+        </section>
+
+    </div></div>
+
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.min.js"></script>
+
+    <script>
+
+        // Full list of configuration options available here:
+        // https://github.com/hakimel/reveal.js#configuration
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            rollingLinks: false,
+            theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+            transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+            // Optional libraries used to extend on reveal.js
+            dependencies: [
+                { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            ]
+        });
+    </script>
+    </body>
+</html>
