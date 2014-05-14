@@ -22,3 +22,7 @@ table {
     width: 100%;
     border: 1px solid white !important;
 }
+section img.full {
+    width: 100%;
+    max-width: 100%;
+}

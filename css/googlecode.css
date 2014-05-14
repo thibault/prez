@@ -1,0 +1,147 @@
+/*
+
+Google Code style (c) Aahan Krish <geekpanth3r@gmail.com>
+
+*/
+
+pre code {
+  display: inline-block;
+  padding: 0.5em;
+  background: white;
+  color: black;
+}
+
+.comment,
+.template_comment,
+.javadoc {
+  color: #800;
+}
+
+.keyword,
+.method,
+.list .title,
+.clojure .built_in,
+.nginx .title,
+.tag .title,
+.setting .value,
+.winutils,
+.tex .command,
+.http .title,
+.request,
+.status {
+  color: #008;
+}
+
+.envvar,
+.tex .special {
+  color: #660;
+}
+
+.string,
+.tag .value,
+.cdata,
+.filter .argument,
+.attr_selector,
+.apache .cbracket,
+.date,
+.regexp,
+.coffeescript .attribute {
+  color: #080;
+}
+
+.sub .identifier,
+.pi,
+.tag,
+.tag .keyword,
+.decorator,
+.ini .title,
+.shebang,
+.prompt,
+.hexcolor,
+.rules .value,
+.literal,
+.symbol,
+.ruby .symbol .string,
+.number,
+.css .function,
+.clojure .attribute {
+  color: #066;
+}
+
+.class .title,
+.haskell .type,
+.smalltalk .class,
+.javadoctag,
+.yardoctag,
+.phpdoc,
+.typename,
+.tag .attribute,
+.doctype,
+.class .id,
+.built_in,
+.setting,
+.params,
+.variable,
+.clojure .title {
+  color: #606;
+}
+
+.css .tag,
+.rules .property,
+.pseudo,
+.subst {
+  color: #000;
+}
+
+.css .class,
+.css .id {
+  color: #9b703f;
+}
+
+.value .important {
+  color: #ff7700;
+  font-weight: bold;
+}
+
+.rules .keyword {
+  color: #c5af75;
+}
+
+.annotation,
+.apache .sqbracket,
+.nginx .built_in {
+  color: #9b859d;
+}
+
+.preprocessor,
+.preprocessor *,
+.pragma {
+  color: #444;
+}
+
+.tex .formula {
+  background-color: #eee;
+  font-style: italic;
+}
+
+.diff .header,
+.chunk {
+  color: #808080;
+  font-weight: bold;
+}
+
+.diff .change {
+  background-color: #bccff9;
+}
+
+.addition {
+  background-color: #baeeba;
+}
+
+.deletion {
+  background-color: #ffc8bd;
+}
+
+.comment .yardoctag {
+  font-weight: bold;
+}
