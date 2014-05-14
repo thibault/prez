@@ -31,6 +31,9 @@
     <div class="reveal"><div class="slides">
 
         <section>
+        </section>
+
+        <section>
             <h1>Javascript</h1>
             <h2>for Python developers</h2>
             <img src="images/5pc3SSZ.gif" alt="" />
@@ -148,6 +151,21 @@ var toto = new User('Toto', "d'Aumont de Rochebaron");
 
         <section>
             <h2>Prototypes</h2>
+        </section>
+
+        <section>
+            <pre><code>
+var User = function(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.toString = function() {
+        return this.firstName + ' ' + this.lastName;
+    };
+};
+
+var tata = new User('Tata', 'de La Rochette de Rochegonde');
+tata.toString();  // Tata de la Rochette de Rochegonde
+            </code></pre>
         </section>
 
         <section>
