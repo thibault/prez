@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Unicode et utf-8</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/night.css">
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+        <link rel="stylesheet" href="../css/styles.css">
+        <!--[if lt IE 9]>
+        <script src="../reveal.js/lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+    <div class="reveal"><div class="slides">
+
+        <section>
+            <h1>Pour en finir avec les problÃ¨mes d'encoding</h1>
+        </section>
+
+        <section>
+            <img src="http://i.miximum.fr/i/2014/09/27RHYLMXNP.png" alt="" />
+        </section>
+
+        <section>
+            <pre class="wrap python"><code>
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 3: ordinal not in range(128)
+            </code></pre>
+        </section>
+
+        <section>
+            <p>Le type « unicode » de Python 2 devient « str » en Python 3 tandis que « str » devient « bytes ». </p>
+        </section>
+
+        <section>
+            <img src="http://i.miximum.fr/i/2014/02/KCAG7UWKM9_l_2.jpg" alt="" />
+        </section>
+
+        <section>
+            <img src="http://i.miximum.fr/i/2014/09/9KLSR9RPTO_l.jpg" alt="" />
+        </section>
+
+        <section>
+            <h2>Le texte brut n'existe pas !</h2>
+        </section>
+
+        <section>
+            <h2>ASCII</h2>
+            <ul>
+                <li>… &rarr; …</li>
+                <li>64 &rarr; @</li>
+                <li>65 &rarr; A</li>
+                <li>66 &rarr; B</li>
+                <li>67 &rarr; C</li>
+                <li>68 &rarr; D</li>
+                <li>… &rarr; …</li>
+            </ul>
+        </section>
+
+        <section>
+            <ul>
+                <li>é ?</li>
+                <li>Ä ?</li>
+                <li>œ ?</li>
+                <li>ß ?</li>
+                <li>Д ?</li>
+                <li>δ ?</li>
+            </ul>
+        </section>
+
+        <section>
+            <img src="http://unicode.org/~scherer/emoji4unicode/fontimg/AEmoji_E4F4.png" alt="" />
+        </section>
+
+        <section>
+            <pre class="python"><code>
+>>> from encodings.aliases import aliases
+>>> aliases.values()
+            </code></pre>
+        </section>
+
+        <section>
+        <pre class="python wrap"><code>
+dict_values(['big5', 'hp_roman8', 'cp1125', 'tis_620', 'big5hkscs', 'iso8859_16', 'cp863', 'cp500', 'cp857', 'iso2022_kr', 'cp273', 'cp855', 'gb2312', 'hp_roman8', 'iso2022_jp_2004', 'gb2312', 'shift_jis', 'cp037', 'mac_latin2', 'shift_jis', 'gbk', 'iso8859_3', 'cp862', 'utf_32_be', 'cp855', 'cp1258', 'iso8859_5', 'cp1256', 'iso8859_7', 'latin_1', 'iso8859_2', 'cp869', 'utf_16_le', 'iso8859_3', 'cp862', 'cp1253', 'cp273', 'mac_cyrillic', 'gb18030', 'cp950', 'iso2022_jp_1', 'cp860', 'ascii', 'cp949', 'iso8859_14', 'cp424', 'gb2312', 'iso8859_2', 'gb2312', 'iso8859_7', 'iso8859_10', 'cp1252', 'cp858', 'cp1125', 'latin_1', 'iso8859_10', 'iso8859_10', 'cp1257', 'cp858', 'ascii', 'ptcp154', 'latin_1', 'cp861', 'cp1255', 'cp866', 'utf_7', 'ascii', 'iso8859_6', 'latin_1', 'cp1125', 'utf_32_le', 'iso8859_2', 'shift_jis_2004', 'cp1251', 'cp865', 'gb2312', 'gb2312', 'cp864', 'iso8859_11', 'cp424', 'ascii', 'tis_620', 'mac_roman', 'quopri_codec', 'iso8859_6', 'tis_620', 'gb2312', 'latin_1', 'latin_1', 'iso8859_14', 'cp1254', 'cp857', 'euc_kr', 'ascii', 'euc_kr', 'cp1253', 'gbk', 'shift_jis', 'utf_8', 'iso8859_15', 'utf_32', 'zlib_codec', 'cp1026', 'cp037', 'utf_32', 'cp437', 'iso8859_8', 'base64_codec', 'iso8859_16', 'euc_jp', 'iso8859_7', 'iso8859_2', 'tis_620', 'iso8859_11', 'cp437', 'iso2022_jp_ext', 'johab', 'cp273', 'hz', 'shift_jis_2004', 'cp869', 'quopri_codec', 'iso8859_7', 'cp865', 'cp037', 'cp500', 'iso8859_5', 'mac_latin2', 'cp424', 'koi8_r', 'gb2312', 'cp037', 'hz', 'ascii', 'gb2312', 'cp1258', 'iso8859_13', 'shift_jis', 'uu_codec', 'iso8859_6', 'cp1026', 'iso8859_9', 'cp949', 'big5hkscs', 'latin_1', 'iso8859_14', 'cp850', 'iso8859_10', 'euc_kr', 'utf_7', 'ptcp154', 'latin_1', 'cp855', 'iso8859_9', 'cp863', 'cp1140', 'iso2022_jp_2004', 'cp852', 'cp1255', 'cp775', 'cp861', 'iso8859_4', 'cp865', 'cp857', 'mac_iceland', 'quopri_codec', 'mac_turkish', 'rot_13', 'ascii', 'ptcp154', 'ascii', 'cp866', 'iso8859_10', 'mac_greek', 'cp863', 'shift_jis', 'euc_jisx0213', 'latin_1', 'utf_7', 'iso8859_4', 'iso2022_jp_ext', 'iso8859_4', 'iso2022_kr', 'cp037', 'iso8859_3', 'base64_codec', 'euc_jp', 'gbk', 'tactis', 'iso8859_6', 'cp860', 'iso8859_4', 'iso8859_7', 'cp1251', 'cp437', 'iso8859_3', 'iso8859_6', 'utf_16', 'euc_kr', 'big5', 'cp775', 'cp775', 'cp861', 'euc_kr', 'iso8859_6', 'utf_16_le', 'iso2022_jp_2', 'iso2022_jp_3', 'hp_roman8', 'iso8859_2', 'utf_8', 'iso8859_10', 'iso8859_16', 'iso2022_jp', 'iso8859_5', 'cp037', 'ascii', 'tis_620', 'iso8859_9', 'iso8859_15', 'iso8859_4', 'cp860', 'iso8859_3', 'euc_jis_2004', 'utf_16_be', 'latin_1', 'iso8859_4', 'euc_kr', 'utf_16', 'euc_kr', 'latin_1', 'iso2022_jp_3', 'cp1256', 'zlib_codec', 'ascii', 'cp500', 'cp866', 'ascii', 'cp861', 'iso8859_2', 'iso8859_8', 'euc_jis_2004', 'iso8859_9', 'utf_16_be', 'cp950', 'iso8859_13', 'cp1252', 'cp850', 'cp1254', 'euc_kr', 'cp037', 'euc_jp', 'cp932', 'iso8859_7', 'cp869', 'iso8859_9', 'ptcp154', 'iso8859_8', 'iso8859_8', 'cp932', 'ascii', 'latin_1', 'johab', 'big5', 'cp1026', 'cp1125', 'iso8859_9', 'cp500', 'iso8859_14', 'hex_codec', 'shift_jisx0213', 'iso8859_5', 'cp1250', 'iso2022_kr', 'shift_jisx0213', 'cp932', 'iso8859_16', 'mbcs', 'euc_jis_2004', 'cp1250', 'mac_roman', 'iso2022_jp', 'cp852', 'cp037', 'cp869', 'iso2022_jp', 'iso2022_jp_1', 'iso8859_7', 'cp949', 'cp932', 'iso8859_6', 'shift_jis_2004', 'iso8859_3', 'iso8859_11', 'iso8859_16', 'cp858', 'cp424', 'cp864', 'cp864', 'cp1140', 'iso8859_14', 'iso8859_14', 'hz', 'utf_8', 'cp850', 'cp852', 'utf_8', 'utf_8', 'bz2_codec', 'iso2022_jp_2', 'iso8859_7', 'cp500', 'iso8859_15', 'cp1257', 'iso8859_13', 'cp862', 'shift_jisx0213', 'iso8859_5', 'iso8859_8'])
+        </code></pre>
+        </section>
+
+        <section>
+            <h2>Eh ! Si on standardisait tout ça ?!</h2>
+        </section>
+
+        <section>
+            <h1>UNICODE !</h1>
+            <small>(pourquoi je m'énerve ?)</small>
+        </section>
+
+        <section>
+            <ul>
+                <li>ASCII</li>
+                <li>Opérateurs mathématiques</li>
+                <li>Flèches et symboles</li>
+                <li>Emojis</li>
+                <li>Hexagrammes Yi-king</li>
+                <li>Symboles musicaux byzantins</li>
+                <li>…</li>
+            </ul>
+        </section>
+
+        <section>
+            <img src="http://unicode.org/~scherer/emoji4unicode/fontimg/AEmoji_E4F4.png" alt="" />
+        </section>
+
+        <section>
+            <h1>UTF-8 !</h1>
+            <small>(faut vraiment que je me calme)</small>
+        </section>
+
+        <section>
+            <h1>UTILISEZ UTF-8 !</h1>
+            <h2>Partout et tout le temps !</h2>
+            <p>Vous me remercierez plus tard.</p>
+            <small>Je prends les euros et les bitcoins.</small>
+        </section>
+
+        <section>
+            <ul>
+                <li>Votre terminal</li>
+                <li>Votre navigateur</li>
+                <li>Votre éditeur</li>
+                <li>Votre code !</li>
+                <li>Votre grand-mère</li>
+                <li><small>euh… non… pas votre grand-mère</small></li>
+            </ul>
+        </section>
+
+        <section>
+            <h1>Unicode best practices</h1>
+        </section>
+
+        <section>
+            <h2>Votre code en UTF-8 !</h2>
+        </section>
+
+        <section>
+            <p>Python 2</p>
+            <pre class="python"><code>
+# -*- coding: utf8 -*-
+            </code></pre>
+        </section>
+
+        <section>
+            <p>Python 3</p>
+            <pre class="python"><code>
+# peau de banane
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>UTF-8 only en interne</h2>
+        </section>
+
+        <section>
+            <p>Python 3</p>
+            <pre class="python"><code>
+ma_variable = 'je suis en unicode'  # str
+            </code></pre>
+        </section>
+
+        <section>
+            <p>Python 2</p>
+            <pre class="python"><code>
+ma_variable = u'je suis en unicode'  # unicode
+            </code></pre>
+        </section>
+
+        <section>
+            <p>Python 2</p>
+            <pre class="python"><code>
+from __future__ import unicode_literals
+
+ma_variable = 'je suis en unicode' # unicode
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Tout ce qui rentre, on le décode !</h2>
+            <p>Et le plus tôt possible !</p>
+        </section>
+
+        <section>
+            <pre class="python"><code>
+data = …  # lecture de fichier, de stream, ou autre
+unicode_data = data.decode('iso-8859-15')
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Comment je connais l'encoding d'une entrée ?</h2>
+            <ol>
+                <li>Déclaré quelque part</li>
+                <li>RTFM</li>
+                <li>Demande</li>
+                <li>Devine et prie</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Chardet</h2>
+            <pre class="python"><code>
+>>> chardet.detect('I would like a baguette please')
+{'confidence': 1.0, 'encoding': 'ascii'}
+
+>>> chardet.detect('vé la pitchoune peuchêre')
+{'confidence': 0.7525, 'encoding': 'utf-8'}
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Tout ce qui sort, on l'encode</h2>
+        </section>
+
+        <section>
+            <pre class="python"><code>
+raw_data = data.encode('utf-8')  # bytes ou str
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Et si je ne connais pas l'encoding attendu ?</h2>
+            <ol>
+                <li>RTFM</li>
+                <li>Demande</li>
+                <li>Balance de l'utf-8 avec un petit air supérieur</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Et si ma sortie attends un encoding à la *** ?</h2>
+            <pre class="python"><code>
+>>> 'vé là pitchoûne'.encode('ascii')  # Error
+
+>>> 'vé là pitchoûne'.encode('ascii', errors='ignore')
+b'v l pitchone'
+
+>>> 'vé là pitchoûne'.encode('ascii', errors='replace')
+b'v? l? pitcho?ne'
+
+>>> 'vé là pitchoûne'.encode('ascii', errors='xmlcharrefreplace')
+'v&amp;#233; l&amp;#224; pitcho&amp;#251;ne'
+
+>>> from unidecode import unidecode
+>>> unidecode(u'доказал pitchoune')
+'dokazal pitchoune'
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Et pour du code compatible Python 2 / 3</h2>
+            <ul>
+                <li>Déclarer l'encoding du fichier</li>
+                <li>Importer unicode_litterals</li>
+                <li>Utiliser la syntaxe Python 3 pour les chaînes</li>
+                <li>Respecter les bonnes pratiques</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Six</h2>
+            <pre><code>
+import six
+
+if isinstance(data, six.binary_type):
+    data = data.decode('utf-8')
+            </code></pre>
+        </section>
+
+        <section>
+            <h1>Questions ?</h1>
+            <img src="http://i.miximum.fr/i/2014/02/TEPWSJUYI4.gif" alt="" />
+        </section>
+
+        </div></div>
+
+        <script src="../reveal.js/lib/js/head.min.js"></script>
+        <script src="../reveal.js/js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                rollingLinks: false,
+                theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+                transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                ]
+            });
+        </script>
+    </body>
+</html>
