@@ -53,6 +53,135 @@
                 </section>
 
                 <section>
+
+                    <section>
+                        <h1>Ces satanés windowsiens !</h1>
+                    </section>
+
+                    <section>
+                        <h2>Le problème des fins de lignes</h2>
+                        <pre><code>
+git diff
+                        </code></pre>
+                        <pre><code>
+-from django.http import HttpResponseRedirect^M
+-from django.core.urlresolvers import reverse^M
+-from django.shortcuts import render_to_response^M
+-from django.template import RequestContext^M
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Solution : normaliser les fins de lignes</h2>
+                        <pre><code>
+# Windowsiens
+git config --global core.autocrlf true
+
+# Linuxiens
+git config --global core.autocrlf input
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Utiliser .gitattributes</h2>
+                        <pre><code>
+# Normalize all text files by default
+* text=auto
+
+# Always checkout bat files with crlf
+*.bat text eol=crlf
+
+# Always checkout sh files with lf
+*.sh text eol=lf
+
+# Explicitely declare that those files are text
+*.md text
+
+# Those should not be normalized
+*.pdf -text
+*.jpg binary
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Git remplace automatiquement les fins de lignes</h2>
+                        <pre><code>
+git add toto.py
+                        </code></pre>
+                        <pre><code>
+warning: CRLF will be replaced by LF in toto.py
+The file will have its original line endings in your working directory.
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Mettre à jour son dépôt</h2>
+                        <pre><code>
+# Clean everything, then:
+git rm --cached -r .
+git reset --hard
+                        </code></pre>
+                    </section>
+                </section>
+
+                <section>
+
+                    <section>
+                        <h1>Déploiement</h1>
+                    </section>
+
+                    <section>
+                        <h2>Les tags</h2>
+                        <pre><code>
+                            git tag  # Lister tous les tags
+                            git tag v1.0.0  # Créé un tag léger
+                            git tag -a v1.0.0  # Créé un tag annoté
+                            git tag -a v1.0.0  # Créé un tag annoté et signé par PGP
+                            git tag -v v1.0.0  # Vérifie la signature
+
+                            git push origin v1.0.0  # Push le tag sur le serveur
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Git archive</h2>
+                        <p>Pour créer une archive d'une version spécifique</p>
+                        <pre><code>
+                            git archive --format=tar.gz --prefix=git-1.0.0/ v1.0.0 >git-1.0.0.tar.gz
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Hook post-receive</h2>
+                        <p>tpgit.git/hooks/post-receive</p>
+                        <pre><code>
+                            #!/bin/sh
+
+                            while read oldrev newrev refname
+                            do
+                                branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+                                echo $oldrev $newrev $refname $branch
+                                if [ "master" == "$branch" ]; then
+                                    echo "Do something"
+                                fi
+                            done
+
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Exemples de déploiement automatisé avec git</h2>
+                        <ul>
+                            <li>Travis-ci</li>
+                            <li>Heroku</li>
+                            <li>Github pages</li>
+                        </ul>
+
+                    </section>
+
+                </section>
+
+                <section>
                     <section>
                         <h1>Nettoyer son historique</h1>
                         <h2>« Range ta chambre ! »</h2>
@@ -80,8 +209,8 @@
                     <section>
                         <h2>Commiter avec soin</h2>
                         <pre><code>
-                            $ git commit -i
                             $ git add -p
+                            $ git add -i
                         </code></pre>
                     </section>
 
@@ -225,6 +354,14 @@
                             lui assignant un shell spécial dans <i>/etc/passwd</i>.</p>
                         <pre><code>
                             git:x:1000:1000::/home/git:/usr/bin/git-shell
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Authentification par mdp</h2>
+                        <p></p>
+                        <pre><code>
+                            TODO
                         </code></pre>
                     </section>
 
