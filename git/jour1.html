@@ -808,6 +808,20 @@ $ git log HEAD~5..
                     </section>
 
                     <section>
+                        <h2>Git mergetool</h2>
+                        <pre><code>
+# voir les outils disponibles
+git mergetool --tool-help
+
+# configurer l'outil par défaut
+git config --global merge.tool meld
+
+# lancer l'outil de merge
+git mergetool
+                        </code></pre>
+                    </section>
+
+                    <section>
                         <h2>Que faire après un merge ?</h2>
                         <pre><code>
                             $ git branch --merged  # montre toutes les branches mergées
