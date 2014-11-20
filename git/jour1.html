@@ -1267,8 +1267,24 @@ git mergetool
                         <h2>Mettre à jour le dépôt local</h2>
                         <pre><code>
                             $ git fetch  # Télécharge les données du serveur
-                            $ git merge / git rebase  # ou, plus court :
-                            $ git pull / git pull --rebase
+                        </code></pre>
+                        <pre><code>
+                            Serveur distant :
+
+                            A---B---C---D---G &#x2190; master
+
+                            Serveur local :
+
+                            A---B---C---D---G &#x2190; origin/master
+                                         \
+                                          E---F &#x2190; master
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Mettre à jour le dépôt local</h2>
+                        <pre><code>
+                            $ git merge / git rebase
                         </code></pre>
                         <pre><code>
                             Serveur distant :
@@ -1284,6 +1300,33 @@ git mergetool
                     </section>
 
                     <section>
+                        <h2>Mettre à jour le dépôt local</h2>
+                        <pre><code>
+                            $ git pull / git pull --rebase
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Branches trackées ou non</h2>
+                        <pre><code>
+$ git pull
+
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details
+
+    git pull &lt;remote&gt; &lt;branch&gt;
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=&lt;remote&gt;/&lt;branch&gt; &lt;branch&gt;
+
+
+$ git pull origin testing
+                        </code></pre>
+                    </section>
+
+                    <section>
                         <h2>Branches trackées ou non</h2>
                         <p>Toutes les branches locales n'ont pas à être sur le serveur, et
                             vice-versa.</p>
@@ -1292,9 +1335,33 @@ git mergetool
                         <pre><code>
             $ git fetch  # Ne télécharge que les branches trackées de origin
             $ git fetch origin &lt;branch&gt;  # Pour les autres branches
-            $ git pull  # Fetch + pull pour les branches correspondantes
+            $ git pull  # Fetch + merge
             $ git push  # Envoie les données vers la branches distante correspondante
-            $ git checkout -b origin/&lt;branch&gt;  # Récupère et tracke une branche distante
+            # cf. git push.default
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Configurer les informations de tracking</h2>
+                        <p>En créant la branche :</p>
+                        <pre><code>
+            $ git checkout -b branch origin/&lt;branch&gt;  # Récupère et tracke une branche distante
+            $ git checkout -t origin/&lt;branch&gt;  # même chose, mais plus court
+                        </code></pre>
+
+                        <p>Après coup :</p>
+                        <pre><code>
+            $ git branch branch && git checkout branch
+            $ git branch -u upstream/branch
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Configurer les informations de tracking</h2>
+                        <pre><code>
+$ git branch -vv
+* mapping ff1571d Merge branch 'master' into mapping
+  master  d11d11c [origin/master] Proper call to super() in BoolMixin.
                         </code></pre>
                     </section>
 
@@ -1322,6 +1389,20 @@ git mergetool
                             <li>Affichez le log de la branche master distante</li>
                         </ul>
                     </section>
+
+                    <section>
+                        <h2>Exemple d'utilisation</h2>
+                        <pre><code>
+git clone git@github.com:thibault/elasticsearch-dsl-py.git
+cd elasticsearch-dsl-py
+git remote add upstream https://github.com/elasticsearch/elasticsearch-dsl-py.git
+git fetch upstream
+git diff upstream/master
+git rebase upstream/master
+git push
+                        </code></pre>
+                    </section>
+
                 </section>
 
                 <section>
