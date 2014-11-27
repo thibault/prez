@@ -12,18 +12,18 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-        <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/reveal.css">
         <link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">
         <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
         <link rel="stylesheet" href="css/styles.css">
 
-        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
-        <script>
-            document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-            document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-        </script>
+        <!-- Uncomment this for printing -->
+        <!--
+        <link rel="stylesheet" href="../reveal.js/css/print/pdf.css" type="text/css">
+        <link rel="stylesheet" href="../css/print/pdf.css" type="text/css">
+        -->
 
         <style media="print">
             section > section {
@@ -261,7 +261,7 @@ $ git config --global user.email "thibault@miximum.fr"
                         <h2>TP</h2>
                         <ul>
                             <li>Récupérez le .gitconfig sample</li>
-                            <li>https://github.com/thibault/prez/blob/master/git/gitconfig</li>
+                            <li>https://raw.githubusercontent.com/thibault/prez/master/git/gitconfig</li>
                             <li>Enregistrez-le à l'emplacement adéquat</li>
                         </ul>
                     </section>
@@ -308,7 +308,7 @@ $ git add .  # Ajoute tous les fichiers sous le dir. courant
 $ git add &lt;file&gt;  # Ajoute un seul fichier ou dir.
 $ git add -u  # Ignore les fichiers non trackés, enregistre la suppr. de fichiers
 $ git add -f  # Ajout de fichiers ignorés
-$ git add -p / git add -i  # Interactif KILLER FEATURE!
+$ git add -p &lt;file&gt;  # Interactif KILLER FEATURE!
                         </code></pre>
                     </section>
 
@@ -392,10 +392,10 @@ $ git revert commit -n  # Annule un commit mais attends votre validation pour co
                     <section>
                         <h2>TP</h2>
                         <ul>
-                            <li>Clonez le dépôt tpgit</li>
-                            <li>git clone https://github.com/thibault/tpgit/</li>
-                            <li>Modifiez un fichier existant et commitez</li>
-                            <li>Créez un fichier et commitez</li>
+                            <li>Cloner le dépôt du TP.</li>
+                            <li>https://github.com/thibault/iwantyoursocks.git</li>
+                            <li>Créer un nouveau fichier « couleurs.md » et commiter.</li>
+                            <li>Mettre à jour le menu dans « _layouts/default.html » et commiter.</li>
                         </ul>
                     </section>
 
@@ -431,6 +431,7 @@ $ git log --graph
 $ git log --format=oneline
 $ git log --since="yesterday"
 $ git log --since="1 hour ago"
+$ git log --name-only
 $ git lg
                         </code></pre>
                     </section>
@@ -448,10 +449,12 @@ $ git show &lt;tag&gt;
                     <section>
                         <h2>Spécifier un commit / révision</h2>
                         <pre><code>
+$ git … HEAD
 $ git … HEAD^
 $ git … efc95493798d878735a7ecf823c3aaacb59cf8c8
 $ git … efc95493798d878735a7ecf823c3aaacb59cf8c8^^
-$ git … efc95493798d8~3
+$ git … efc95~3
+$ git … hotfixes
 $ git … hotfixes@{yesterday}
 $ git … HEAD@{5}
 $ git … HEAD@{"1 hour ago"}
@@ -470,10 +473,12 @@ $ git log HEAD~5..
                     <section>
                         <h2>TP</h2>
                         <ul>
-                            <li>Affichez le log du dépôt tpgit</li>
-                            <li>Affichez le détail d'un commit</li>
-                            <li>Affichez les modifs des 5 derniers commits</li>
-                            <li>Affichez les modifs de cette semaine</li>
+                            <li>Afficher le log du dépôt</li>
+                            <li>Afficher toutes les modifications qui ont impacté le fichier « index.md »</li>
+                            <li>Afficher le log de tous les commits entre f4881ac et 4078c07</li>
+                            <li>Afficher tous les commits qui contiennent le mot « menu »</li>
+                            <li>Afficher le détail du commit « 1c1ce3d3db90b9edf2240028e027581ef6d878c2 »</li>
+                            <li>Afficher toutes les modifications réalisées entre les commits f4881ac et 4078c07</li>
                         </ul>
                     </section>
                 </section>
@@ -627,6 +632,7 @@ $ git log HEAD~5..
                         <pre><code>
                             $ git checkout &lt;branch1&gt;
                             $ git checkout &lt;branch2&gt;
+                            $ git checkout -
                         </code></pre>
                     </section>
 
@@ -650,11 +656,13 @@ $ git log HEAD~5..
                     <section>
                         <h2>TP</h2>
                         <ul>
-                            <li>Listez toutes les branches du dépôt</li>
-                            <li>Listez les branches non fusionnées</li>
-                            <li>Passez de la branch master à la branche dev</li>
-                            <li>Visualisez les différences entre les deux</li>
-                            <li>Supprimez la branche "test_branch"</li>
+                            <li>Lister les branches locales du dépôt</li>
+                            <li>Lister les branches distantes</li>
+                            <li>Récupérer en local les branches « colors » et « material »</li>
+                            <li>Lister les branches fusionnées et non fusionnées</li>
+                            <li>Passer sur la branche « colors »</li>
+                            <li>Passer sur la branch « gh-pages »</li>
+                            <li>Créer une nouvelle branche « quicktest », supprimer un fichier, commiter</li>
                         </ul>
                     </section>
                 </section>
@@ -760,7 +768,7 @@ $ git log HEAD~5..
                         <pre><code>
                             A1---A2---A3---A4
                                   \
-                                   A5---A6---A6
+                                   A5---A6---A7
                         </code></pre>
                     </section>
 
@@ -771,9 +779,9 @@ $ git log HEAD~5..
                         <pre><code>
                             A1---A2---A3---A4
                                   \
-                                   A5---A6---A6
+                                   A5---A6---A7
                         </code></pre>
-                        <p>Ici, A2, A4 et A6.</p>
+                        <p>Ici, A2, A4 et A7.</p>
                     </section>
 
                     <section>
@@ -897,10 +905,10 @@ git mergetool
                     <section>
                         <h2>TP</h2>
                         <ul>
-                            <li>Fusionnez feature1 vers master</li>
-                            <li>Supprimez feature2</li>
-                            <li>Changez d'avis, et récupérez la branche feature2</li>
-                            <li>Fusionnez feature2 vers master</li>
+                            <li>Sans la fusionner, supprimer la branche « quicktest »</li>
+                            <li>Retrouver l'identité du commit perdu</li>
+                            <li>Fusionner la branche « material » dans « gh-pages »</li>
+                            <li>Fusionner la branche « colors » dans « gh-pages »</li>
                         </ul>
                     </section>
                 </section>
@@ -1027,10 +1035,10 @@ git mergetool
                     <section>
                         <h2>Réparer un mauvais historique</h2>
                         <pre><code>
-                            $ git rebase --onto production bug_en_cours bug_urgent
+                            $ git rebase bug_en_cours bug_urgent --onto production
                         </code></pre>
                         <pre><code>
-                            A---B---H---I---J---E'---F' &#x2190; production
+                            A---B---H---I---J---E'---F' &#x2190; production &#x2190; bug_urgent
                                  \
                                   C---D---G &#x2190; bug_en_cours
                         </code></pre>
@@ -1145,8 +1153,9 @@ git mergetool
                     <section>
                         <h2>TP</h2>
                         <ul>
-                            <li>Rebasez feature3 vers master</li>
-                            <li>Rebasez hotfix vers master</li>
+                            <li>Annuler les deux dernières fusions</li>
+                            <li>Rebaser « material » sur « gh-pages » et la fusionner</li>
+                            <li>Rebaser « colors » sur « gh-pages » et la fusionner</li>
                         </ul>
                     </section>
                 </section>
@@ -1188,6 +1197,17 @@ git mergetool
                             $ git remote mv …
                             $ git help remote
                         </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Git remote</h2>
+                        <p>N'importe quel dépôt peut être utilisé comme dépôt distant !</p>
+                        <ul>
+                            <li>Un dépôt sur un autre serveur</li>
+                            <li>Un autre dépôt sur votre propre machine</li>
+                            <li>Le dépôt d'un·e collègue</li>
+                            <li>…</li>
+                        </ul>
                     </section>
 
                     <section>
@@ -1385,22 +1405,12 @@ $ git branch -vv
                     <section>
                         <h2>TP</h2>
                         <ul>
-                            <li>Affichez la liste des branches distantes</li>
-                            <li>Affichez le log de la branche master distante</li>
+                            <li>Créer un nouveau dépôt « bare » en clonant le dépôt Github</li>
+                            <li>Dans le dépôt initial, configurer le nouveau dépôt comme dépôt distant</li>
+                            <li>Télécharger les données du nouveau dépôt</li>
+                            <li>« pusher » votre branche gh-pages à jour</li>
+                            <li>Configurer « gh-pages » pour tracker la branche sur le nouveau distant</li>
                         </ul>
-                    </section>
-
-                    <section>
-                        <h2>Exemple d'utilisation</h2>
-                        <pre><code>
-git clone git@github.com:thibault/elasticsearch-dsl-py.git
-cd elasticsearch-dsl-py
-git remote add upstream https://github.com/elasticsearch/elasticsearch-dsl-py.git
-git fetch upstream
-git diff upstream/master
-git rebase upstream/master
-git push
-                        </code></pre>
                     </section>
 
                 </section>
@@ -1566,8 +1576,16 @@ git push
                     <section>
                         <h2>Organiser ses dépôts distants</h2>
                         <h3>Le modèle « dictateur / lieutenants »</h3>
-                        <p>Pour les trés gros projets.</p>
                         <img src="img/workflow3.png" />
+                    </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Préparer la release de la version 1.0.1 et fusionner</li>
+                            <li>Trouver une faute à corriger, et créer une version 1.0.2</li>
+                            <li>Pusher vos nouveaux tags sur le serveur</li>
+                        </ul>
                     </section>
                 </section>
             </div>
@@ -1575,7 +1593,7 @@ git push
         </div>
 
         <script src="../reveal.js/lib/js/head.min.js"></script>
-        <script src="../reveal.js/js/reveal.min.js"></script>
+        <script src="../reveal.js/js/reveal.js"></script>
 
         <script>
 
