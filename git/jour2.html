@@ -12,18 +12,18 @@
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-        <link rel="stylesheet" href="../reveal.js/css/reveal.min.css">
+        <link rel="stylesheet" href="../reveal.js/css/reveal.css">
         <link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">
         <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
         <link rel="stylesheet" href="css/styles.css">
 
-        <!-- If the query includes 'print-pdf', use the PDF print sheet -->
-        <script>
-            document.write( '<link rel="stylesheet" href="../reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-            document.write( '<link rel="stylesheet" href="../css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-        </script>
+        <!-- Uncomment this for printing -->
+        <!--
+        <link rel="stylesheet" href="../reveal.js/css/print/pdf.css" type="text/css">
+        <link rel="stylesheet" href="../css/print/pdf.css" type="text/css">
+        -->
 
         <style media="print">
             section > section {
@@ -136,7 +136,7 @@ git reset --hard
                             git tag  # Lister tous les tags
                             git tag v1.0.0  # Créé un tag léger
                             git tag -a v1.0.0  # Créé un tag annoté
-                            git tag -a v1.0.0  # Créé un tag annoté et signé par PGP
+                            git tag -s v1.0.0  # Créé un tag annoté et signé par PGP
                             git tag -v v1.0.0  # Vérifie la signature
 
                             git push origin v1.0.0  # Push le tag sur le serveur
@@ -213,7 +213,7 @@ git reset --hard
                     <section>
                         <h2>Commiter avec soin</h2>
                         <pre><code>
-                            $ git add -p
+                            $ git add -p &lt;file&gt;
                             $ git add -i
                         </code></pre>
                     </section>
@@ -648,6 +648,59 @@ git reset --hard
 
                 <section>
                     <section>
+                        <h1>Gérer des fichiers binaires</h1>
+                        <small>Mais pourquoiiiiii…</small>
+                    </section>
+
+                    <section>
+                        <h2>Faut-il gérer des gros binaires avec Git ?</h2>
+                        <ul>
+                            <li>Images</li>
+                            <li>Archives de backup</li>
+                            <li>Fichers word</li>
+                            <li>Modèles 3d</li>
+                            <li>etc.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>À savoir</h2>
+                        <ul>
+                            <li>Git brille avec les fichiers texte</li>
+                            <li>Gérer des écriture / effacement de blobs
+                            binaires massifs est couteux en ressource</li>
+                            <li>Pour les gros binaires, il va falloir ruser</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Les fichiers Word</h2>
+                        <ul>
+                            <li>Ne le faites pas !</li>
+                            <li>Utilisez .gitattributes</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <pre><code>
+                            *.odt diff=odt
+                        </code></pre>
+                        <pre><code>
+                            git config diff.odt.textconv odt2txt
+                        </code></pre>
+                        <a href="http://git-scm.com/book/fr/v1/Personnalisation-de-Git-Attributs-Git">http://git-scm.com/book/fr/v1/Personnalisation-de-Git-Attributs-Git</a>
+                    </section>
+
+                    <section>
+                        <h2>Et pour les binaires existants ?</h2>
+                        <p>Supprimez-les !</p>
+                        <p><a href="http://blogs.atlassian.com/2014/05/handle-big-repositories-git/">http://blogs.atlassian.com/2014/05/handle-big-repositories-git/</a></p>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
                         <h1>Fonctionnement interne de Git</h1>
                     </section>
 
@@ -701,7 +754,7 @@ git reset --hard
         </div>
 
         <script src="../reveal.js/lib/js/head.min.js"></script>
-        <script src="../reveal.js/js/reveal.min.js"></script>
+        <script src="../reveal.js/js/reveal.js"></script>
 
         <script>
 
@@ -713,6 +766,7 @@ git reset --hard
                 history: true,
                 center: true,
                 rollingLinks: false,
+                margin: 0,
 
                 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
                 transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
