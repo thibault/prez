@@ -626,22 +626,73 @@ git reset --hard
                     </section>
 
                     <section>
-                        <h2>Si vous aimez les antiquités…</h2>
+                        <h2>Récupérer la liste des auteurs</h2>
+                        <h3>Créer un fichier « authors »</h3>
                         <pre><code>
-            $ aptitude install git-svn
-            $ git-svn clone http://svn.example.com/svn/projet -T trunk projet
-            $ cd projet
-            $ git-svn show-ignore &gt;&gt; .git/info/exclude
-            $ Commit… Commit… Commit…
-            $ git svn rebase
-            $ git svn dcommit
+thibault.j = Thibault Jouannic &lt;thibault@miximum.fr&gt;
+toto.t = Toto Tata &lt;toto@tata.com&gt;
+                        </code></pre>
+
+                        <h3>Initialisable grâce à…</h3>
+                        <pre><code>
+svn log https://github.com/thibault/iwantyoursocks/ |
+    sed -ne 's/^r[^|]*| \([^ ]*\) |.*$/\1 = \1 <\1@dummy.example.com>/p' |
+sort -u > authors
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Cloner un dépôt svn</h2>
+                        <h3>Layout standard</h3>
+                        <pre><code>
+$ git svn clone https://github.com/thibault/iwantyoursocks --stdlayout --prefix=svn/ -A authors
+                        </code></pre>
+
+                        <h3>Layout spécifique</h3>
+                        <pre><code>
+$ git svn clone https://github.com/thibault/iwantyoursocks -T trunk -b branches -t tags \
+    --prefix=svn/ -A authors
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Récupérer les branches</h2>
+                        <pre><code>
+$ git checkout svn/colors -b colors
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Récupérer les tags</h2>
+                        <pre><code>
+git for-each-ref refs/remotes/svn/tags --format="%(refname:short)" |
+sed 's#svn/tags/##' |
+while read aTag; do
+    git tag $aTag svn/tags/$aTag;
+done
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Récupérer les propriétés « svn:ignore »</h2>
+                        <pre><code>
+$ git-svn show-ignore &gt;&gt; .git/info/exclude
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Workflow de travail</h2>
+                        <pre><code>
+$ Commit… Commit… Commit…
+$ git svn rebase
+$ git svn dcommit
                         </code></pre>
                     </section>
 
                     <section>
                         <h2>TP</h2>
                         <ul>
-                            <li>Créez un dépôt git de votre projet courant à partir de son svn</li>
+                            <li>Importer le dépôt git avec git-svn</li>
                         </ul>
                     </section>
                 </section>
