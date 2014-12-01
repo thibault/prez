@@ -1,4 +1,4 @@
-body {
+/*body {
     width: 297mm;
     height: 210mm !important;
 }
@@ -14,6 +14,11 @@ body {
 .reveal section.stack {
     height: auto !important;
     min-height: auto !important;
+}
+*/
+.reveal .slides section > section {
+    height: 185mm !important;
+    min-height: 185mm !important;
 }
 .reveal section > h1,
 .reveal section > h2 {
