@@ -133,13 +133,13 @@ git reset --hard
                     <section>
                         <h2>Les tags</h2>
                         <pre><code>
-                            git tag  # Lister tous les tags
-                            git tag v1.0.0  # Créé un tag léger
-                            git tag -a v1.0.0  # Créé un tag annoté
-                            git tag -s v1.0.0  # Créé un tag annoté et signé par PGP
-                            git tag -v v1.0.0  # Vérifie la signature
+    git tag  # Lister tous les tags
+    git tag v1.0.0  # Créé un tag léger
+    git tag -a v1.0.0  # Créé un tag annoté
+    git tag -s v1.0.0  # Créé un tag annoté et signé par PGP
+    git tag -v v1.0.0  # Vérifie la signature
 
-                            git push origin v1.0.0  # Push le tag sur le serveur
+    git push origin v1.0.0  # Push le tag sur le serveur
                         </code></pre>
                     </section>
 
@@ -147,7 +147,7 @@ git reset --hard
                         <h2>Git archive</h2>
                         <p>Pour créer une archive d'une version spécifique</p>
                         <pre><code>
-                            git archive --format=tar.gz --prefix=git-1.0.0/ v1.0.0 >git-1.0.0.tar.gz
+    git archive --format=tar.gz --prefix=git-1.0.0/ v1.0.0 >git-1.0.0.tar.gz
                         </code></pre>
                     </section>
 
@@ -155,16 +155,16 @@ git reset --hard
                         <h2>Hook post-receive</h2>
                         <p>tpgit.git/hooks/post-receive</p>
                         <pre><code>
-                            #!/bin/sh
+    #!/bin/sh
 
-                            while read oldrev newrev refname
-                            do
-                                branch=$(git rev-parse --symbolic --abbrev-ref $refname)
-                                echo $oldrev $newrev $refname $branch
-                                if [ "master" == "$branch" ]; then
-                                    echo "Do something"
-                                fi
-                            done
+    while read oldrev newrev refname
+    do
+        branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+        echo $oldrev $newrev $refname $branch
+        if [ "master" == "$branch" ]; then
+            echo "Do something"
+        fi
+    done
 
                         </code></pre>
                     </section>
@@ -276,10 +276,11 @@ git reset --hard
                     <section>
                         <h2>TP</h2>
                         <ul>
-                            <li>Ajoutez plusieurs paragraphes dans un fichier</li>
-                            <li>N'en commitez qu'un seul</li>
-                            <li>Changez le commentaire du dernier commit</li>
-                            <li>Supprimez les deux derniers commits de master</li>
+                            <li>Modifier plusieurs paragraphes du fichier « couleurs.md »</li>
+                            <li>N'en commiter qu'un seul</li>
+                            <li>Changer le commentaire du dernier commit</li>
+                            <li>Changer d'avis et supprimer ce dernier commit</li>
+                            <li>Réécrire l'historique de la dernière branche fusionnée</li>
                         </ul>
                     </section>
                 </section>
@@ -308,6 +309,13 @@ git reset --hard
                             $ git bisect [bad|good|skip]  # Repeat
                             $ git bisect reset
                         </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>TP</h2>
+                        <ul>
+                            <li>Trouver le commit qui a introduit la section « choisir la fantaisie » dans « couleurs.md »</li>
+                        </ul>
                     </section>
                 </section>
 
@@ -366,14 +374,6 @@ git reset --hard
                             lui assignant un shell spécial dans <i>/etc/passwd</i>.</p>
                         <pre><code>
                             git:x:1000:1000::/home/git:/usr/bin/git-shell
-                        </code></pre>
-                    </section>
-
-                    <section>
-                        <h2>Authentification par mdp</h2>
-                        <p></p>
-                        <pre><code>
-                            TODO
                         </code></pre>
                     </section>
 
@@ -577,7 +577,7 @@ git reset --hard
                     <section>
                         <h2>TP</h2>
                         <ul>
-                            <li>Intégrez votre librairie / framework préféré via un submodule</li>
+                            <li>Intégrer votre librairie / framework préféré via un submodule</li>
                             <li>Idem via un subtree</li>
                         </ul>
                     </section>
