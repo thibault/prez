@@ -1,9 +1,16 @@
 [user]
-	email = mon@email.com
-	name = Prénom Nom
+    mail = youremail@test.com
+    name = Your Name
 [color]
-	ui = true
+    ui = true
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
 [push]
-	default = matching
+    default = current
+[pull]
+    rebase = preserve
+[merge]
+    conflictstyle = diff3
+[diff]
+    compactionHeuristic = true
+    renames = true
