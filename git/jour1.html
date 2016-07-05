@@ -38,7 +38,7 @@
 
     <body>
 
-        <footer id="slide-footer"> Formation Git<br /> Thibault Jouannic <span>2014</span> </footer>
+        <footer id="slide-footer"> Formation Git<br /> Thibault Jouannic <span>2014 ~ 2016</span> </footer>
 
         <div class="reveal">
 
@@ -47,7 +47,7 @@
 
                 <section>
                     <section>
-                        <img src="img/gros_logo.png" style="border: 0 !important; box-shadow: none !important; background: none !important; "/>
+                        <!--<img src="img/gros_logo.png" style="border: 0 !important; box-shadow: none !important; background: none !important; "/> -->
                         <h1>Formation Git</h1>
                     </section>
 
@@ -59,7 +59,7 @@
                             <li><a href="http://miximum.fr">Miximum.fr</a></li>
                             <li>Développeur Web indépendant</li>
                             <li>Python, Django, Javascript</li>
-                            <li>Plus de 5 ans d'utilisation quotidienne de Git</li>
+                            <li>Plus de 7 ans d'utilisation quotidienne de Git</li>
                         </ul>
                     </section>
 
@@ -184,6 +184,18 @@
                             <li>~/.gitconfig</li>
                             <li>.git/config</li>
                         </ul>
+                </section>
+
+                <section>
+                        <h2>Éditer le fichier de conf</h2>
+                        <pre><code>
+                            $ git config -e
+                            $ git config --global -e
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Configurer un paramètre</h2>
                         <pre><code>
     $ git config --global user.name "Thibault Jouannic"
     $ git config --global user.email "thibault@miximum.fr"
@@ -191,22 +203,43 @@
                     </section>
 
                     <section>
+                        <h2>Supprimer un paramètre</h2>
+                        <pre><code>
+    $ git config --unset diff.renames
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Lister les paramètres configurés</h2>
+                        <pre><code>
+    $ git config --list --show-origin
+                        </code></pre>
+                    </section>
+
+                    <section>
                         <h2>La configuration</h2>
                         <pre><code>
 [user]
+     mail = thibault@miximum.fr
     name = Thibault Jouannic
-    email = thibault@miximum.fr
 [color]
     ui = true
 [alias]
-    lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-    st = status
-    ci = commit
-[core]
-    editor = vim
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all
+[push]
+    default = current
+[pull]
+    rebase = preserve
 [merge]
-    tool = vimdiff
+    tool = meld
+    conflictstyle = diff3
+[diff]
+    compactionHeuristic = true
+    renames = true
                         </code></pre>
+                        <a href="https://gist.githubusercontent.com/thibault/d8699324637dad33bec50741ad3910d1/raw/198c029252bfa2492da6ea1aeb7791e6f1b59bf6/.gitconfig">
+                            À télécharger ici
+                        </a>
                     </section>
 
                     <section>
@@ -243,7 +276,7 @@
                     <section>
                         <h2>.gitignore</h2>
                         <p>Pour ignorer certains fichiers.</p>
-                        <p><a href="https://gist.github.com/thibault/5804127">Exemple de .gitignore</a>
+                        <p><a href="https://github.com/github/gitignore">Nombreux exemples sur https://github.com/github/gitignore</a></p>
                         <pre><code>
 *.pyc
 cache/
@@ -1568,6 +1601,7 @@ $ git branch -vv
                 center: true,
                 rollingLinks: false,
                 margin: 0,
+                slideNumber: true,
 
                 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
                 transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
