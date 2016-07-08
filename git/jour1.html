@@ -199,6 +199,7 @@
                         <pre><code>
     $ git config --global user.name "Thibault Jouannic"
     $ git config --global user.email "thibault@miximum.fr"
+    $ git config --global core.editor
                         </code></pre>
                     </section>
 
@@ -300,7 +301,8 @@ $ git add .  # Ajoute tous les fichiers sous le dir. courant
 $ git add &lt;file&gt;  # Ajoute un seul fichier ou dir.
 $ git add -u  # Ignore les fichiers non trackés, enregistre la suppr. de fichiers
 $ git add -f  # Ajout de fichiers ignorés
-$ git add -p &lt;file&gt;  # Interactif KILLER FEATURE!
+$ git add -i &lt;file&gt;  # Interactif KILLER FEATURE!
+$ git add -p &lt;file&gt;  # Mode patch directement
                         </code></pre>
                     </section>
 
@@ -311,7 +313,7 @@ $ # Staging &#x2192; Repository
 $ git commit  # Commit et lance l'éditeur pour saisir le message
 $ git commit -m "Mon message"
 $ git commit -a  # Tout commiter, même ce qui n'est pas dans le staging
-$ git commit -am "Mon message"  # Svn style
+$ git commit -am "Mon message"  # Svn style, à éviter bien évidemment
                         </code></pre>
                     </section>
 
@@ -347,8 +349,8 @@ $ git status
                     <section>
                         <h2>Supprimer et déplacer des fichiers</h2>
                         <pre><code>
-$ git rm  # Supprimer du repository et du WD
-$ git rm --cached  # Supprimer du repository mais pas du WD
+$ git rm &lt;file&gt; # Supprimer du repository et du WD
+$ git rm --cached  &lt;file&gt;# Supprimer du repository mais pas du WD
 $ git mv source destination  # Déplace un fichier
                         </code></pre>
                     </section>
@@ -416,6 +418,7 @@ $ git diff -w  # Ignore les espaces dans la comparaison
                         <h2>Fouiller l'historique</h2>
                         <pre><code>
 $ git log
+$ git log -p
 $ git log &lt;branch&gt;
 $ git log --author=Thibault
 $ git log --grep=keyword -i -E
@@ -447,9 +450,6 @@ $ git … efc95493798d878735a7ecf823c3aaacb59cf8c8
 $ git … efc95493798d878735a7ecf823c3aaacb59cf8c8^^
 $ git … efc95~3
 $ git … hotfixes
-$ git … hotfixes@{yesterday}
-$ git … HEAD@{5}
-$ git … HEAD@{"1 hour ago"}
                         </code></pre>
                     </section>
 
@@ -459,6 +459,7 @@ $ git … HEAD@{"1 hour ago"}
 $ git log efc95493798d8..
 $ git log efc95493798d8..efc95493798d8~5
 $ git log HEAD~5..
+$ git log -5  # Pareil
                         </code></pre>
                     </section>
 
@@ -923,7 +924,7 @@ git mergetool
                     <section>
                         <h2>Merge vs. Rebase</h2>
                         <pre><code>
-                            A---B---C---D &#x2190; master
+                            A---B---C---D &#x2190; master &#x2190; HEAD
                                  \
                                   E---F---G &#x2190; hotfix
                         </code></pre>
@@ -932,17 +933,16 @@ git mergetool
                         </code></pre>
 
                         <pre><code>
-                            A---B---C---D---H &#x2190; master, hotfix
+                            A---B---C---D---H &#x2190; master &#x2190; HEAD
                                  \         /
-                                  E---F---G
+                                  E---F---G &#x2190; hotfix
                         </code></pre>
                         <pre><code>
-                            $ git rebase master
+                            $ git checkout hotfix && git rebase master
                         </code></pre>
 
                         <pre><code>
-                            XXX
-                            A---B---C---D---E'---F'---G' &#x2190; hotfix
+                            A---B---C---D---E'---F'---G' &#x2190; hotfix &#x2190; HEAD
                                          \
                                           master
                         </code></pre>
@@ -957,7 +957,7 @@ git mergetool
                         </code></pre>
                         <ol>
                             <li>git met de côté tous les commits de la branche <i>hotfix</i></li>
-                            <li>la branche <i>hotfix</i> est déplacée sur le dernier commit de <i>master</i></li>
+                            <li>l'étiquette <i>hotfix</i> est déplacée sur le dernier commit de <i>master</i></li>
                             <li>les commits de côté sont tous ré-appliqués <em>un par un</em></li>
                         </ol>
                     </section>
@@ -979,6 +979,7 @@ git mergetool
                         <h2>Quand privilégier rebase sur merge ?</h2>
                         <ul>
                             <li>Soigner son historique</li>
+                            <li>Rattraper un mauvais historique</li>
                             <li>Faciliter l'intégration de branches</li>
                         </ul>
                     </section>
@@ -1143,6 +1144,9 @@ git mergetool
                     <section>
                         <h2>Eh ! pssst !</h2>
                         <p>Pour frimer : git rerere</p>
+                        <pre><code>
+    $ git config --global rerere.enabled true
+                        </code></pre>
                     </section>
 
                     <section>
