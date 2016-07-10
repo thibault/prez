@@ -199,7 +199,7 @@
                         <pre><code>
     $ git config --global user.name "Thibault Jouannic"
     $ git config --global user.email "thibault@miximum.fr"
-    $ git config --global core.editor
+    $ git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"
                         </code></pre>
                     </section>
 
@@ -301,7 +301,7 @@ $ git add .  # Ajoute tous les fichiers sous le dir. courant
 $ git add &lt;file&gt;  # Ajoute un seul fichier ou dir.
 $ git add -u  # Ignore les fichiers non trackés, enregistre la suppr. de fichiers
 $ git add -f  # Ajout de fichiers ignorés
-$ git add -i &lt;file&gt;  # Interactif KILLER FEATURE!
+$ git add -i  # Interactif KILLER FEATURE!
 $ git add -p &lt;file&gt;  # Mode patch directement
                         </code></pre>
                     </section>
@@ -350,7 +350,7 @@ $ git status
                         <h2>Supprimer et déplacer des fichiers</h2>
                         <pre><code>
 $ git rm &lt;file&gt; # Supprimer du repository et du WD
-$ git rm --cached  &lt;file&gt;# Supprimer du repository mais pas du WD
+$ git rm --cached  &lt;file&gt; # Supprimer du repository mais pas du WD
 $ git mv source destination  # Déplace un fichier
                         </code></pre>
                     </section>
@@ -1020,26 +1020,26 @@ git mergetool
                         <pre><code>
                             A---B---H---I---J &#x2190; production
                                  \
-                                  C---D---G &#x2190; bug_en_cours
+                                  C---D---G &#x2190; feature_en_cours
                                        \
                                         E---F &#x2190; bug_urgent
                         </code></pre>
                         <p>Et si je veux passer <i>bug_urgent</i> en production, mais
-                            pas <i>bug_en_cours</i> ?</p>
+                            pas <i>feature_en_cours</i> ?</p>
                     </section>
 
                     <section>
                         <h2>Réparer un mauvais historique</h2>
                         <pre><code>
-                            $ git rebase bug_en_cours bug_urgent --onto production
+                            $ git rebase feature_en_cours bug_urgent --onto production
                         </code></pre>
                         <pre><code>
                             A---B---H---I---J---E'---F' &#x2190; production &#x2190; bug_urgent
                                  \
-                                  C---D---G &#x2190; bug_en_cours
+                                  C---D---G &#x2190; feature_en_cours
                         </code></pre>
                         <p>Les commits sont tous ceux qui sont dans <i>bug_urgent</i>
-                            mais pas dans <i>bug_en_cours</i>.</p>
+                            mais pas dans <i>feature_en_cours</i>.</p>
                     </section>
 
                     <section>
@@ -1097,6 +1097,23 @@ git mergetool
                             A---B---C---D &#x2190; master distant
                                  \
                                   E---F---G &#x2190; master local
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Faciliter l'intégratoin de branches au long cours</h2>
+                        <pre><code>
+    A---B---C---D--- … ---E---F---G ← master
+      \
+       H---I---J--- … ---K---L ← newsletter
+                        </code></pre>
+                        <pre><code>
+    $ git rebase master newsletter
+                        </code></pre>
+                        <pre><code>
+    A---B---C---D--- … ---E---F---G ← master
+                                   \
+                                    H---I---J--- … ---K---L ← newsletter
                         </code></pre>
                     </section>
 

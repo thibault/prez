@@ -38,7 +38,7 @@
 
     <body>
 
-        <footer id="slide-footer"> Formation Git<br /> Thibault Jouannic <span>2014</span> </footer>
+        <footer id="slide-footer"> Formation Git<br /> Thibault Jouannic <span>2014 ~ 2016</span> </footer>
 
         <div class="reveal">
 
@@ -47,7 +47,7 @@
 
                 <section>
                     <section>
-                        <img src="img/gros_logo.png" style="border: 0 !important; box-shadow: none !important; background: none !important; "/>
+                        <!--<img src="img/gros_logo.png" style="border: 0 !important; box-shadow: none !important; background: none !important; "/>-->
                         <h1>Formation Git</h1>
                     </section>
                 </section>
@@ -177,6 +177,143 @@ git reset --hard
                             <li>Github pages</li>
                         </ul>
 
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Gestion des versions / éditions</h1>
+                    </section>
+
+                    <section>
+                        <h2>Un peu de vocabulaire</h2>
+                        <dl>
+                            <dt>Versions</dt>
+                            <dd>Instances d'un même projet libérées à des
+                            moments différents (e.g v1.0.0, v1.0.1).<br />
+                            <a href="http://semver.org/">Rappel : Semver</a></dd>
+                            <dt>Éditions</dt>
+                            <dd>Instances simultanées d'un même projet avec des
+                            variations spécifiques (e.g pour des clients
+                            différents).</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <h2>Utiliser git pour gérer les versions</h2>
+                        <p>Cas typique :</p>
+                        <ul>
+                            <li>une version de développement <i>instable</i> ;</li>
+                            <li>une / plusieurs versions stables (e.g LTS) ;</li>
+                            <li>sous-versions de correction de bugs ;</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Définir un processus de release</h2>
+                        <ul>
+                            <li>Quelle est la version de développement ?</li>
+                            <li>Où sont ajoutées les nouvelles fonctionalités ?</li>
+                            <li>Quelles versions reçoivent les correctifs de sécurité ?</li>
+                            <li>Une seule branche stable ? Plusieurs ? LTS ?</li>
+                            <li>Durée de support d'une branche ?</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Exemple de Django</h2>
+                        <ul>
+                            <li>Une feature release (1.6, 1.7, etc. tous les 8 mois) ;</li>
+                            <li>Une patch release chaque fois que c'est nécessaire ;</li>
+                            <li>Une version stable et une LTS maintenues en même temps ;</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Avec Git</h2>
+                        <ul>
+                            <li>Une branche = une version stable, e.g stable/1.6.x, stable/1.7.x ;</li>
+                            <li>Une release = un tag ;</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Comment backporter des patches ?</h2>
+                        <p>Il n'y a pas de mécanisme <i>de-facto</i> prévu dans
+                        Git</p>
+                    </section>
+
+                    <section>
+                        <h2>Backports : le merge <i>downward</i></h2>
+                        <ul>
+                            <li>Tous les bugs sont corrigés sur la branche de
+                                dev.</li>
+                            <li>Les patches sont <i>cherry-picked</i>
+                                manuellement ou via un script sur les branches
+                                stables.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Backports : le merge <i>downward</i></h2>
+                        <ul>
+                            <li>+ Facilite le développement</li>
+                            <li>+ Historique bien clair et lisible</li>
+                            <li>+ Facilement automatisable</li>
+                            <li>- Gros risque d'erreur ou d'oublis</li>
+                            <li>- Duplication de commits, complexifie les revert</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Backports : le merge <i>upward</i></h2>
+                        <ul>
+                            <li>Tous les bugs sont corrigés sur la plus
+                                ancienne branche qui doit recevoir les
+                                modifs.</li>
+                            <li>La branche est <i>mergée</i> dans les branches
+                                suivantes et dans la branche de dev.</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Backports : le merge <i>upward</i></h2>
+                        <ul>
+                            <li>+ Une seule modif = un seul commit</li>
+                            <li>+ Facile de backporter des branches de centaines de commits</li>
+                            <li>- Complexifie la lecture de l'historique</li>
+                            <li>- Nécessite une plus grosse planification</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Lequel choisir ?</h2>
+                        <p>Je ne sais pas.</p>
+                    </section>
+
+                    <section>
+                        <h2>Et les éditions ?</h2>
+                        <p>Un principe : un projet == une base de code.</p>
+                    </section>
+
+                    <section>
+                        <h2>Comment gérer des éditions divergentes ?</h2>
+                        <p>Dépend de la technologie et de l'ampleur des divergences.</p>
+                        <p>C'est un problème commercial d'une part, d'architecture logicielle d'autre part.</p>
+                    </section>
+
+                    <section>
+                        <h2>Solutions disponibles</h2>
+                        <ul>
+                            <li>Settings</li>
+                            <li>I18n et L10n</li>
+                            <li>Thème graphique</li>
+                            <li>Pattern <i>strategy</i></li>
+                            <li>Injection de dépendances</li>
+                            <li>Modularité</li>
+                            <li>Feature toggle</li>
+                        </ul>
                     </section>
 
                 </section>
@@ -331,6 +468,13 @@ git reset --hard
                                 SSH <br />
                                 + : authentifié, facile à mettre en place <br />
                                 - : nécessite de donner un accès ssh
+                            </li>
+                            <li>
+                                HTTPS <br />
+                                + : authentifié, sécurisé <br />
+                                + : fonctionne même derrière des proxies et firewall <br />
+                                - : nécessite de mettre en place l'auth http <br />
+                                - : demande le mot de passe à chaque fois
                             </li>
                             <li>
                                 Git <br />
@@ -708,7 +852,7 @@ $ git svn dcommit
                         <ul>
                             <li>Images</li>
                             <li>Archives de backup</li>
-                            <li>Fichers word</li>
+                            <li>Fichiers word</li>
                             <li>Modèles 3d</li>
                             <li>etc.</li>
                         </ul>
@@ -818,6 +962,7 @@ $ git svn dcommit
                 center: true,
                 rollingLinks: false,
                 margin: 0,
+                slideNumber: true,
 
                 theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
                 transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
