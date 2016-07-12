@@ -231,6 +231,23 @@ git reset --hard
                     </section>
 
                     <section>
+                        <h2>Exemple de git itself</h2>
+                        <ul>
+                            <li>Une branche expérimentale <i>next</i></li>
+                            <li>Une branche de dev (future version) <i>master</i></li>
+                            <li>Une branche de maintenance <i>maint</i></li>
+                            <li>Une branche jetable d'intégration <i>pu</i></li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Exemple de Github</h2>
+                        <ul>
+                            <li>Une branche master</li>
+                        </ul>
+                    </section>
+
+                    <section>
                         <h2>Avec Git</h2>
                         <ul>
                             <li>Une branche = une version stable, e.g stable/1.6.x, stable/1.7.x ;</li>
@@ -261,7 +278,8 @@ git reset --hard
                             <li>+ Facilite le développement</li>
                             <li>+ Historique bien clair et lisible</li>
                             <li>+ Facilement automatisable</li>
-                            <li>- Gros risque d'erreur ou d'oublis</li>
+                            <li>- Nécessite du scriptage</li>
+                            <li>- Devient complexe sur les grosses branches</li>
                             <li>- Duplication de commits, complexifie les revert</li>
                         </ul>
                     </section>
@@ -283,7 +301,7 @@ git reset --hard
                             <li>+ Une seule modif = un seul commit</li>
                             <li>+ Facile de backporter des branches de centaines de commits</li>
                             <li>- Complexifie la lecture de l'historique</li>
-                            <li>- Nécessite une plus grosse planification</li>
+                            <li>- Nécessite une gestion des branches vraiment soigneuse</li>
                         </ul>
                     </section>
 
@@ -291,6 +309,50 @@ git reset --hard
                         <h2>Lequel choisir ?</h2>
                         <p>Je ne sais pas.</p>
                     </section>
+
+                    <section>
+                        <h2>Commandes utiles</h2>
+                        <p>Tous les commits sur <i>dev</i> pas encore sur <i>master</i></p>
+                        <pre><code>
+    git log dev --not master
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Commandes utiles</h2>
+                        <p>Vision arborescente de la branche courante</p>
+                        <pre><code>
+    git log --graph --oneline --decorate
+                        </code></pre>
+                     </section>
+
+                    <section>
+                        <h2>Commandes utiles</h2>
+                        <p>Merge en fast forward only</p>
+                        <pre><code>
+    git merge-base --is-ancestor maintenance master
+    git merge maintenance --ff-only master
+                        </code></pre>
+                     </section>
+
+                    <section>
+                        <h2>Commandes utiles</h2>
+                        <p>Trouver le premier ancêtre commun de deux branches</p>
+                        <pre><code>
+    git merge-base A B
+    git merge-base --octopus A B C…
+                        </code></pre>
+                     </section>
+
+                     <section>
+                        <h2>Commandes utiles</h2>
+                        <p>Voir ce qui va être mergé</p>
+                        <pre><code>
+    git diff dev topic # Voir le diff global
+    git diff dev...topic  # Voir le diff de topic uniquement
+
+                        </code></pre>
+                     </section>
 
                     <section>
                         <h2>Et les éditions ?</h2>
