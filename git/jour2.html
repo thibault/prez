@@ -762,7 +762,7 @@ git reset --hard
                             $ git checkout bootstrap_branch
                             $ git pull
                             $ git checkout master
-                            $ git merge --squash --no-commit -s subtree bootstrap_branch
+                            $ git merge --allow-unrelated-histories --squash --no-commit -s subtree bootstrap_branch
                         </code></pre>
                         <p>Modifier le subtree local et pusher :</p>
                         <pre><code>
