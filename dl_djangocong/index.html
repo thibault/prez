@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Invoquez la magie du Deep Learning dans votre projet Django</title>
+
+        <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+        <meta name="author" content="Thibault">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="../reveal.js/css/reveal.css">
+        <link rel="stylesheet" href="../reveal.js/css/theme/black.css" id="theme">
+        <link rel="stylesheet" href="../css/styles.css">
+        <style>
+            body {
+                background: black;
+                background-color: black;
+            }
+            .reveal section img {
+                margin: none;
+                border: none;
+            }
+        </style>
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <div class="slides">
+                <section>
+                    <h1>Deep learning avec Django</h1>
+                    <p>Thibault Jouannic – @thibaultj – miximum.fr</p>
+                </section>
+
+                <section>
+                    <h1>Deep learning <del>avec Django</del></h1>
+                    <p>Thibault Jouannic – @thibaultj – miximum.fr</p>
+                </section>
+
+                <section>
+                    <img class="full" src="./harry-potter_keras.jpg" alt="" />
+                </section>
+
+                <section>
+                    <img src="./dl.jpg" class="full" alt="" />
+                </section>
+
+                <section>
+                    <img src="./dl2.png" class="full" alt="" />
+                </section>
+
+                <section>
+                    <img class="full" src="./transfer.jpg" alt="" />
+                </section>
+
+                <section>
+                    <img class="full" src="./neuraldoodle.png" alt="" />
+                </section>
+
+                <section>
+                    <img class="full" src="./sketch.png" alt="" />
+                </section>
+
+                <section>
+                    <img class="full" src="./m2.png" alt="" />
+                </section>
+
+                <section>
+                    <img src="./dogbar.png" alt="" />
+                    <p>black and white dog jumps over bar.</p>
+                </section>
+
+                <section>
+                    <img src="./bat.jpg" alt="" />
+                    <p>a young boy is holding a baseball bat.</p>
+                </section>
+
+                <section>
+                    <img class="full" src="./bird.jpg" alt="" />
+                </section>
+
+                <section>
+                    <h2>« La guerre, c'est la paix, la liberté, c'est
+                    l'esclavage, l'ignorance, c'est la force. »</h2>
+                </section>
+
+                <section>
+                    <pre><code>
+class User(models.Model):
+    full_name = models.CharField(max_length=255)
+    password = models.PasswordField()
+
+
+user = User(full_name='Harry Potter')
+if user.check_password('Abracadabra'):
+    user.authenticate()
+                    </code></pre>
+                </section>
+
+                <section>
+                    <pre><code>
+section .bss
+        Buffer:   resb 64
+        BufferSize:         equ $-Buffer
+
+section .text
+        global _start
+
+ _start:
+        mov eax, 3
+        mov ebx, 0
+        mov ecx, Buffer
+        mov edx, BufferSize
+        int 80h
+        mov eax, 4
+        mov ebx, 1
+        mov ecx, Buffer
+        mov edx, BufferSize
+        int 80h
+        mov eax, 1
+        mov ebx, 0
+        int 80h
+                    </code></pre>
+                </section>
+
+                <section>
+                    <img src="./photos.jpg" class="full" alt="" />
+                </section>
+
+                <section>
+                    <img class="full" src="./function.png" alt="" />
+                </section>
+
+                <section>
+                    <pre><code>
+from keras.models import Sequential
+from keras.layers import Dense, Activation
+
+model = Sequential([
+    Dense(32, input_dim=784),
+    Activation('relu'),
+    Dense(10),
+    Activation('softmax'),
+])
+model.compile(loss='categorical_crossentropy',
+              optimizer='sgd',
+              metrics=['accuracy'])
+                </code></pre>
+            </section>
+
+            <section>
+                <img src="./training_1.png" class="" alt="" />
+            </section>
+
+            <section>
+                <pre><code>
+model.fit(x_train, y_train, epochs=5, batch_size=32)
+                </code></pre>
+            </section>
+
+            <section>
+                <img class="full" src="./training.png" alt="" />
+            </section>
+
+            <section>
+                <h2>Deep learning is the new blockchain</h2>
+            </section>
+
+            <section>
+                <h2>Et dans Django ?</h2>
+                <p>Recherche : Zendesk tensorflow</p>
+            </section>
+
+            <section>
+                <h2>Questions ?</h2>
+                <img src="./manchot.gif" class="full" alt="" />
+            </section>
+        </div>
+
+        <script src="../reveal.js/lib/js/head.min.js"></script>
+        <script src="../reveal.js/js/reveal.js"></script>
+
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                width: 960,
+                height: 720,
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'fade', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../reveal.js/plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../reveal.js/plugin/zoom-js/zoom.js', async: true },
+                    { src: '../reveal.js/plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
